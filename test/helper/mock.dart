@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/annotations.dart';
+import 'package:patungan_id/app/data/data.dart';
+import 'package:patungan_id/app/domain/domain.dart';
 
 @GenerateNiceMocks([
+  /*-------------------> Firebase <-------------------*/
   MockSpec<FirebaseAuth>(),
   MockSpec<FirebaseFirestore>(),
   MockSpec<User>(),
@@ -11,5 +14,11 @@ import 'package:mockito/annotations.dart';
   MockSpec<PhoneAuthCredential>(),
   MockSpec<CollectionReference>(),
   MockSpec<QuerySnapshot>(),
+
+  /*-------------------> Data <-------------------*/
+  MockSpec<AuthProvider>(),
+
+  /*-------------------> Repository <-------------------*/
+  MockSpec<AuthRepository>(),
 ])
 void main(List<String> args) {}

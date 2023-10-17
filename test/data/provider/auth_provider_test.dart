@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/data/data.dart';
-import 'package:patungan_id/app/data/providers/auth/auth_provider.dart';
 
 import '../../helper/mock.mocks.dart';
 
@@ -42,30 +41,27 @@ void main() {
     },
   );
 
-  group(
-    "getCurrentUser",
-    () {
-      test('returns the current user', () async {
-        when(userDoc.data()).thenReturn(userData);
-        when(mockAuth.currentUser).thenReturn(mockUser);
+  group("getCurrentUser", () {
+    test('returns the current user', () async {
+      when(userDoc.data()).thenReturn(userData);
+      when(mockAuth.currentUser).thenReturn(mockUser);
 
-        when(mockDocumentSnapshot.exists).thenReturn(true);
-        when(mockDocumentSnapshot.data()).thenReturn(userData);
+      when(mockDocumentSnapshot.exists).thenReturn(true);
+      when(mockDocumentSnapshot.data()).thenReturn(userData);
 
-        when(mockDocumentReference.get())
-            .thenAnswer((_) async => mockDocumentSnapshot);
+      when(mockDocumentReference.get())
+          .thenAnswer((_) async => mockDocumentSnapshot);
 
-        when(mockCollectionReference.doc(mockUser.uid))
-            .thenReturn(mockDocumentReference);
+      when(mockCollectionReference.doc(mockUser.uid))
+          .thenReturn(mockDocumentReference);
 
-        when(mockFirestore.collection('users'))
-            .thenReturn(mockCollectionReference);
+      when(mockFirestore.collection('users'))
+          .thenReturn(mockCollectionReference);
 
-        final user = await authProvider.getCurrentUser();
-        expect(user, isA<UserModel>());
-        expect(user.phoneNumber, '+1234567890');
-        expect(user.name, 'John Doe');
-      });
-    },
-  );
+      final user = await authProvider.getCurrentUser();
+      expect(user, isA<UserModel>());
+      expect(user.phoneNumber, '+1234567890');
+      expect(user.name, 'John Doe');
+    });
+  });
 }
