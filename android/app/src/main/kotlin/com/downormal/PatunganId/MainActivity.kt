@@ -1,4 +1,4 @@
-package com.downormal.PatunganId.patungan_id
+package com.downormal.PatunganId
 
 import io.flutter.embedding.android.FlutterActivity
 
