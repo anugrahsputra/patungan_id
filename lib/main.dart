@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:patungan_id/firebase_options.dart';
 
 import 'app/core/core.dart';
@@ -9,7 +12,7 @@ import 'app/presentation/presentation.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  _Logging.initialize(showLog: true);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await init();
   runApp(MyApp());
@@ -25,18 +28,47 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => authCubit),
+        BlocProvider(create: (context) => authCubit..getCurrentUser()),
         BlocProvider(create: (context) => splashCubit),
       ],
       child: MaterialApp(
         title: 'Patungan Id',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          useMaterial3: true,
-        ),
+        theme: AppThemes.light,
         initialRoute: AppRoutes.initial,
         routes: AppRoutes.routes,
       ),
     );
+  }
+}
+
+abstract class _Logging {
+  static bool isInitialize = false;
+
+  static Future<void> initialize({bool showLog = false}) async {
+    if (!_Logging.isInitialize) {
+      Logger.root.level = showLog ? Level.ALL : Level.OFF;
+
+      Logger.root.onRecord.listen((record) {
+        final level = record.level;
+        final name = record.loggerName;
+        final message = record.message;
+        final strackTrace = record.stackTrace;
+        final error = record.error;
+
+        if (level == Level.FINE ||
+            level == Level.FINER ||
+            level == Level.FINEST) {
+          log('✅ ${level.name} "$name" : $message');
+        } else if (level == Level.SEVERE ||
+            level == Level.SHOUT ||
+            level == Level.WARNING) {
+          log('⛔ ${level.name} "$name" : $message${error != null ? '\nError : $error' : ''}${strackTrace != null ? '\n$strackTrace' : ''}');
+        } else if (level == Level.INFO || level == Level.CONFIG) {
+          log('ℹ️ ${level.name} "$name" : $message');
+        }
+      });
+
+      _Logging.isInitialize = true;
+    }
   }
 }

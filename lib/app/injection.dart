@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patungan_id/app/data/data.dart';
 import 'package:patungan_id/app/data/repository/auth_repository_impl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
 import 'domain/domain.dart';
@@ -12,18 +13,30 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   /*-------------------> EXTERNAL <-------------------*/
+  final sharedPref = await SharedPreferences.getInstance();
   final auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
 
   sl.registerLazySingleton(() => auth);
   sl.registerLazySingleton(() => firestore);
+  sl.registerLazySingleton(() => sharedPref);
 
   /*-------------------> CORE <-------------------*/
   sl.registerSingleton<AppNavigator>(AppNavigator());
 
   /*-------------------> CUBIT <-------------------*/
   // AuthCubit
-  sl.registerFactory(() => AuthCubit(sl(), sl(), sl()));
+  sl.registerFactory(() => AuthCubit(
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+      ));
   sl.registerFactory(() => SplashCubit(auth: sl()));
 
   /*-------------------> USECASE <-------------------*/
@@ -31,6 +44,12 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SignInUsecase(sl()));
   sl.registerLazySingleton(() => SignOutUsecase(sl()));
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
+  sl.registerLazySingleton(() => GetCurrentUerUsecase(sl()));
+  sl.registerLazySingleton(() => GetCachedUserUsecase(sl()));
+  sl.registerLazySingleton(() => GetCurrentUserIdUsecase(sl()));
+  sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl()));
+  sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
+  sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
 
   /*-------------------> REPOSITORY <-------------------*/
   // auth
@@ -38,5 +57,6 @@ Future<void> init() async {
 
   /*-------------------> PROVIDER <-------------------*/
   // auth
-  sl.registerLazySingleton<AuthProvider>(() => AuthProviderImpl(sl(), sl()));
+  sl.registerLazySingleton<AuthProvider>(
+      () => AuthProviderImpl(sl(), sl(), sl()));
 }
