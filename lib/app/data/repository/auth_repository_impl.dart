@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:patungan_id/app/core/errors/failure.dart';
+import 'package:logging/logging.dart';
 
+import '../../core/core.dart';
 import '../../domain/domain.dart';
 import '../data.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthProvider authProvider;
+
+  final Logger log = Logger("Auth Repository");
 
   AuthRepositoryImpl(this.authProvider);
 
@@ -39,6 +42,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> saveDataToDatabase(String name) async {
     try {
       final result = await authProvider.saveDataToDatabase(name);
+      authProvider.setUserLoggedIn(await authProvider.getCurrentId());
       return Right(result);
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message!));
@@ -60,6 +64,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> signOut() async {
     try {
       final result = await authProvider.signOut();
+
       return Right(result);
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message!));
@@ -73,6 +78,17 @@ class AuthRepositoryImpl implements AuthRepository {
       return Right(result);
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message!));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getCachedLocalCurrentUid() async {
+    try {
+      final result = authProvider.getUser();
+      log.fine(result);
+      return Right(result!);
+    } on CachedException catch (e) {
+      return Left(CachedFailure(e.message));
     }
   }
 }

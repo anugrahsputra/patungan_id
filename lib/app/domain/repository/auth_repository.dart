@@ -10,6 +10,7 @@ abstract class AuthRepository {
   Future<Either<Failure, void>> signOut();
   Future<Either<Failure, void>> saveDataToDatabase(String name);
   Future<Either<Failure, String>> getCurrentId();
+  Future<Either<Failure, String>> getCachedLocalCurrentUid();
   Future<Either<Failure, UserModel>> getCurrentUser();
   Stream<UserEntity> getUserById(String uid);
 }
