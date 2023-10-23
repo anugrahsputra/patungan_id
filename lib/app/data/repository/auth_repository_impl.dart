@@ -91,4 +91,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(CachedFailure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> resendOtp(String phoneNumber) async {
+    try {
+      final result = await authProvider.resendOtp(phoneNumber);
+      return Right(result);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.message!));
+    }
+  }
 }

@@ -39,9 +39,9 @@ class OTPTextField extends StatelessWidget {
         controller: controller,
         keyboardType: TextInputType.number,
         pinTheme: PinTheme(
-          shape: PinCodeFieldShape.box,
+          shape: PinCodeFieldShape.underline,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          borderWidth: 1,
+          borderWidth: 4,
           fieldWidth: 40,
           fieldHeight: 40,
           activeColor: Theme.of(context).primaryColor.withOpacity(0.1),

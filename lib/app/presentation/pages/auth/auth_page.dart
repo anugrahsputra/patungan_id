@@ -1,4 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,29 +19,15 @@ class AuthPage extends StatelessWidget {
     TextEditingController phoneController = TextEditingController();
     late String phoneNumber;
 
-    final FirebaseAuth auth = FirebaseAuth.instance;
-
-    Future<bool> isOtpVerified() async {
-      var currentUser = auth.currentUser;
-
-      if (currentUser != null) {
-        await currentUser.reload();
-        currentUser.getIdToken();
-        currentUser = auth.currentUser; // Perbarui informasi pengguna
-
-        return currentUser!.phoneNumber != null;
-      }
-
-      return false;
-    }
-
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         state.whenOrNull(
           success: () {
-            navigator.goToHome(context);
+            navigator.goToVerify(context, phoneNumber: phoneNumber);
           },
-          error: (message) {},
+          error: (message) {
+            log(message);
+          },
         );
       },
       builder: (context, state) {
@@ -51,17 +38,17 @@ class AuthPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: PhoneField(
-                    controller: phoneController,
-                    ontap: () {
-                      if (phoneController.text.isNotEmpty) {
-                        String number = phoneController.text.trim();
-                        phoneNumber = '+62$number';
-                        cubit.signIn(phoneNumber: phoneNumber);
-                      }
-                    },
-                  ),
+                const Header(),
+                const SizedBox(height: 24),
+                PhoneField(
+                  controller: phoneController,
+                  ontap: () {
+                    if (phoneController.text.isNotEmpty) {
+                      String number = phoneController.text.trim();
+                      phoneNumber = '+62$number';
+                      cubit.signIn(phoneNumber: phoneNumber);
+                    }
+                  },
                 ),
               ],
             ),

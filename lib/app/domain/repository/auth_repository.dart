@@ -7,6 +7,7 @@ import '../domain.dart';
 abstract class AuthRepository {
   Future<Either<Failure, void>> signInWithPhoneNumber(String phoneNumber);
   Future<Either<Failure, void>> verifyOtp(String otp);
+  Future<Either<Failure, void>> resendOtp(String phoneNumber);
   Future<Either<Failure, void>> signOut();
   Future<Either<Failure, void>> saveDataToDatabase(String name);
   Future<Either<Failure, String>> getCurrentId();

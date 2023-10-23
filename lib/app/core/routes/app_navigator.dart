@@ -39,6 +39,14 @@ class AppNavigator {
     Navigator.of(context).pushNamed(AppPages.login);
   }
 
+  void goToVerify(BuildContext context, {required String phoneNumber}) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.verify, arguments: {
+      "phoneNumber": phoneNumber,
+    });
+  }
+
   void goToHome(BuildContext context) {
     if (!canNavigate(context)) return;
 

@@ -5,17 +5,13 @@ import 'package:patungan_id/app/data/data.dart';
 import '../../helper/mock.mocks.dart';
 
 void main() {
-  late AuthProvider authProvider;
-  late MockFirebaseAuth mockAuth;
-  late MockFirebaseFirestore mockFirestore;
-  late MockUser mockUser;
+  MockFirebaseAuth mockAuth = MockFirebaseAuth();
+  MockFirebaseFirestore mockFirestore = MockFirebaseFirestore();
+  MockSharedPreferences mockSharedPreferences = MockSharedPreferences();
+  MockUser mockUser = MockUser();
 
-  setUp(() {
-    mockAuth = MockFirebaseAuth();
-    mockFirestore = MockFirebaseFirestore();
-    mockUser = MockUser();
-    authProvider = AuthProviderImpl(mockAuth, mockFirestore);
-  });
+  AuthProvider authProvider =
+      AuthProviderImpl(mockAuth, mockFirestore, mockSharedPreferences);
 
   final userData = {
     'id': '123',

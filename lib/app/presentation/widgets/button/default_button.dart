@@ -35,7 +35,7 @@ class _DefaultButtonState extends State<DefaultButton> {
       },
       child: Container(
         height: 50,
-        width: MediaQuery.of(context).size.width / 2.5,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),

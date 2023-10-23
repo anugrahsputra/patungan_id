@@ -9,6 +9,7 @@ import '../data.dart';
 abstract class AuthProvider {
   Future<void> signInWithPhoneNumber(String phoneNumber);
   Future<void> verifyOtp(String otp);
+  Future<void> resendOtp(String phoneNumber);
   Future<void> signOut();
   Future<void> saveDataToDatabase(String name);
   Future<String> getCurrentId();
@@ -25,6 +26,7 @@ class AuthProviderImpl implements AuthProvider {
   final SharedPreferences sharedPreferences;
 
   String _verificationId = '';
+  int? _resendOtp;
 
   final Logger log = Logger("Auth Provider");
 
@@ -97,6 +99,7 @@ class AuthProviderImpl implements AuthProvider {
       },
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
+        _resendOtp = forceResendingToken;
       },
       codeAutoRetrievalTimeout: (verificationId) {
         log.warning('timeout: $verificationId');
@@ -130,5 +133,31 @@ class AuthProviderImpl implements AuthProvider {
   @override
   Future<void> removeUser(String uid) {
     return sharedPreferences.remove(uid);
+  }
+
+  @override
+  Future<void> resendOtp(String phoneNumber) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (phoneAuthCredential) async {
+        await auth.signInWithCredential(phoneAuthCredential);
+        if (kDebugMode) {
+          log.fine('phone verified: Token ${phoneAuthCredential.token}');
+        }
+      },
+      verificationFailed: (error) {
+        log.severe(error);
+        throw Exception(error);
+      },
+      codeSent: (verificationId, forceResendingToken) {
+        _verificationId = verificationId;
+        _resendOtp = forceResendingToken;
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
+        log.warning('timeout: $verificationId');
+      },
+      timeout: const Duration(seconds: 5),
+      forceResendingToken: _resendOtp,
+    );
   }
 }

@@ -192,4 +192,33 @@ void main() {
       verifyNoMoreInteractions(mockAuthProvider);
     });
   });
+
+  group(
+    "getCachedUser",
+    () {
+      const cachedUid = '123456';
+      test('should return cached uid from auth provider', () async {
+        when(mockAuthProvider.getUser()).thenReturn(cachedUid);
+
+        final result = await authRepository.getCachedLocalCurrentUid();
+
+        expect(result, const Right(cachedUid));
+        verify(mockAuthProvider.getUser());
+        verifyNoMoreInteractions(mockAuthProvider);
+      });
+
+      test('should return cached failure when cached exception is thrown',
+          () async {
+        const errorMessage = 'Error message';
+        when(mockAuthProvider.getUser()).thenThrow(
+            const CachedException(errorMessage, message: errorMessage));
+
+        final result = await authRepository.getCachedLocalCurrentUid();
+
+        expect(result, const Left(CachedFailure(errorMessage)));
+        verify(mockAuthProvider.getUser());
+        verifyNoMoreInteractions(mockAuthProvider);
+      });
+    },
+  );
 }

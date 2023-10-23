@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/annotations.dart';
 import 'package:patungan_id/app/data/data.dart';
 import 'package:patungan_id/app/domain/domain.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateNiceMocks([
+  MockSpec<SharedPreferences>(),
   /*-------------------> Firebase <-------------------*/
   MockSpec<FirebaseAuth>(),
   MockSpec<FirebaseFirestore>(),

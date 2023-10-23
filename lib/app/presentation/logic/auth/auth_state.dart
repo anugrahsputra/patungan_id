@@ -6,4 +6,5 @@ class AuthState with _$AuthState {
   const factory AuthState.loading() = _Loading;
   const factory AuthState.success() = _Success;
   const factory AuthState.error(String message) = _Error;
+  const factory AuthState.otpResent() = _OtpResent;
 }
