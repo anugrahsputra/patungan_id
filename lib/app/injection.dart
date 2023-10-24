@@ -46,7 +46,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
   sl.registerLazySingleton(() => GetCurrentUerUsecase(sl()));
   sl.registerLazySingleton(() => GetCachedUserUsecase(sl()));
-  sl.registerLazySingleton(() => GetCurrentUserIdUsecase(sl()));
+  sl.registerLazySingleton(() => GetCurrentIdUsecase(sl()));
   sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl()));
   sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));

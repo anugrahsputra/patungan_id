@@ -1,6 +1,6 @@
 export 'get_cached_user.dart';
+export 'get_current_id.dart';
 export 'get_current_user.dart';
-export 'get_current_user_id.dart';
 export 'get_user_by_id_usecase.dart';
 export 'resend_otp_usecase.dart';
 export 'save_to_database_usecase.dart';

@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
   final GetCachedUserUsecase cachedUserUsecase;
   final SaveToDatabaseUsecase saveToDatabaseUsecase;
   final GetUserByIdUsecase userByIdUsecase;
-  final GetCurrentUserIdUsecase currentUserIdUsecase;
+  final GetCurrentIdUsecase currentUserIdUsecase;
   final ResendOtpUsecase resendOtpUsecase;
 
   UserEntity? userEntity;
