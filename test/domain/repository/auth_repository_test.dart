@@ -193,32 +193,54 @@ void main() {
     });
   });
 
-  group(
-    "getCachedUser",
-    () {
-      const cachedUid = '123456';
-      test('should return cached uid from auth provider', () async {
-        when(mockAuthProvider.getUser()).thenReturn(cachedUid);
+  group("getCachedUser", () {
+    const cachedUid = '123456';
+    test('should return cached uid from auth provider', () async {
+      when(mockAuthProvider.getUser()).thenReturn(cachedUid);
 
-        final result = await authRepository.getCachedLocalCurrentUid();
+      final result = await authRepository.getCachedLocalCurrentUid();
 
-        expect(result, const Right(cachedUid));
-        verify(mockAuthProvider.getUser());
-        verifyNoMoreInteractions(mockAuthProvider);
-      });
+      expect(result, const Right(cachedUid));
+      verify(mockAuthProvider.getUser());
+      verifyNoMoreInteractions(mockAuthProvider);
+    });
 
-      test('should return cached failure when cached exception is thrown',
-          () async {
-        const errorMessage = 'Error message';
-        when(mockAuthProvider.getUser()).thenThrow(
-            const CachedException(errorMessage, message: errorMessage));
+    test('should return cached failure when cached exception is thrown',
+        () async {
+      const errorMessage = 'Error message';
+      when(mockAuthProvider.getUser()).thenThrow(
+          const CachedException(errorMessage, message: errorMessage));
 
-        final result = await authRepository.getCachedLocalCurrentUid();
+      final result = await authRepository.getCachedLocalCurrentUid();
 
-        expect(result, const Left(CachedFailure(errorMessage)));
-        verify(mockAuthProvider.getUser());
-        verifyNoMoreInteractions(mockAuthProvider);
-      });
-    },
-  );
+      expect(result, const Left(CachedFailure(errorMessage)));
+      verify(mockAuthProvider.getUser());
+      verifyNoMoreInteractions(mockAuthProvider);
+    });
+  });
+
+  group("resendOtp", () {
+    const phoneNumber = '6281234567890';
+    test("should return resend otp from auth provider", () async {
+      when(mockAuthProvider.resendOtp(any)).thenAnswer((_) async {});
+
+      final result = await authRepository.resendOtp(phoneNumber);
+
+      expect(result, equals(const Right(null)));
+      verify(mockAuthProvider.resendOtp(phoneNumber));
+      verifyNoMoreInteractions(mockAuthProvider);
+    });
+
+    test('should retrun a ServerFailure when an exception is thrown', () async {
+      const phoneNumber = '+1234567890';
+      final exception = FirebaseAuthException(code: 'code', message: 'message');
+      when(mockAuthProvider.resendOtp(phoneNumber)).thenThrow(exception);
+
+      final result = await authRepository.resendOtp(phoneNumber);
+
+      expect(result, equals(Left(ServerFailure(exception.message!))));
+      verify(mockAuthProvider.resendOtp(phoneNumber));
+      verifyNoMoreInteractions(mockAuthProvider);
+    });
+  });
 }
