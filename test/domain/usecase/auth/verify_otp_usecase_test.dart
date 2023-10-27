@@ -5,38 +5,41 @@ import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/core/core.dart';
 import 'package:patungan_id/app/domain/domain.dart';
 
-import '../../helper/mock.mocks.dart';
+import '../../../helper/mock.mocks.dart';
 
 void main() {
   late MockAuthRepository mockAuthRepository;
-  late GetCurrentIdUsecase usecase;
+  late VerifyOtpUsecase usecase;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = GetCurrentIdUsecase(mockAuthRepository);
+    usecase = VerifyOtpUsecase(mockAuthRepository);
   });
 
-  const tId = 'id';
+  const otp = '123456';
 
-  test('should get current id from the repository', () async {
-    when(mockAuthRepository.getCurrentId())
-        .thenAnswer((_) async => const Right(tId));
+  test('should verify otp from the repository', () async {
+    const otp = '123456';
 
-    final result = await usecase.call();
-    expect(result, const Right(tId));
-    verify(mockAuthRepository.getCurrentId());
+    when(mockAuthRepository.verifyOtp(any))
+        .thenAnswer((_) async => const Right(null));
+
+    final result = await usecase.call(otp);
+
+    expect(result, const Right(null));
+    verify(mockAuthRepository.verifyOtp(otp));
     verifyNoMoreInteractions(mockAuthRepository);
   });
 
-  test('should return failure when get current id fails', () async {
+  test('should return failure when verify otp fails', () async {
     final exception = FirebaseAuthException(code: 'code', message: 'message');
-    when(mockAuthRepository.getCurrentId())
+    when(mockAuthRepository.verifyOtp(any))
         .thenAnswer((_) async => Left(ServerFailure(exception.message!)));
 
-    final result = await usecase.call();
+    final result = await usecase.call(otp);
 
     expect(result, Left(ServerFailure(exception.message!)));
-    verify(mockAuthRepository.getCurrentId());
+    verify(mockAuthRepository.verifyOtp(otp));
     verifyNoMoreInteractions(mockAuthRepository);
   });
 }

@@ -3,47 +3,40 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/core/core.dart';
-import 'package:patungan_id/app/data/data.dart';
 import 'package:patungan_id/app/domain/domain.dart';
 
-import '../../helper/mock.mocks.dart';
+import '../../../helper/mock.mocks.dart';
 
 void main() {
   late MockAuthRepository mockAuthRepository;
-  late GetCurrentUerUsecase usecase;
+  late GetCurrentIdUsecase usecase;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = GetCurrentUerUsecase(mockAuthRepository);
+    usecase = GetCurrentIdUsecase(mockAuthRepository);
   });
 
-  const tuser = UserModel(
-      id: 'id',
-      phoneNumber: 'phoneNumber',
-      name: 'name',
-      profilePic: 'profilePic',
-      groupId: [],
-      friendsId: []);
+  const tId = 'id';
 
-  test('should sign in with phone number from the repository', () async {
-    when(mockAuthRepository.getCurrentUser())
-        .thenAnswer((_) async => const Right(tuser));
+  test('should get current id from the repository', () async {
+    when(mockAuthRepository.getCurrentId())
+        .thenAnswer((_) async => const Right(tId));
 
     final result = await usecase.call();
-    expect(result, const Right(tuser));
-    verify(mockAuthRepository.getCurrentUser());
+    expect(result, const Right(tId));
+    verify(mockAuthRepository.getCurrentId());
     verifyNoMoreInteractions(mockAuthRepository);
   });
 
-  test('should return failure when sign in with phone number fails', () async {
+  test('should return failure when get current id fails', () async {
     final exception = FirebaseAuthException(code: 'code', message: 'message');
-    when(mockAuthRepository.getCurrentUser())
+    when(mockAuthRepository.getCurrentId())
         .thenAnswer((_) async => Left(ServerFailure(exception.message!)));
 
     final result = await usecase.call();
 
     expect(result, Left(ServerFailure(exception.message!)));
-    verify(mockAuthRepository.getCurrentUser());
+    verify(mockAuthRepository.getCurrentId());
     verifyNoMoreInteractions(mockAuthRepository);
   });
 }

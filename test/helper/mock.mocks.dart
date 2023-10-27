@@ -14,11 +14,12 @@ import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart'
     as _i3;
 import 'package:firebase_core/firebase_core.dart' as _i2;
+import 'package:flutter/material.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i12;
-import 'package:patungan_id/app/core/core.dart' as _i14;
+import 'package:patungan_id/app/core/core.dart' as _i13;
 import 'package:patungan_id/app/data/data.dart' as _i8;
-import 'package:patungan_id/app/domain/domain.dart' as _i13;
+import 'package:patungan_id/app/domain/domain.dart' as _i15;
 import 'package:shared_preferences/shared_preferences.dart' as _i10;
 
 // ignore_for_file: type=lint
@@ -2854,6 +2855,30 @@ class MockQuerySnapshot<T extends Object?> extends _i1.Mock
       ) as int);
 }
 
+/// A class which mocks [ChangeThemeMode].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChangeThemeMode extends _i1.Mock implements _i13.ChangeThemeMode {
+  @override
+  void changeThemeMode(_i14.ThemeMode? themeMode) => super.noSuchMethod(
+        Invocation.method(
+          #changeThemeMode,
+          [themeMode],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool isDarkMode() => (super.noSuchMethod(
+        Invocation.method(
+          #isDarkMode,
+          [],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+}
+
 /// A class which mocks [AuthProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -2973,20 +2998,46 @@ class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
       ) as _i7.Future<void>);
 }
 
+/// A class which mocks [SettingProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSettingProvider extends _i1.Mock implements _i8.SettingProvider {
+  @override
+  _i14.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
+        Invocation.method(
+          #getLocalThemeMode,
+          [],
+        ),
+        returnValue: _i14.ThemeMode.system,
+        returnValueForMissingStub: _i14.ThemeMode.system,
+      ) as _i14.ThemeMode);
+
+  @override
+  _i7.Future<void> changeThemeMode(_i14.ThemeMode? themeMode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #changeThemeMode,
+          [themeMode],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+}
+
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
   @override
-  _i7.Future<_i9.Either<_i14.Failure, void>> signInWithPhoneNumber(
+  _i7.Future<_i9.Either<_i13.Failure, void>> signInWithPhoneNumber(
           String? phoneNumber) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithPhoneNumber,
           [phoneNumber],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-            _FakeEither_21<_i14.Failure, void>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #signInWithPhoneNumber,
@@ -2994,25 +3045,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-                _FakeEither_21<_i14.Failure, void>(
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #signInWithPhoneNumber,
             [phoneNumber],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, void>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, void>> verifyOtp(String? otp) =>
+  _i7.Future<_i9.Either<_i13.Failure, void>> verifyOtp(String? otp) =>
       (super.noSuchMethod(
         Invocation.method(
           #verifyOtp,
           [otp],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-            _FakeEither_21<_i14.Failure, void>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #verifyOtp,
@@ -3020,25 +3071,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-                _FakeEither_21<_i14.Failure, void>(
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #verifyOtp,
             [otp],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, void>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, void>> resendOtp(String? phoneNumber) =>
+  _i7.Future<_i9.Either<_i13.Failure, void>> resendOtp(String? phoneNumber) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendOtp,
           [phoneNumber],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-            _FakeEither_21<_i14.Failure, void>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #resendOtp,
@@ -3046,24 +3097,24 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-                _FakeEither_21<_i14.Failure, void>(
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #resendOtp,
             [phoneNumber],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, void>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, void>> signOut() => (super.noSuchMethod(
+  _i7.Future<_i9.Either<_i13.Failure, void>> signOut() => (super.noSuchMethod(
         Invocation.method(
           #signOut,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-            _FakeEither_21<_i14.Failure, void>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #signOut,
@@ -3071,25 +3122,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-                _FakeEither_21<_i14.Failure, void>(
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #signOut,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, void>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, void>> saveDataToDatabase(String? name) =>
+  _i7.Future<_i9.Either<_i13.Failure, void>> saveDataToDatabase(String? name) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveDataToDatabase,
           [name],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-            _FakeEither_21<_i14.Failure, void>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #saveDataToDatabase,
@@ -3097,25 +3148,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, void>>.value(
-                _FakeEither_21<_i14.Failure, void>(
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
           this,
           Invocation.method(
             #saveDataToDatabase,
             [name],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, void>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, String>> getCurrentId() =>
+  _i7.Future<_i9.Either<_i13.Failure, String>> getCurrentId() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentId,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, String>>.value(
-            _FakeEither_21<_i14.Failure, String>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+            _FakeEither_21<_i13.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
@@ -3123,25 +3174,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, String>>.value(
-                _FakeEither_21<_i14.Failure, String>(
+            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+                _FakeEither_21<_i13.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, String>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, String>> getCachedLocalCurrentUid() =>
+  _i7.Future<_i9.Either<_i13.Failure, String>> getCachedLocalCurrentUid() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCachedLocalCurrentUid,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, String>>.value(
-            _FakeEither_21<_i14.Failure, String>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+            _FakeEither_21<_i13.Failure, String>(
           this,
           Invocation.method(
             #getCachedLocalCurrentUid,
@@ -3149,25 +3200,25 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, String>>.value(
-                _FakeEither_21<_i14.Failure, String>(
+            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+                _FakeEither_21<_i13.Failure, String>(
           this,
           Invocation.method(
             #getCachedLocalCurrentUid,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, String>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
 
   @override
-  _i7.Future<_i9.Either<_i14.Failure, _i8.UserModel>> getCurrentUser() =>
+  _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>> getCurrentUser() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentUser,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i14.Failure, _i8.UserModel>>.value(
-            _FakeEither_21<_i14.Failure, _i8.UserModel>(
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
+            _FakeEither_21<_i13.Failure, _i8.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
@@ -3175,23 +3226,65 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i14.Failure, _i8.UserModel>>.value(
-                _FakeEither_21<_i14.Failure, _i8.UserModel>(
+            _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
+                _FakeEither_21<_i13.Failure, _i8.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i14.Failure, _i8.UserModel>>);
+      ) as _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>);
 
   @override
-  _i7.Stream<_i13.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
+  _i7.Stream<_i15.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
           [uid],
         ),
-        returnValue: _i7.Stream<_i13.UserEntity>.empty(),
-        returnValueForMissingStub: _i7.Stream<_i13.UserEntity>.empty(),
-      ) as _i7.Stream<_i13.UserEntity>);
+        returnValue: _i7.Stream<_i15.UserEntity>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i15.UserEntity>.empty(),
+      ) as _i7.Stream<_i15.UserEntity>);
+}
+
+/// A class which mocks [SettingRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSettingRepository extends _i1.Mock implements _i15.SettingRepository {
+  @override
+  _i14.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
+        Invocation.method(
+          #getLocalThemeMode,
+          [],
+        ),
+        returnValue: _i14.ThemeMode.system,
+        returnValueForMissingStub: _i14.ThemeMode.system,
+      ) as _i14.ThemeMode);
+
+  @override
+  _i7.Future<_i9.Either<_i13.Failure, void>> changeThemeMode(
+          _i14.ThemeMode? themeMode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #changeThemeMode,
+          [themeMode],
+        ),
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+            _FakeEither_21<_i13.Failure, void>(
+          this,
+          Invocation.method(
+            #changeThemeMode,
+            [themeMode],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
+                _FakeEither_21<_i13.Failure, void>(
+          this,
+          Invocation.method(
+            #changeThemeMode,
+            [themeMode],
+          ),
+        )),
+      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
 }

@@ -23,25 +23,6 @@
           "other_platform_oauth_client": []
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:556175322232:android:b4edda2d0bc3ad6599918d",
-        "android_client_info": {
-          "package_name": "com.downormal.PatunganId.patungan_id"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA4roqkQy8mb4yuUenYEEoJhu76OkAdSGQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
     }
   ],
   "configuration_version": "1"

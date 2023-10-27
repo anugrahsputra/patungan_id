@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/core/core.dart';
 import 'package:patungan_id/app/data/data.dart';
-import 'package:patungan_id/app/data/repository/auth_repository_impl.dart';
 import 'package:patungan_id/app/domain/domain.dart';
 
 import '../../helper/mock.mocks.dart';

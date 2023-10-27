@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/domain/domain.dart';
 
-import '../../helper/mock.mocks.dart';
+import '../../../helper/mock.mocks.dart';
 
 void main() {
   late MockAuthRepository repo;
