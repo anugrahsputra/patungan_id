@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
 import '../../../injection.dart';
@@ -33,24 +35,41 @@ class AuthPage extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Header(),
-                const SizedBox(height: 24),
-                PhoneField(
-                  controller: phoneController,
-                  ontap: () {
-                    if (phoneController.text.isNotEmpty) {
-                      String number = phoneController.text.trim();
-                      phoneNumber = '+62$number';
-                      cubit.signIn(phoneNumber: phoneNumber);
-                    }
-                  },
+          body: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 80,
                 ),
-              ],
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 1.6,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 25,
+                  ),
+                  child: Column(
+                    children: [
+                      const Header(),
+                      const Spacer(),
+                      PhoneField(
+                        controller: phoneController,
+                        ontap: () {
+                          if (phoneController.text.isNotEmpty) {
+                            String number = phoneController.text.trim();
+                            phoneNumber = '+62$number';
+                            cubit.signIn(phoneNumber: phoneNumber);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         );

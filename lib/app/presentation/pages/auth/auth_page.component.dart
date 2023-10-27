@@ -1,5 +1,20 @@
 part of 'auth_page.dart';
 
+class Logo extends StatelessWidget {
+  Logo({super.key});
+
+  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      theme.isDarkMode() ? LogoPath.logoDark : LogoPath.logoLight,
+      width: 90,
+      height: 90,
+    );
+  }
+}
+
 class Header extends StatefulWidget {
   const Header({super.key});
 
@@ -10,31 +25,29 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFF000000).withOpacity(1),
-          width: 4,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF000000).withOpacity(1),
-            offset: const Offset(6, 6),
-            blurRadius: 0,
-            spreadRadius: -1,
-          ),
-        ],
-      ),
-      child: Text(
-        'Enter Your Phone Number To Continue',
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.w700,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Logo(),
+          Text(
+            'First,\nLogin Here',
+            style: GoogleFonts.inter(
+              fontSize: 48,
+              fontWeight: FontWeight.w600,
             ),
+          ),
+          const SizedBox(height: 18),
+          Text(
+            'enter your mobile number to continue',
+            style: GoogleFonts.inter(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
       ),
     );
   }
@@ -58,9 +71,12 @@ class PhoneFieldState extends State<PhoneField> {
           controller: widget.controller,
         ),
         const SizedBox(height: 16),
-        DefaultButton(
-          onTap: widget.ontap,
-          text: AppString.login,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 70),
+          child: DefaultButton(
+            onTap: widget.ontap,
+            text: AppString.login,
+          ),
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:patungan_id/firebase_options.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final AuthCubit authCubit = sl<AuthCubit>();
+  final SettingCubit settingCubit = sl<SettingCubit>();
   final SplashCubit splashCubit = sl<SplashCubit>();
 
   @override
@@ -30,10 +32,19 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => authCubit..getCurrentUser()),
         BlocProvider(create: (context) => splashCubit),
+        BlocProvider(create: (context) => settingCubit),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Patungan Id',
         theme: AppThemes.light,
+        darkTheme: AppThemes.dark,
+        themeMode: settingCubit.state.when(
+          initial: (themeMode) => themeMode,
+          loading: (themeMode) => themeMode,
+          success: (themeMode) => themeMode,
+          error: (_) =>
+              ThemeMode.system, // default to system theme mode in case of error
+        ),
         initialRoute: AppRoutes.initial,
         routes: AppRoutes.routes,
       ),

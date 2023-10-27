@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../core/core.dart';
+import '../../../injection.dart';
+
 class OTPTextField extends StatelessWidget {
-  const OTPTextField({
+  OTPTextField({
     super.key,
     this.onCompleted,
     this.controller,
@@ -16,11 +19,13 @@ class OTPTextField extends StatelessWidget {
 
   int get length => 6;
 
+  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      // padding: const EdgeInsets.symmetric(horizontal: 14),
       child: PinCodeTextField(
         appContext: context,
         focusNode: focusNode,
@@ -34,7 +39,7 @@ class OTPTextField extends StatelessWidget {
         blinkWhenObscuring: true,
         animationType: AnimationType.fade,
         cursorHeight: 24.0,
-        cursorColor: Colors.black,
+        cursorColor: theme.isDarkMode() ? Colors.white : Colors.black,
         animationDuration: const Duration(milliseconds: 300),
         controller: controller,
         keyboardType: TextInputType.number,
@@ -49,8 +54,8 @@ class OTPTextField extends StatelessWidget {
           inactiveFillColor: Colors.transparent,
           selectedFillColor: Colors.transparent,
           errorBorderColor: Theme.of(context).primaryColor.withOpacity(0.1),
-          inactiveColor: Colors.black54,
-          selectedColor: Colors.black,
+          inactiveColor: theme.isDarkMode() ? Colors.white : Colors.black45,
+          selectedColor: theme.isDarkMode() ? Colors.white : Colors.black,
         ),
         onChanged: (value) {
           if (value.length == length && onCompleted != null) {

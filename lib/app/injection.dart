@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patungan_id/app/data/data.dart';
-import 'package:patungan_id/app/data/repository/auth_repository_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
@@ -23,6 +22,7 @@ Future<void> init() async {
 
   /*-------------------> CORE <-------------------*/
   sl.registerSingleton<AppNavigator>(AppNavigator());
+  sl.registerSingleton<ChangeThemeMode>(ChangeThemeModeImpl());
 
   /*-------------------> CUBIT <-------------------*/
   // AuthCubit
@@ -38,6 +38,8 @@ Future<void> init() async {
         sl(),
       ));
   sl.registerFactory(() => SplashCubit(auth: sl()));
+  sl.registerFactory(
+      () => SettingCubit(getThemeModeUsecase: sl(), themeModeUsecase: sl()));
 
   /*-------------------> USECASE <-------------------*/
   // auth
@@ -51,12 +53,29 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
 
+  // setting
+  sl.registerLazySingleton(() => GetLocalThemeModeUsecase(
+        settingRepository: sl(),
+      ));
+  sl.registerLazySingleton(
+      () => ChangeThemeModeUsecase(settingRepository: sl()));
+
   /*-------------------> REPOSITORY <-------------------*/
   // auth
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
 
+  // setting
+  sl.registerLazySingleton<SettingRepository>(
+      () => SettingRepositoryImpl(settingProvider: sl()));
+
   /*-------------------> PROVIDER <-------------------*/
   // auth
   sl.registerLazySingleton<AuthProvider>(
-      () => AuthProviderImpl(sl(), sl(), sl()));
+      () => AuthProviderImpl(auth, firestore, sharedPref));
+
+  // setting
+  sl.registerLazySingleton<SettingProvider>(() => SettingProviderImpl(
+        sharedPreferences: sharedPref,
+        themes: sl<ChangeThemeMode>(),
+      ));
 }

@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logging/logging.dart';
 
 import '../../../domain/domain.dart';
 
@@ -34,6 +33,8 @@ class AuthCubit extends Cubit<AuthState> {
   ) : super(const AuthState.initial());
 
   static AuthCubit get(context) => BlocProvider.of(context);
+
+  final Logger log = Logger("auth cubit");
 
   Future<void> signIn({required String phoneNumber}) async {
     emit(const AuthState.loading());
@@ -71,7 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
       final result = await currentUerUsecase.call();
       result.fold(
         (l) {
-          log('Error fetching user data: ${l.message}');
+          log.warning('Error fetching user data: ${l.message}');
           emit(AuthState.error(l.message));
         },
         (r) {
@@ -80,8 +81,8 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     } catch (e) {
-      log('Unexpected error: $e');
-      emit(const AuthState.error('An unexpected error occurred.'));
+      log.severe('Unexpected error: $e');
+      emit(const AuthState.error('Auth Cubit: An unexpected error occurred.'));
     }
   }
 

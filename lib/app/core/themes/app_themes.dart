@@ -85,7 +85,7 @@ abstract class AppThemes with WidgetsBindingObserver {
     const primaryColorLight = Color.fromRGBO(113, 113, 113, 1.0);
     const primaryColorDark = Color.fromRGBO(0, 0, 0, 1.0);
     const accentColor = kaccentColor;
-    const backgroundColor = Color(0xFFF5F5F5);
+    const backgroundColor = Color(0xFFFFFFFF);
 
     ColorScheme customColorScheme = const ColorScheme(
       primary: primaryColor,
