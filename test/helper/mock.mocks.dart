@@ -2978,6 +2978,16 @@ class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
       ) as _i7.Stream<_i8.UserModel>);
 
   @override
+  _i7.Future<bool> isUserExist(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #isUserExist,
+          [uid],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+        returnValueForMissingStub: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+
+  @override
   _i7.Future<void> setUserLoggedIn(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #setUserLoggedIn,
@@ -3205,6 +3215,73 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           this,
           Invocation.method(
             #getCachedLocalCurrentUid,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
+
+  @override
+  _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>> getCurrentUser() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentUser,
+          [],
+        ),
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
+            _FakeEither_21<_i13.Failure, _i8.UserModel>(
+          this,
+          Invocation.method(
+            #getCurrentUser,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
+                _FakeEither_21<_i13.Failure, _i8.UserModel>(
+          this,
+          Invocation.method(
+            #getCurrentUser,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>);
+
+  @override
+  _i7.Stream<_i15.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserById,
+          [uid],
+        ),
+        returnValue: _i7.Stream<_i15.UserEntity>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i15.UserEntity>.empty(),
+      ) as _i7.Stream<_i15.UserEntity>);
+}
+
+/// A class which mocks [UserRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserRepository extends _i1.Mock implements _i15.UserRepository {
+  @override
+  _i7.Future<_i9.Either<_i13.Failure, String>> getCurrentId() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentId,
+          [],
+        ),
+        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+            _FakeEither_21<_i13.Failure, String>(
+          this,
+          Invocation.method(
+            #getCurrentId,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
+                _FakeEither_21<_i13.Failure, String>(
+          this,
+          Invocation.method(
+            #getCurrentId,
             [],
           ),
         )),

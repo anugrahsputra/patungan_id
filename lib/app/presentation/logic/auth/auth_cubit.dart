@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 
 import '../../../domain/domain.dart';
+import '../../../domain/usecase/user/user.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
@@ -11,7 +12,7 @@ class AuthCubit extends Cubit<AuthState> {
   final SignInUsecase signInUsecase;
   final VerifyOtpUsecase verifyOtpUsecase;
   final SignOutUsecase signOutUsecase;
-  final GetCurrentUerUsecase currentUerUsecase;
+  final GetCurrentUserUsecase currentUerUsecase;
   final GetCachedUserUsecase cachedUserUsecase;
   final SaveToDatabaseUsecase saveToDatabaseUsecase;
   final GetUserByIdUsecase userByIdUsecase;
@@ -66,25 +67,6 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await signOutUsecase.call();
     result.fold((l) => emit(AuthState.error(l.message)),
         (r) => emit(const AuthState.success()));
-  }
-
-  Future<void> getCurrentUser() async {
-    emit(const AuthState.loading());
-    try {
-      final result = await currentUerUsecase.call();
-      result.fold(
-        (l) {
-          log.warning('Error fetching user data: ${l.message}');
-          emit(AuthState.error(l.message));
-        },
-        (r) {
-          userEntity = r;
-          emit(const AuthState.success());
-        },
-      );
-    } catch (e) {
-      log.severe('getCurrentUser: $e');
-    }
   }
 
   Future<void> saveToDatabase({required String name}) async {

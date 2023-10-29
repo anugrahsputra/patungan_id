@@ -27,6 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
   /*-------------------> Repository <-------------------*/
   MockSpec<AuthRepository>(),
+  MockSpec<UserRepository>(),
   MockSpec<SettingRepository>(),
 ])
 void main(List<String> args) {}

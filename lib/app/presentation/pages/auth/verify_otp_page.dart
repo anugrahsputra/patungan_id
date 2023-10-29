@@ -32,23 +32,16 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       listener: (context, state) {
         state.when(
           initial: () {},
-          loading: () async {
-            await AuthCubit.get(context).getCurrentUser();
-          },
+          loading: () {},
           success: () {
-            final authCubit = context.read<AuthCubit>();
-            log('userEntity: ${authCubit.userEntity}');
-            if (authCubit.userEntity != null) {
-              log('Navigating to HomePage');
-              navigator.goToHome(context);
-            } else {
-              log('Navigating to SetupProfilePage');
-              navigator.goToSetupProfile(context);
-            }
+            navigator.goToLoading(context);
           },
           otpResent: () {
-            // could show snackbar
-            log('otp resent!');
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("OTP has been resent"),
+              ),
+            );
           },
           error: (message) {
             ScaffoldMessenger.of(context).showSnackBar(

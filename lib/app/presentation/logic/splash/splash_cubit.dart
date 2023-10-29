@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/core.dart';
-import '../../../domain/domain.dart';
+import '../../../domain/usecase/user/user.dart';
 
 part 'splash_cubit.freezed.dart';
 part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   final FirebaseAuth auth;
-  final GetCurrentUerUsecase currentUser;
+  final GetCurrentUserUsecase currentUser;
 
   SplashCubit({
     required this.auth,

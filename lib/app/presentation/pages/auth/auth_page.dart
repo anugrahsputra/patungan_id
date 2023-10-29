@@ -24,16 +24,16 @@ class AuthPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         state.when(
-            initial: () {},
-            loading: () {},
-            success: () {
-              navigator.goToVerify(context, phoneNumber: phoneNumber);
-              AuthCubit.get(context).getCurrentUser();
-            },
-            error: (message) {
-              log(message);
-            },
-            otpResent: () {});
+          initial: () {},
+          loading: () {},
+          success: () {
+            navigator.goToVerify(context, phoneNumber: phoneNumber);
+          },
+          error: (message) {
+            log(message);
+          },
+          otpResent: () {},
+        );
       },
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);

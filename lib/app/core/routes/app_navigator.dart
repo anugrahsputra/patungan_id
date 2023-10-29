@@ -47,6 +47,12 @@ class AppNavigator {
     });
   }
 
+  void goToLoading(BuildContext context) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.loading);
+  }
+
   void goToSetupProfile(BuildContext context) {
     if (!canNavigate(context)) return;
 

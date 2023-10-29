@@ -18,7 +18,7 @@ class SignOutBtn extends StatelessWidget {
       builder: (context, state) {
         return DefaultButton(
           text: AppString.logout,
-          onTap: () => AuthCubit.get(context).signOUt(),
+          onTap: () async => await AuthCubit.get(context).signOUt(),
         );
       },
     );

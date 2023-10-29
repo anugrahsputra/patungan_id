@@ -5,7 +5,10 @@ import 'package:patungan_id/app/data/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
-import 'domain/domain.dart';
+import 'domain/repository/repository.dart';
+import 'domain/usecase/auth/auth.dart';
+import 'domain/usecase/setting/setting.dart';
+import 'domain/usecase/user/user.dart';
 import 'presentation/presentation.dart';
 
 final sl = GetIt.instance;
@@ -40,17 +43,22 @@ Future<void> init() async {
   sl.registerFactory(() => SplashCubit(auth: sl(), currentUser: sl()));
   sl.registerFactory(
       () => SettingCubit(getThemeModeUsecase: sl(), themeModeUsecase: sl()));
+  sl.registerFactory(() => UserCubit(
+        currentUserIdUsecase: sl(),
+        userByIdUsecase: sl(),
+        currentUserUsecase: sl(),
+      ));
 
   /*-------------------> USECASE <-------------------*/
   // auth
   sl.registerLazySingleton(() => SignInUsecase(sl()));
   sl.registerLazySingleton(() => SignOutUsecase(sl()));
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
-  sl.registerLazySingleton(() => GetCurrentUerUsecase(sl()));
+  // sl.registerLazySingleton(() => GetCurrentUerUsecase(sl()));
   sl.registerLazySingleton(() => GetCachedUserUsecase(sl()));
-  sl.registerLazySingleton(() => GetCurrentIdUsecase(sl()));
+  // sl.registerLazySingleton(() => GetCurrentIdUsecase(sl()));
   sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl()));
-  sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
+  // sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
 
   // setting
@@ -60,13 +68,19 @@ Future<void> init() async {
   sl.registerLazySingleton(
       () => ChangeThemeModeUsecase(settingRepository: sl()));
 
-  /*-------------------> REPOSITORY <-------------------*/
-  // auth
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  // user
+  sl.registerLazySingleton(() => GetCurrentIdUsecase(userRepository: sl()));
+  sl.registerLazySingleton(() => GetCurrentUserUsecase(userRepository: sl()));
+  sl.registerLazySingleton(() => GetUserByIdUsecase(userRepository: sl()));
 
-  // setting
-  sl.registerLazySingleton<SettingRepository>(
-      () => SettingRepositoryImpl(settingProvider: sl()));
+  /*-------------------> REPOSITORY <-------------------*/
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<SettingRepository>(() => SettingRepositoryImpl(
+        settingProvider: sl(),
+      ));
+  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
+        userProvider: sl(),
+      ));
 
   /*-------------------> PROVIDER <-------------------*/
   // auth
@@ -77,5 +91,11 @@ Future<void> init() async {
   sl.registerLazySingleton<SettingProvider>(() => SettingProviderImpl(
         sharedPreferences: sharedPref,
         themes: sl<ChangeThemeMode>(),
+      ));
+
+  // user
+  sl.registerLazySingleton<UserProvider>(() => UserProviderImpl(
+        auth: auth,
+        firestore: firestore,
       ));
 }

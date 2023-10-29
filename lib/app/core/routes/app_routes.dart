@@ -18,6 +18,7 @@ abstract class AppRoutes {
       String phoneNumber = arguments["phoneNumber"];
       return VerifyOtpPage(phoneNumber: phoneNumber);
     },
+    AppPages.loading: (context) => const LoadingPage(),
     AppPages.home: (context) => const Homepage(),
   };
 }

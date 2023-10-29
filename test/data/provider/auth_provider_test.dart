@@ -56,7 +56,7 @@ void main() {
 
       final user = await authProvider.getCurrentUser();
       expect(user, isA<UserModel>());
-      expect(user!.phoneNumber, '+1234567890');
+      expect(user.phoneNumber, '+1234567890');
       expect(user.name, 'John Doe');
     });
   });

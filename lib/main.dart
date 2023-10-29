@@ -24,7 +24,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final AuthCubit authCubit = sl<AuthCubit>();
   final SettingCubit settingCubit = sl<SettingCubit>();
 
   final Logger log = Logger("Themes");
@@ -33,10 +32,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => sl<AuthCubit>()..getCurrentUser()),
+        BlocProvider(create: (context) => sl<AuthCubit>()),
+        BlocProvider(create: (context) => sl<UserCubit>()),
         BlocProvider(create: (context) => settingCubit),
       ],
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Patungan Id',
         theme: AppThemes.light,
         darkTheme: AppThemes.dark,

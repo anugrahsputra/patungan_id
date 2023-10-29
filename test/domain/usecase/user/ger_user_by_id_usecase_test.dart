@@ -1,16 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/domain/domain.dart';
+import 'package:patungan_id/app/domain/usecase/user/user.dart';
 
 import '../../../helper/mock.mocks.dart';
 
 void main() {
-  late MockAuthRepository mockAuthRepository;
+  late MockUserRepository mockUserRepository;
   late GetUserByIdUsecase usecase;
 
   setUp(() {
-    mockAuthRepository = MockAuthRepository();
-    usecase = GetUserByIdUsecase(mockAuthRepository);
+    mockUserRepository = MockUserRepository();
+    usecase = GetUserByIdUsecase(userRepository: mockUserRepository);
   });
 
   const uid = 'id';
@@ -24,13 +25,13 @@ void main() {
         groupId: [],
         friendsId: []);
 
-    when(mockAuthRepository.getUserById(uid))
+    when(mockUserRepository.getUserById(uid))
         .thenAnswer((_) => Stream.value(user));
 
     final result = usecase.call(uid);
 
     await expectLater(result, emits(user));
-    verify(mockAuthRepository.getUserById(uid));
-    verifyNoMoreInteractions(mockAuthRepository);
+    verify(mockUserRepository.getUserById(uid));
+    verifyNoMoreInteractions(mockUserRepository);
   });
 }

@@ -1,6 +1,6 @@
-import '../../domain.dart';
 
-class GetUserByIdUsecase {
+
+/* class GetUserByIdUsecase {
   final AuthRepository authRepository;
 
   GetUserByIdUsecase(this.authRepository);
@@ -8,4 +8,4 @@ class GetUserByIdUsecase {
   Stream<UserEntity> call(String uid) {
     return authRepository.getUserById(uid);
   }
-}
+} */

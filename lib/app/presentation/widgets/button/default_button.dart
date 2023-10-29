@@ -32,14 +32,9 @@ class _DefaultButtonState extends State<DefaultButton> {
         });
       },
       onTapUp: (details) {
-        Future.delayed(
-          const Duration(milliseconds: 100),
-          () {
-            setState(() {
-              isTapped = false;
-            });
-          },
-        );
+        setState(() {
+          isTapped = false;
+        });
       },
       child: Container(
         height: 50,
