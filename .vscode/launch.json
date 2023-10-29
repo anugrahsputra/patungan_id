@@ -7,7 +7,7 @@
         {
             "name": "patungan_id",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "patungan_id (profile mode)",
