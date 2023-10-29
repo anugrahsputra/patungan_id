@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
+import 'package:patungan_id/app/bloc_observer.dart';
 import 'package:patungan_id/firebase_options.dart';
 
 import 'app/core/core.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _Logging.initialize(showLog: true);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Bloc.observer = MyBlocObserver();
   await init();
   runApp(MyApp());
 }
@@ -24,14 +26,14 @@ class MyApp extends StatelessWidget {
 
   final AuthCubit authCubit = sl<AuthCubit>();
   final SettingCubit settingCubit = sl<SettingCubit>();
-  final SplashCubit splashCubit = sl<SplashCubit>();
+
+  final Logger log = Logger("Themes");
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => authCubit..getCurrentUser()),
-        BlocProvider(create: (context) => splashCubit),
+        BlocProvider(create: (context) => sl<AuthCubit>()..getCurrentUser()),
         BlocProvider(create: (context) => settingCubit),
       ],
       child: GetMaterialApp(
@@ -41,7 +43,10 @@ class MyApp extends StatelessWidget {
         themeMode: settingCubit.state.when(
           initial: (themeMode) => themeMode,
           loading: (themeMode) => themeMode,
-          success: (themeMode) => themeMode,
+          success: (themeMode) {
+            log.fine('themeMode: $themeMode');
+            return themeMode;
+          },
           error: (_) =>
               ThemeMode.system, // default to system theme mode in case of error
         ),

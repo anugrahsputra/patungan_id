@@ -17,12 +17,6 @@ class SplashPageState extends State<SplashPage> {
   final SplashCubit splashCubit = sl<SplashCubit>();
 
   @override
-  void initState() {
-    super.initState();
-    splashCubit.fetch();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),

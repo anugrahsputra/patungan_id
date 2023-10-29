@@ -37,7 +37,7 @@ Future<void> init() async {
         sl(),
         sl(),
       ));
-  sl.registerFactory(() => SplashCubit(auth: sl()));
+  sl.registerFactory(() => SplashCubit(auth: sl(), currentUser: sl()));
   sl.registerFactory(
       () => SettingCubit(getThemeModeUsecase: sl(), themeModeUsecase: sl()));
 

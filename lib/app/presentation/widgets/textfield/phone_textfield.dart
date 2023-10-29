@@ -88,6 +88,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
               controller: widget.controller,
               focusNode: _focusNode,
               keyboardType: TextInputType.phone,
+              cursorColor: color,
               decoration: InputDecoration(
                 hintText: AppString.phoneNumber,
                 border: InputBorder.none,

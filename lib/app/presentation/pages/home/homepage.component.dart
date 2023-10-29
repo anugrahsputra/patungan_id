@@ -8,9 +8,12 @@ class SignOutBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        state.whenOrNull(
-          success: () => navigator.goToSplah(context),
-        );
+        state.when(
+            initial: () {},
+            loading: () {},
+            success: () => navigator.goToSplah(context),
+            error: (_) {},
+            otpResent: () {});
       },
       builder: (context, state) {
         return DefaultButton(

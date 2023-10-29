@@ -41,7 +41,9 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await signInUsecase.call(phoneNumber);
     result.fold(
       (l) => emit(AuthState.error(l.message)),
-      (r) => emit(const AuthState.success()),
+      (r) {
+        emit(const AuthState.success());
+      },
     );
   }
 
@@ -81,8 +83,7 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     } catch (e) {
-      log.severe('Unexpected error: $e');
-      emit(const AuthState.error('Auth Cubit: An unexpected error occurred.'));
+      log.severe('getCurrentUser: $e');
     }
   }
 

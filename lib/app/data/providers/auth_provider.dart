@@ -15,6 +15,7 @@ abstract class AuthProvider {
   Future<String> getCurrentId();
   Future<UserModel> getCurrentUser();
   Stream<UserModel> getUserById(String uid);
+  Future<bool> isUserExist(String uid);
   Future<void> setUserLoggedIn(String uid);
   Future<void> removeUser(String uid);
   String? getUser();
@@ -43,12 +44,8 @@ class AuthProviderImpl implements AuthProvider {
   Future<UserModel> getCurrentUser() async {
     var userData =
         await firestore.collection('users').doc(await getCurrentId()).get();
-    if (userData.exists) {
-      UserModel user = UserModel.fromMap(userData.data()!);
-      return user;
-    } else {
-      throw Exception('User data not found');
-    }
+    UserModel user = UserModel.fromMap(userData.data()!);
+    return user;
   }
 
   @override
@@ -159,5 +156,12 @@ class AuthProviderImpl implements AuthProvider {
       timeout: const Duration(seconds: 5),
       forceResendingToken: _resendOtp,
     );
+  }
+
+  @override
+  Future<bool> isUserExist(String uid) async {
+    final users = FirebaseFirestore.instance.collection('users');
+    final docSnapshot = await users.doc(uid).get();
+    return docSnapshot.exists;
   }
 }
