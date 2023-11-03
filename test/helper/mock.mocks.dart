@@ -4,23 +4,30 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
-import 'dart:typed_data' as _i11;
+import 'dart:io' as _i16;
+import 'dart:typed_data' as _i14;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i6;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
     as _i5;
-import 'package:dartz/dartz.dart' as _i9;
+import 'package:dartz/dartz.dart' as _i11;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart'
     as _i3;
 import 'package:firebase_core/firebase_core.dart' as _i2;
-import 'package:flutter/material.dart' as _i14;
+import 'package:firebase_storage/firebase_storage.dart' as _i8;
+import 'package:firebase_storage_platform_interface/firebase_storage_platform_interface.dart'
+    as _i9;
+import 'package:flutter/material.dart' as _i18;
+import 'package:image_picker/image_picker.dart' as _i19;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i12;
-import 'package:patungan_id/app/core/core.dart' as _i13;
-import 'package:patungan_id/app/data/data.dart' as _i8;
-import 'package:patungan_id/app/domain/domain.dart' as _i15;
-import 'package:shared_preferences/shared_preferences.dart' as _i10;
+import 'package:mockito/src/dummies.dart' as _i15;
+import 'package:patungan_id/app/core/core.dart' as _i17;
+import 'package:patungan_id/app/data/data.dart' as _i10;
+import 'package:patungan_id/app/domain/domain.dart' as _i12;
+import 'package:patungan_id/app/domain/usecase/user/get_default_profilepic_usecase.dart'
+    as _i20;
+import 'package:shared_preferences/shared_preferences.dart' as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -161,8 +168,8 @@ class _FakeFuture_11<T1> extends _i1.SmartFake implements _i7.Future<T1> {
         );
 }
 
-class _FakeUserMetadata_12 extends _i1.SmartFake implements _i3.UserMetadata {
-  _FakeUserMetadata_12(
+class _FakeDuration_12 extends _i1.SmartFake implements Duration {
+  _FakeDuration_12(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -171,8 +178,8 @@ class _FakeUserMetadata_12 extends _i1.SmartFake implements _i3.UserMetadata {
         );
 }
 
-class _FakeMultiFactor_13 extends _i1.SmartFake implements _i4.MultiFactor {
-  _FakeMultiFactor_13(
+class _FakeReference_13 extends _i1.SmartFake implements _i8.Reference {
+  _FakeReference_13(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -181,8 +188,8 @@ class _FakeMultiFactor_13 extends _i1.SmartFake implements _i4.MultiFactor {
         );
 }
 
-class _FakeIdTokenResult_14 extends _i1.SmartFake implements _i3.IdTokenResult {
-  _FakeIdTokenResult_14(
+class _FakeUserMetadata_14 extends _i1.SmartFake implements _i3.UserMetadata {
+  _FakeUserMetadata_14(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -191,8 +198,8 @@ class _FakeIdTokenResult_14 extends _i1.SmartFake implements _i3.IdTokenResult {
         );
 }
 
-class _FakeUser_15 extends _i1.SmartFake implements _i4.User {
-  _FakeUser_15(
+class _FakeMultiFactor_15 extends _i1.SmartFake implements _i4.MultiFactor {
+  _FakeMultiFactor_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -201,9 +208,29 @@ class _FakeUser_15 extends _i1.SmartFake implements _i4.User {
         );
 }
 
-class _FakeSnapshotMetadata_16 extends _i1.SmartFake
+class _FakeIdTokenResult_16 extends _i1.SmartFake implements _i3.IdTokenResult {
+  _FakeIdTokenResult_16(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUser_17 extends _i1.SmartFake implements _i4.User {
+  _FakeUser_17(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeSnapshotMetadata_18 extends _i1.SmartFake
     implements _i6.SnapshotMetadata {
-  _FakeSnapshotMetadata_16(
+  _FakeSnapshotMetadata_18(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -212,9 +239,9 @@ class _FakeSnapshotMetadata_16 extends _i1.SmartFake
         );
 }
 
-class _FakeFirebaseFirestore_17 extends _i1.SmartFake
+class _FakeFirebaseFirestore_19 extends _i1.SmartFake
     implements _i6.FirebaseFirestore {
-  _FakeFirebaseFirestore_17(
+  _FakeFirebaseFirestore_19(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -223,9 +250,9 @@ class _FakeFirebaseFirestore_17 extends _i1.SmartFake
         );
 }
 
-class _FakeDocumentSnapshot_18<T1 extends Object?> extends _i1.SmartFake
+class _FakeDocumentSnapshot_20<T1 extends Object?> extends _i1.SmartFake
     implements _i6.DocumentSnapshot<T1> {
-  _FakeDocumentSnapshot_18(
+  _FakeDocumentSnapshot_20(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -234,9 +261,9 @@ class _FakeDocumentSnapshot_18<T1 extends Object?> extends _i1.SmartFake
         );
 }
 
-class _FakeAggregateQuery_19 extends _i1.SmartFake
+class _FakeAggregateQuery_21 extends _i1.SmartFake
     implements _i6.AggregateQuery {
-  _FakeAggregateQuery_19(
+  _FakeAggregateQuery_21(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -245,8 +272,9 @@ class _FakeAggregateQuery_19 extends _i1.SmartFake
         );
 }
 
-class _FakeUserModel_20 extends _i1.SmartFake implements _i8.UserModel {
-  _FakeUserModel_20(
+class _FakeFirebaseStorage_22 extends _i1.SmartFake
+    implements _i8.FirebaseStorage {
+  _FakeFirebaseStorage_22(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -255,8 +283,102 @@ class _FakeUserModel_20 extends _i1.SmartFake implements _i8.UserModel {
         );
 }
 
-class _FakeEither_21<L, R> extends _i1.SmartFake implements _i9.Either<L, R> {
-  _FakeEither_21(
+class _FakeFullMetadata_23 extends _i1.SmartFake implements _i9.FullMetadata {
+  _FakeFullMetadata_23(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeListResult_24 extends _i1.SmartFake implements _i8.ListResult {
+  _FakeListResult_24(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUploadTask_25 extends _i1.SmartFake implements _i8.UploadTask {
+  _FakeUploadTask_25(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDownloadTask_26 extends _i1.SmartFake implements _i8.DownloadTask {
+  _FakeDownloadTask_26(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUserModel_27 extends _i1.SmartFake implements _i10.UserModel {
+  _FakeUserModel_27(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeEither_28<L, R> extends _i1.SmartFake implements _i11.Either<L, R> {
+  _FakeEither_28(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeAuthRepository_29 extends _i1.SmartFake
+    implements _i12.AuthRepository {
+  _FakeAuthRepository_29(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUserRepository_30 extends _i1.SmartFake
+    implements _i12.UserRepository {
+  _FakeUserRepository_30(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeSettingRepository_31 extends _i1.SmartFake
+    implements _i12.SettingRepository {
+  _FakeSettingRepository_31(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeStorageRepository_32 extends _i1.SmartFake
+    implements _i12.StorageRepository {
+  _FakeStorageRepository_32(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -268,7 +390,7 @@ class _FakeEither_21<L, R> extends _i1.SmartFake implements _i9.Either<L, R> {
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i10.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i13.SharedPreferences {
   @override
   Set<String> getKeys() => (super.noSuchMethod(
         Invocation.method(
@@ -1266,7 +1388,7 @@ class MockFirebaseFirestore extends _i1.Mock implements _i6.FirebaseFirestore {
       ) as _i7.Future<void>);
 
   @override
-  _i6.LoadBundleTask loadBundle(_i11.Uint8List? bundle) => (super.noSuchMethod(
+  _i6.LoadBundleTask loadBundle(_i14.Uint8List? bundle) => (super.noSuchMethod(
         Invocation.method(
           #loadBundle,
           [bundle],
@@ -1474,8 +1596,8 @@ class MockFirebaseFirestore extends _i1.Mock implements _i6.FirebaseFirestore {
             #maxAttempts: maxAttempts,
           },
         ),
-        returnValue: _i12.ifNotNull(
-              _i12.dummyValueOrNull<T>(
+        returnValue: _i15.ifNotNull(
+              _i15.dummyValueOrNull<T>(
                 this,
                 Invocation.method(
                   #runTransaction,
@@ -1499,8 +1621,8 @@ class MockFirebaseFirestore extends _i1.Mock implements _i6.FirebaseFirestore {
                 },
               ),
             ),
-        returnValueForMissingStub: _i12.ifNotNull(
-              _i12.dummyValueOrNull<T>(
+        returnValueForMissingStub: _i15.ifNotNull(
+              _i15.dummyValueOrNull<T>(
                 this,
                 Invocation.method(
                   #runTransaction,
@@ -1576,6 +1698,201 @@ class MockFirebaseFirestore extends _i1.Mock implements _i6.FirebaseFirestore {
       ) as _i7.Future<void>);
 }
 
+/// A class which mocks [FirebaseStorage].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFirebaseStorage extends _i1.Mock implements _i8.FirebaseStorage {
+  @override
+  _i2.FirebaseApp get app => (super.noSuchMethod(
+        Invocation.getter(#app),
+        returnValue: _FakeFirebaseApp_0(
+          this,
+          Invocation.getter(#app),
+        ),
+        returnValueForMissingStub: _FakeFirebaseApp_0(
+          this,
+          Invocation.getter(#app),
+        ),
+      ) as _i2.FirebaseApp);
+
+  @override
+  set app(_i2.FirebaseApp? _app) => super.noSuchMethod(
+        Invocation.setter(
+          #app,
+          _app,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String get bucket => (super.noSuchMethod(
+        Invocation.getter(#bucket),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  set bucket(String? _bucket) => super.noSuchMethod(
+        Invocation.setter(
+          #bucket,
+          _bucket,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Duration get maxOperationRetryTime => (super.noSuchMethod(
+        Invocation.getter(#maxOperationRetryTime),
+        returnValue: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxOperationRetryTime),
+        ),
+        returnValueForMissingStub: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxOperationRetryTime),
+        ),
+      ) as Duration);
+
+  @override
+  Duration get maxUploadRetryTime => (super.noSuchMethod(
+        Invocation.getter(#maxUploadRetryTime),
+        returnValue: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxUploadRetryTime),
+        ),
+        returnValueForMissingStub: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxUploadRetryTime),
+        ),
+      ) as Duration);
+
+  @override
+  Duration get maxDownloadRetryTime => (super.noSuchMethod(
+        Invocation.getter(#maxDownloadRetryTime),
+        returnValue: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxDownloadRetryTime),
+        ),
+        returnValueForMissingStub: _FakeDuration_12(
+          this,
+          Invocation.getter(#maxDownloadRetryTime),
+        ),
+      ) as Duration);
+
+  @override
+  Map<dynamic, dynamic> get pluginConstants => (super.noSuchMethod(
+        Invocation.getter(#pluginConstants),
+        returnValue: <dynamic, dynamic>{},
+        returnValueForMissingStub: <dynamic, dynamic>{},
+      ) as Map<dynamic, dynamic>);
+
+  @override
+  _i8.Reference ref([String? path]) => (super.noSuchMethod(
+        Invocation.method(
+          #ref,
+          [path],
+        ),
+        returnValue: _FakeReference_13(
+          this,
+          Invocation.method(
+            #ref,
+            [path],
+          ),
+        ),
+        returnValueForMissingStub: _FakeReference_13(
+          this,
+          Invocation.method(
+            #ref,
+            [path],
+          ),
+        ),
+      ) as _i8.Reference);
+
+  @override
+  _i8.Reference refFromURL(String? url) => (super.noSuchMethod(
+        Invocation.method(
+          #refFromURL,
+          [url],
+        ),
+        returnValue: _FakeReference_13(
+          this,
+          Invocation.method(
+            #refFromURL,
+            [url],
+          ),
+        ),
+        returnValueForMissingStub: _FakeReference_13(
+          this,
+          Invocation.method(
+            #refFromURL,
+            [url],
+          ),
+        ),
+      ) as _i8.Reference);
+
+  @override
+  void setMaxOperationRetryTime(Duration? time) => super.noSuchMethod(
+        Invocation.method(
+          #setMaxOperationRetryTime,
+          [time],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setMaxUploadRetryTime(Duration? time) => super.noSuchMethod(
+        Invocation.method(
+          #setMaxUploadRetryTime,
+          [time],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setMaxDownloadRetryTime(Duration? time) => super.noSuchMethod(
+        Invocation.method(
+          #setMaxDownloadRetryTime,
+          [time],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i7.Future<void> useEmulator({
+    required String? host,
+    required int? port,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #useEmulator,
+          [],
+          {
+            #host: host,
+            #port: port,
+          },
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> useStorageEmulator(
+    String? host,
+    int? port,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #useStorageEmulator,
+          [
+            host,
+            port,
+          ],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+}
+
 /// A class which mocks [User].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -1597,11 +1914,11 @@ class MockUser extends _i1.Mock implements _i4.User {
   @override
   _i3.UserMetadata get metadata => (super.noSuchMethod(
         Invocation.getter(#metadata),
-        returnValue: _FakeUserMetadata_12(
+        returnValue: _FakeUserMetadata_14(
           this,
           Invocation.getter(#metadata),
         ),
-        returnValueForMissingStub: _FakeUserMetadata_12(
+        returnValueForMissingStub: _FakeUserMetadata_14(
           this,
           Invocation.getter(#metadata),
         ),
@@ -1624,11 +1941,11 @@ class MockUser extends _i1.Mock implements _i4.User {
   @override
   _i4.MultiFactor get multiFactor => (super.noSuchMethod(
         Invocation.getter(#multiFactor),
-        returnValue: _FakeMultiFactor_13(
+        returnValue: _FakeMultiFactor_15(
           this,
           Invocation.getter(#multiFactor),
         ),
-        returnValueForMissingStub: _FakeMultiFactor_13(
+        returnValueForMissingStub: _FakeMultiFactor_15(
           this,
           Invocation.getter(#multiFactor),
         ),
@@ -1663,7 +1980,7 @@ class MockUser extends _i1.Mock implements _i4.User {
           #getIdTokenResult,
           [forceRefresh],
         ),
-        returnValue: _i7.Future<_i3.IdTokenResult>.value(_FakeIdTokenResult_14(
+        returnValue: _i7.Future<_i3.IdTokenResult>.value(_FakeIdTokenResult_16(
           this,
           Invocation.method(
             #getIdTokenResult,
@@ -1671,7 +1988,7 @@ class MockUser extends _i1.Mock implements _i4.User {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i3.IdTokenResult>.value(_FakeIdTokenResult_14(
+            _i7.Future<_i3.IdTokenResult>.value(_FakeIdTokenResult_16(
           this,
           Invocation.method(
             #getIdTokenResult,
@@ -1915,14 +2232,14 @@ class MockUser extends _i1.Mock implements _i4.User {
           #unlink,
           [providerId],
         ),
-        returnValue: _i7.Future<_i4.User>.value(_FakeUser_15(
+        returnValue: _i7.Future<_i4.User>.value(_FakeUser_17(
           this,
           Invocation.method(
             #unlink,
             [providerId],
           ),
         )),
-        returnValueForMissingStub: _i7.Future<_i4.User>.value(_FakeUser_15(
+        returnValueForMissingStub: _i7.Future<_i4.User>.value(_FakeUser_17(
           this,
           Invocation.method(
             #unlink,
@@ -2048,11 +2365,11 @@ class MockDocumentSnapshot<T extends Object?> extends _i1.Mock
   @override
   _i6.SnapshotMetadata get metadata => (super.noSuchMethod(
         Invocation.getter(#metadata),
-        returnValue: _FakeSnapshotMetadata_16(
+        returnValue: _FakeSnapshotMetadata_18(
           this,
           Invocation.getter(#metadata),
         ),
-        returnValueForMissingStub: _FakeSnapshotMetadata_16(
+        returnValueForMissingStub: _FakeSnapshotMetadata_18(
           this,
           Invocation.getter(#metadata),
         ),
@@ -2093,11 +2410,11 @@ class MockDocumentReference<T extends Object?> extends _i1.Mock
   @override
   _i6.FirebaseFirestore get firestore => (super.noSuchMethod(
         Invocation.getter(#firestore),
-        returnValue: _FakeFirebaseFirestore_17(
+        returnValue: _FakeFirebaseFirestore_19(
           this,
           Invocation.getter(#firestore),
         ),
-        returnValueForMissingStub: _FakeFirebaseFirestore_17(
+        returnValueForMissingStub: _FakeFirebaseFirestore_19(
           this,
           Invocation.getter(#firestore),
         ),
@@ -2183,7 +2500,7 @@ class MockDocumentReference<T extends Object?> extends _i1.Mock
           [options],
         ),
         returnValue: _i7.Future<_i6.DocumentSnapshot<T>>.value(
-            _FakeDocumentSnapshot_18<T>(
+            _FakeDocumentSnapshot_20<T>(
           this,
           Invocation.method(
             #get,
@@ -2191,7 +2508,7 @@ class MockDocumentReference<T extends Object?> extends _i1.Mock
           ),
         )),
         returnValueForMissingStub: _i7.Future<_i6.DocumentSnapshot<T>>.value(
-            _FakeDocumentSnapshot_18<T>(
+            _FakeDocumentSnapshot_20<T>(
           this,
           Invocation.method(
             #get,
@@ -2322,11 +2639,11 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
   @override
   _i6.FirebaseFirestore get firestore => (super.noSuchMethod(
         Invocation.getter(#firestore),
-        returnValue: _FakeFirebaseFirestore_17(
+        returnValue: _FakeFirebaseFirestore_19(
           this,
           Invocation.getter(#firestore),
         ),
-        returnValueForMissingStub: _FakeFirebaseFirestore_17(
+        returnValueForMissingStub: _FakeFirebaseFirestore_19(
           this,
           Invocation.getter(#firestore),
         ),
@@ -2798,14 +3115,14 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
           #count,
           [],
         ),
-        returnValue: _FakeAggregateQuery_19(
+        returnValue: _FakeAggregateQuery_21(
           this,
           Invocation.method(
             #count,
             [],
           ),
         ),
-        returnValueForMissingStub: _FakeAggregateQuery_19(
+        returnValueForMissingStub: _FakeAggregateQuery_21(
           this,
           Invocation.method(
             #count,
@@ -2837,11 +3154,11 @@ class MockQuerySnapshot<T extends Object?> extends _i1.Mock
   @override
   _i6.SnapshotMetadata get metadata => (super.noSuchMethod(
         Invocation.getter(#metadata),
-        returnValue: _FakeSnapshotMetadata_16(
+        returnValue: _FakeSnapshotMetadata_18(
           this,
           Invocation.getter(#metadata),
         ),
-        returnValueForMissingStub: _FakeSnapshotMetadata_16(
+        returnValueForMissingStub: _FakeSnapshotMetadata_18(
           this,
           Invocation.getter(#metadata),
         ),
@@ -2855,12 +3172,377 @@ class MockQuerySnapshot<T extends Object?> extends _i1.Mock
       ) as int);
 }
 
+/// A class which mocks [Reference].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockReference extends _i1.Mock implements _i8.Reference {
+  @override
+  _i8.FirebaseStorage get storage => (super.noSuchMethod(
+        Invocation.getter(#storage),
+        returnValue: _FakeFirebaseStorage_22(
+          this,
+          Invocation.getter(#storage),
+        ),
+        returnValueForMissingStub: _FakeFirebaseStorage_22(
+          this,
+          Invocation.getter(#storage),
+        ),
+      ) as _i8.FirebaseStorage);
+
+  @override
+  String get bucket => (super.noSuchMethod(
+        Invocation.getter(#bucket),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  String get fullPath => (super.noSuchMethod(
+        Invocation.getter(#fullPath),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  String get name => (super.noSuchMethod(
+        Invocation.getter(#name),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  _i8.Reference get root => (super.noSuchMethod(
+        Invocation.getter(#root),
+        returnValue: _FakeReference_13(
+          this,
+          Invocation.getter(#root),
+        ),
+        returnValueForMissingStub: _FakeReference_13(
+          this,
+          Invocation.getter(#root),
+        ),
+      ) as _i8.Reference);
+
+  @override
+  _i8.Reference child(String? path) => (super.noSuchMethod(
+        Invocation.method(
+          #child,
+          [path],
+        ),
+        returnValue: _FakeReference_13(
+          this,
+          Invocation.method(
+            #child,
+            [path],
+          ),
+        ),
+        returnValueForMissingStub: _FakeReference_13(
+          this,
+          Invocation.method(
+            #child,
+            [path],
+          ),
+        ),
+      ) as _i8.Reference);
+
+  @override
+  _i7.Future<void> delete() => (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<String> getDownloadURL() => (super.noSuchMethod(
+        Invocation.method(
+          #getDownloadURL,
+          [],
+        ),
+        returnValue: _i7.Future<String>.value(''),
+        returnValueForMissingStub: _i7.Future<String>.value(''),
+      ) as _i7.Future<String>);
+
+  @override
+  _i7.Future<_i9.FullMetadata> getMetadata() => (super.noSuchMethod(
+        Invocation.method(
+          #getMetadata,
+          [],
+        ),
+        returnValue: _i7.Future<_i9.FullMetadata>.value(_FakeFullMetadata_23(
+          this,
+          Invocation.method(
+            #getMetadata,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i9.FullMetadata>.value(_FakeFullMetadata_23(
+          this,
+          Invocation.method(
+            #getMetadata,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i9.FullMetadata>);
+
+  @override
+  _i7.Future<_i8.ListResult> list([_i9.ListOptions? options]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #list,
+          [options],
+        ),
+        returnValue: _i7.Future<_i8.ListResult>.value(_FakeListResult_24(
+          this,
+          Invocation.method(
+            #list,
+            [options],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i8.ListResult>.value(_FakeListResult_24(
+          this,
+          Invocation.method(
+            #list,
+            [options],
+          ),
+        )),
+      ) as _i7.Future<_i8.ListResult>);
+
+  @override
+  _i7.Future<_i8.ListResult> listAll() => (super.noSuchMethod(
+        Invocation.method(
+          #listAll,
+          [],
+        ),
+        returnValue: _i7.Future<_i8.ListResult>.value(_FakeListResult_24(
+          this,
+          Invocation.method(
+            #listAll,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i8.ListResult>.value(_FakeListResult_24(
+          this,
+          Invocation.method(
+            #listAll,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i8.ListResult>);
+
+  @override
+  _i7.Future<_i14.Uint8List?> getData([int? maxSize = 10485760]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getData,
+          [maxSize],
+        ),
+        returnValue: _i7.Future<_i14.Uint8List?>.value(),
+        returnValueForMissingStub: _i7.Future<_i14.Uint8List?>.value(),
+      ) as _i7.Future<_i14.Uint8List?>);
+
+  @override
+  _i8.UploadTask putData(
+    _i14.Uint8List? data, [
+    _i9.SettableMetadata? metadata,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putData,
+          [
+            data,
+            metadata,
+          ],
+        ),
+        returnValue: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putData,
+            [
+              data,
+              metadata,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putData,
+            [
+              data,
+              metadata,
+            ],
+          ),
+        ),
+      ) as _i8.UploadTask);
+
+  @override
+  _i8.UploadTask putBlob(
+    dynamic blob, [
+    _i9.SettableMetadata? metadata,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putBlob,
+          [
+            blob,
+            metadata,
+          ],
+        ),
+        returnValue: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putBlob,
+            [
+              blob,
+              metadata,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putBlob,
+            [
+              blob,
+              metadata,
+            ],
+          ),
+        ),
+      ) as _i8.UploadTask);
+
+  @override
+  _i8.UploadTask putFile(
+    _i16.File? file, [
+    _i9.SettableMetadata? metadata,
+  ]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putFile,
+          [
+            file,
+            metadata,
+          ],
+        ),
+        returnValue: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putFile,
+            [
+              file,
+              metadata,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putFile,
+            [
+              file,
+              metadata,
+            ],
+          ),
+        ),
+      ) as _i8.UploadTask);
+
+  @override
+  _i8.UploadTask putString(
+    String? data, {
+    _i9.PutStringFormat? format = _i9.PutStringFormat.raw,
+    _i9.SettableMetadata? metadata,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putString,
+          [data],
+          {
+            #format: format,
+            #metadata: metadata,
+          },
+        ),
+        returnValue: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putString,
+            [data],
+            {
+              #format: format,
+              #metadata: metadata,
+            },
+          ),
+        ),
+        returnValueForMissingStub: _FakeUploadTask_25(
+          this,
+          Invocation.method(
+            #putString,
+            [data],
+            {
+              #format: format,
+              #metadata: metadata,
+            },
+          ),
+        ),
+      ) as _i8.UploadTask);
+
+  @override
+  _i7.Future<_i9.FullMetadata> updateMetadata(_i9.SettableMetadata? metadata) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateMetadata,
+          [metadata],
+        ),
+        returnValue: _i7.Future<_i9.FullMetadata>.value(_FakeFullMetadata_23(
+          this,
+          Invocation.method(
+            #updateMetadata,
+            [metadata],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i9.FullMetadata>.value(_FakeFullMetadata_23(
+          this,
+          Invocation.method(
+            #updateMetadata,
+            [metadata],
+          ),
+        )),
+      ) as _i7.Future<_i9.FullMetadata>);
+
+  @override
+  _i8.DownloadTask writeToFile(_i16.File? file) => (super.noSuchMethod(
+        Invocation.method(
+          #writeToFile,
+          [file],
+        ),
+        returnValue: _FakeDownloadTask_26(
+          this,
+          Invocation.method(
+            #writeToFile,
+            [file],
+          ),
+        ),
+        returnValueForMissingStub: _FakeDownloadTask_26(
+          this,
+          Invocation.method(
+            #writeToFile,
+            [file],
+          ),
+        ),
+      ) as _i8.DownloadTask);
+}
+
 /// A class which mocks [ChangeThemeMode].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChangeThemeMode extends _i1.Mock implements _i13.ChangeThemeMode {
+class MockChangeThemeMode extends _i1.Mock implements _i17.ChangeThemeMode {
   @override
-  void changeThemeMode(_i14.ThemeMode? themeMode) => super.noSuchMethod(
+  void changeThemeMode(_i18.ThemeMode? themeMode) => super.noSuchMethod(
         Invocation.method(
           #changeThemeMode,
           [themeMode],
@@ -2882,7 +3564,7 @@ class MockChangeThemeMode extends _i1.Mock implements _i13.ChangeThemeMode {
 /// A class which mocks [AuthProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
+class MockAuthProvider extends _i1.Mock implements _i10.AuthProvider {
   @override
   _i7.Future<void> signInWithPhoneNumber(String? phoneNumber) =>
       (super.noSuchMethod(
@@ -2945,12 +3627,12 @@ class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
       ) as _i7.Future<String>);
 
   @override
-  _i7.Future<_i8.UserModel> getCurrentUser() => (super.noSuchMethod(
+  _i7.Future<_i10.UserModel> getCurrentUser() => (super.noSuchMethod(
         Invocation.method(
           #getCurrentUser,
           [],
         ),
-        returnValue: _i7.Future<_i8.UserModel>.value(_FakeUserModel_20(
+        returnValue: _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
           this,
           Invocation.method(
             #getCurrentUser,
@@ -2958,24 +3640,24 @@ class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i8.UserModel>.value(_FakeUserModel_20(
+            _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
           this,
           Invocation.method(
             #getCurrentUser,
             [],
           ),
         )),
-      ) as _i7.Future<_i8.UserModel>);
+      ) as _i7.Future<_i10.UserModel>);
 
   @override
-  _i7.Stream<_i8.UserModel> getUserById(String? uid) => (super.noSuchMethod(
+  _i7.Stream<_i10.UserModel> getUserById(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
           [uid],
         ),
-        returnValue: _i7.Stream<_i8.UserModel>.empty(),
-        returnValueForMissingStub: _i7.Stream<_i8.UserModel>.empty(),
-      ) as _i7.Stream<_i8.UserModel>);
+        returnValue: _i7.Stream<_i10.UserModel>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i10.UserModel>.empty(),
+      ) as _i7.Stream<_i10.UserModel>);
 
   @override
   _i7.Future<bool> isUserExist(String? uid) => (super.noSuchMethod(
@@ -3011,19 +3693,19 @@ class MockAuthProvider extends _i1.Mock implements _i8.AuthProvider {
 /// A class which mocks [SettingProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSettingProvider extends _i1.Mock implements _i8.SettingProvider {
+class MockSettingProvider extends _i1.Mock implements _i10.SettingProvider {
   @override
-  _i14.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
+  _i18.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
         Invocation.method(
           #getLocalThemeMode,
           [],
         ),
-        returnValue: _i14.ThemeMode.system,
-        returnValueForMissingStub: _i14.ThemeMode.system,
-      ) as _i14.ThemeMode);
+        returnValue: _i18.ThemeMode.system,
+        returnValueForMissingStub: _i18.ThemeMode.system,
+      ) as _i18.ThemeMode);
 
   @override
-  _i7.Future<void> changeThemeMode(_i14.ThemeMode? themeMode) =>
+  _i7.Future<void> changeThemeMode(_i18.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #changeThemeMode,
@@ -3034,20 +3716,110 @@ class MockSettingProvider extends _i1.Mock implements _i8.SettingProvider {
       ) as _i7.Future<void>);
 }
 
+/// A class which mocks [UserProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserProvider extends _i1.Mock implements _i10.UserProvider {
+  @override
+  _i7.Future<String> getCurrentId() => (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentId,
+          [],
+        ),
+        returnValue: _i7.Future<String>.value(''),
+        returnValueForMissingStub: _i7.Future<String>.value(''),
+      ) as _i7.Future<String>);
+
+  @override
+  _i7.Future<_i10.UserModel> getCurrentUser() => (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentUser,
+          [],
+        ),
+        returnValue: _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
+          this,
+          Invocation.method(
+            #getCurrentUser,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
+          this,
+          Invocation.method(
+            #getCurrentUser,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i10.UserModel>);
+
+  @override
+  _i7.Stream<_i10.UserModel> getUserById(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserById,
+          [uid],
+        ),
+        returnValue: _i7.Stream<_i10.UserModel>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i10.UserModel>.empty(),
+      ) as _i7.Stream<_i10.UserModel>);
+
+  @override
+  _i7.Future<bool> isUserExist(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #isUserExist,
+          [uid],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+        returnValueForMissingStub: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+}
+
+/// A class which mocks [StorageProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStorageProvider extends _i1.Mock implements _i10.StorageProvider {
+  @override
+  _i7.Future<String> uploadProfilePic(
+    _i19.XFile? file,
+    dynamic Function(double)? onProgress,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadProfilePic,
+          [
+            file,
+            onProgress,
+          ],
+        ),
+        returnValue: _i7.Future<String>.value(''),
+        returnValueForMissingStub: _i7.Future<String>.value(''),
+      ) as _i7.Future<String>);
+
+  @override
+  _i7.Future<String> defaultPicUrl(String? imgNumber) => (super.noSuchMethod(
+        Invocation.method(
+          #defaultPicUrl,
+          [imgNumber],
+        ),
+        returnValue: _i7.Future<String>.value(''),
+        returnValueForMissingStub: _i7.Future<String>.value(''),
+      ) as _i7.Future<String>);
+}
+
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i12.AuthRepository {
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> signInWithPhoneNumber(
+  _i7.Future<_i11.Either<_i17.Failure, void>> signInWithPhoneNumber(
           String? phoneNumber) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithPhoneNumber,
           [phoneNumber],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #signInWithPhoneNumber,
@@ -3055,25 +3827,25 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #signInWithPhoneNumber,
             [phoneNumber],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> verifyOtp(String? otp) =>
+  _i7.Future<_i11.Either<_i17.Failure, void>> verifyOtp(String? otp) =>
       (super.noSuchMethod(
         Invocation.method(
           #verifyOtp,
           [otp],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #verifyOtp,
@@ -3081,25 +3853,25 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #verifyOtp,
             [otp],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> resendOtp(String? phoneNumber) =>
+  _i7.Future<_i11.Either<_i17.Failure, void>> resendOtp(String? phoneNumber) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendOtp,
           [phoneNumber],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #resendOtp,
@@ -3107,24 +3879,24 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #resendOtp,
             [phoneNumber],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> signOut() => (super.noSuchMethod(
+  _i7.Future<_i11.Either<_i17.Failure, void>> signOut() => (super.noSuchMethod(
         Invocation.method(
           #signOut,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #signOut,
@@ -3132,25 +3904,26 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #signOut,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> saveDataToDatabase(String? name) =>
+  _i7.Future<_i11.Either<_i17.Failure, void>> saveDataToDatabase(
+          String? name) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveDataToDatabase,
           [name],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #saveDataToDatabase,
@@ -3158,25 +3931,25 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #saveDataToDatabase,
             [name],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, String>> getCurrentId() =>
+  _i7.Future<_i11.Either<_i17.Failure, String>> getCurrentId() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentId,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-            _FakeEither_21<_i13.Failure, String>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
@@ -3184,25 +3957,25 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-                _FakeEither_21<_i13.Failure, String>(
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, String>> getCachedLocalCurrentUid() =>
+  _i7.Future<_i11.Either<_i17.Failure, String>> getCachedLocalCurrentUid() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCachedLocalCurrentUid,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-            _FakeEither_21<_i13.Failure, String>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCachedLocalCurrentUid,
@@ -3210,25 +3983,26 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-                _FakeEither_21<_i13.Failure, String>(
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCachedLocalCurrentUid,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>> getCurrentUser() =>
+  _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>> getCurrentUser() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentUser,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
-            _FakeEither_21<_i13.Failure, _i8.UserModel>(
+        returnValue:
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
@@ -3236,40 +4010,40 @@ class MockAuthRepository extends _i1.Mock implements _i15.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
-                _FakeEither_21<_i13.Failure, _i8.UserModel>(
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>);
 
   @override
-  _i7.Stream<_i15.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
+  _i7.Stream<_i12.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
           [uid],
         ),
-        returnValue: _i7.Stream<_i15.UserEntity>.empty(),
-        returnValueForMissingStub: _i7.Stream<_i15.UserEntity>.empty(),
-      ) as _i7.Stream<_i15.UserEntity>);
+        returnValue: _i7.Stream<_i12.UserEntity>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i12.UserEntity>.empty(),
+      ) as _i7.Stream<_i12.UserEntity>);
 }
 
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i15.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i12.UserRepository {
   @override
-  _i7.Future<_i9.Either<_i13.Failure, String>> getCurrentId() =>
+  _i7.Future<_i11.Either<_i17.Failure, String>> getCurrentId() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentId,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-            _FakeEither_21<_i13.Failure, String>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
@@ -3277,25 +4051,26 @@ class MockUserRepository extends _i1.Mock implements _i15.UserRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, String>>.value(
-                _FakeEither_21<_i13.Failure, String>(
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
           this,
           Invocation.method(
             #getCurrentId,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, String>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>> getCurrentUser() =>
+  _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>> getCurrentUser() =>
       (super.noSuchMethod(
         Invocation.method(
           #getCurrentUser,
           [],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
-            _FakeEither_21<_i13.Failure, _i8.UserModel>(
+        returnValue:
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
@@ -3303,51 +4078,51 @@ class MockUserRepository extends _i1.Mock implements _i15.UserRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>.value(
-                _FakeEither_21<_i13.Failure, _i8.UserModel>(
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
           this,
           Invocation.method(
             #getCurrentUser,
             [],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, _i8.UserModel>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>);
 
   @override
-  _i7.Stream<_i15.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
+  _i7.Stream<_i12.UserEntity> getUserById(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
           [uid],
         ),
-        returnValue: _i7.Stream<_i15.UserEntity>.empty(),
-        returnValueForMissingStub: _i7.Stream<_i15.UserEntity>.empty(),
-      ) as _i7.Stream<_i15.UserEntity>);
+        returnValue: _i7.Stream<_i12.UserEntity>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i12.UserEntity>.empty(),
+      ) as _i7.Stream<_i12.UserEntity>);
 }
 
 /// A class which mocks [SettingRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSettingRepository extends _i1.Mock implements _i15.SettingRepository {
+class MockSettingRepository extends _i1.Mock implements _i12.SettingRepository {
   @override
-  _i14.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
+  _i18.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
         Invocation.method(
           #getLocalThemeMode,
           [],
         ),
-        returnValue: _i14.ThemeMode.system,
-        returnValueForMissingStub: _i14.ThemeMode.system,
-      ) as _i14.ThemeMode);
+        returnValue: _i18.ThemeMode.system,
+        returnValueForMissingStub: _i18.ThemeMode.system,
+      ) as _i18.ThemeMode);
 
   @override
-  _i7.Future<_i9.Either<_i13.Failure, void>> changeThemeMode(
-          _i14.ThemeMode? themeMode) =>
+  _i7.Future<_i11.Either<_i17.Failure, void>> changeThemeMode(
+          _i18.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #changeThemeMode,
           [themeMode],
         ),
-        returnValue: _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-            _FakeEither_21<_i13.Failure, void>(
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #changeThemeMode,
@@ -3355,13 +4130,585 @@ class MockSettingRepository extends _i1.Mock implements _i15.SettingRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i9.Either<_i13.Failure, void>>.value(
-                _FakeEither_21<_i13.Failure, void>(
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #changeThemeMode,
             [themeMode],
           ),
         )),
-      ) as _i7.Future<_i9.Either<_i13.Failure, void>>);
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [StorageRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStorageRepository extends _i1.Mock implements _i12.StorageRepository {
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, String>> uploadProfilePic(
+    _i19.XFile? file,
+    dynamic Function(double)? onProgress,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadProfilePic,
+          [
+            file,
+            onProgress,
+          ],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #uploadProfilePic,
+            [
+              file,
+              onProgress,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #uploadProfilePic,
+            [
+              file,
+              onProgress,
+            ],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, String>> defaultPicUrl(
+          String? imgNumber) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #defaultPicUrl,
+          [imgNumber],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #defaultPicUrl,
+            [imgNumber],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #defaultPicUrl,
+            [imgNumber],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
+}
+
+/// A class which mocks [GetCachedUserUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCachedUserUsecase extends _i1.Mock
+    implements _i12.GetCachedUserUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, String>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
+}
+
+/// A class which mocks [GetCurrentIdUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentIdUsecase extends _i1.Mock
+    implements _i12.GetCurrentIdUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, String>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
+}
+
+/// A class which mocks [GetCurrentUserUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentUserUsecase extends _i1.Mock
+    implements _i12.GetCurrentUserUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, _i12.UserEntity>> call() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue:
+            _i7.Future<_i11.Either<_i17.Failure, _i12.UserEntity>>.value(
+                _FakeEither_28<_i17.Failure, _i12.UserEntity>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, _i12.UserEntity>>.value(
+                _FakeEither_28<_i17.Failure, _i12.UserEntity>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, _i12.UserEntity>>);
+}
+
+/// A class which mocks [GetUserByIdUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetUserByIdUsecase extends _i1.Mock
+    implements _i12.GetUserByIdUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Stream<_i12.UserEntity> call(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [uid],
+        ),
+        returnValue: _i7.Stream<_i12.UserEntity>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i12.UserEntity>.empty(),
+      ) as _i7.Stream<_i12.UserEntity>);
+}
+
+/// A class which mocks [ResendOtpUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResendOtpUsecase extends _i1.Mock implements _i12.ResendOtpUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? phoneNumber) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [phoneNumber],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [phoneNumber],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [phoneNumber],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [SaveToDatabaseUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSaveToDatabaseUsecase extends _i1.Mock
+    implements _i12.SaveToDatabaseUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? name) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [name],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [name],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [name],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [SignInUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSignInUsecase extends _i1.Mock implements _i12.SignInUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? phoneNumber) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [phoneNumber],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [phoneNumber],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [phoneNumber],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [SignOutUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSignOutUsecase extends _i1.Mock implements _i12.SignOutUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [VerifyOtpUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockVerifyOtpUsecase extends _i1.Mock implements _i12.VerifyOtpUsecase {
+  @override
+  _i12.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+        returnValueForMissingStub: _FakeAuthRepository_29(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i12.AuthRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? otp) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [otp],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [otp],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [otp],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [ChangeThemeModeUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChangeThemeModeUsecase extends _i1.Mock
+    implements _i12.ChangeThemeModeUsecase {
+  @override
+  _i12.SettingRepository get settingRepository => (super.noSuchMethod(
+        Invocation.getter(#settingRepository),
+        returnValue: _FakeSettingRepository_31(
+          this,
+          Invocation.getter(#settingRepository),
+        ),
+        returnValueForMissingStub: _FakeSettingRepository_31(
+          this,
+          Invocation.getter(#settingRepository),
+        ),
+      ) as _i12.SettingRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(_i18.ThemeMode? themeMode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [themeMode],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [themeMode],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [themeMode],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [GetLocalThemeModeUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetLocalThemeModeUsecase extends _i1.Mock
+    implements _i12.GetLocalThemeModeUsecase {
+  @override
+  _i12.SettingRepository get settingRepository => (super.noSuchMethod(
+        Invocation.getter(#settingRepository),
+        returnValue: _FakeSettingRepository_31(
+          this,
+          Invocation.getter(#settingRepository),
+        ),
+        returnValueForMissingStub: _FakeSettingRepository_31(
+          this,
+          Invocation.getter(#settingRepository),
+        ),
+      ) as _i12.SettingRepository);
+
+  @override
+  _i18.ThemeMode call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i18.ThemeMode.system,
+        returnValueForMissingStub: _i18.ThemeMode.system,
+      ) as _i18.ThemeMode);
+}
+
+/// A class which mocks [GetDefaultProfilePicUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetDefaultProfilePicUsecase extends _i1.Mock
+    implements _i20.GetDefaultProfilePicUsecase {
+  @override
+  _i12.StorageRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeStorageRepository_32(
+          this,
+          Invocation.getter(#repository),
+        ),
+        returnValueForMissingStub: _FakeStorageRepository_32(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i12.StorageRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, String>> call(String? imgNumber) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [imgNumber],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+            _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [imgNumber],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, String>>.value(
+                _FakeEither_28<_i17.Failure, String>(
+          this,
+          Invocation.method(
+            #call,
+            [imgNumber],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
 }

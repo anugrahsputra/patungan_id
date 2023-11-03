@@ -43,6 +43,7 @@ dependencies:
   get: ^4.6.6
   get_it: ^7.6.4
   google_fonts: ^6.1.0
+  image_picker: ^1.0.4
   json_annotation: ^4.8.1
   logging: ^1.2.0
   modal_bottom_sheet: ^3.0.0-pre

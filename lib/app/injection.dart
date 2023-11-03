@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patungan_id/app/data/data.dart';
+import 'package:patungan_id/app/domain/usecase/user/get_default_profilepic_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
@@ -18,9 +20,11 @@ Future<void> init() async {
   final sharedPref = await SharedPreferences.getInstance();
   final auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
+  final storage = FirebaseStorage.instance;
 
   sl.registerLazySingleton(() => auth);
   sl.registerLazySingleton(() => firestore);
+  sl.registerLazySingleton(() => storage);
   sl.registerLazySingleton(() => sharedPref);
 
   /*-------------------> CORE <-------------------*/
@@ -51,15 +55,12 @@ Future<void> init() async {
 
   /*-------------------> USECASE <-------------------*/
   // auth
-  sl.registerLazySingleton(() => SignInUsecase(sl()));
-  sl.registerLazySingleton(() => SignOutUsecase(sl()));
-  sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
-  // sl.registerLazySingleton(() => GetCurrentUerUsecase(sl()));
-  sl.registerLazySingleton(() => GetCachedUserUsecase(sl()));
-  // sl.registerLazySingleton(() => GetCurrentIdUsecase(sl()));
-  sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl()));
-  // sl.registerLazySingleton(() => GetUserByIdUsecase(sl()));
-  sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
+  sl.registerLazySingleton(() => SignInUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => SignOutUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => VerifyOtpUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => GetCachedUserUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => ResendOtpUsecase(sl<AuthRepository>()));
 
   // setting
   sl.registerLazySingleton(() => GetLocalThemeModeUsecase(
@@ -69,18 +70,26 @@ Future<void> init() async {
       () => ChangeThemeModeUsecase(settingRepository: sl()));
 
   // user
-  sl.registerLazySingleton(() => GetCurrentIdUsecase(userRepository: sl()));
-  sl.registerLazySingleton(() => GetCurrentUserUsecase(userRepository: sl()));
-  sl.registerLazySingleton(() => GetUserByIdUsecase(userRepository: sl()));
+  sl.registerLazySingleton(
+      () => GetCurrentIdUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => GetCurrentUserUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => GetUserByIdUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => GetDefaultProfilePicUsecase(repository: sl<StorageRepository>()));
 
   /*-------------------> REPOSITORY <-------------------*/
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(sl<AuthProvider>()));
   sl.registerLazySingleton<SettingRepository>(() => SettingRepositoryImpl(
-        settingProvider: sl(),
+        settingProvider: sl<SettingProvider>(),
       ));
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
-        userProvider: sl(),
+        userProvider: sl<UserProvider>(),
       ));
+  sl.registerLazySingleton<StorageRepository>(
+      () => StorageRepositoryImpl(storageProvider: sl<StorageProvider>()));
 
   /*-------------------> PROVIDER <-------------------*/
   // auth
@@ -98,4 +107,8 @@ Future<void> init() async {
         auth: auth,
         firestore: firestore,
       ));
+
+  // storage
+  sl.registerLazySingleton<StorageProvider>(
+      () => StorageProviderImpl(storage: storage));
 }

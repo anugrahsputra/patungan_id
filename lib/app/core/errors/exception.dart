@@ -6,6 +6,8 @@ class LocalDatabaseException implements Exception {
   });
 }
 
+class ServerException implements Exception {}
+
 class CachedException implements Exception {
   final String message;
 
