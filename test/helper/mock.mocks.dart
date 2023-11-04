@@ -25,8 +25,6 @@ import 'package:mockito/src/dummies.dart' as _i15;
 import 'package:patungan_id/app/core/core.dart' as _i17;
 import 'package:patungan_id/app/data/data.dart' as _i10;
 import 'package:patungan_id/app/domain/domain.dart' as _i12;
-import 'package:patungan_id/app/domain/usecase/user/get_default_profilepic_usecase.dart'
-    as _i20;
 import 'package:shared_preferences/shared_preferences.dart' as _i13;
 
 // ignore_for_file: type=lint
@@ -3607,10 +3605,17 @@ class MockAuthProvider extends _i1.Mock implements _i10.AuthProvider {
       ) as _i7.Future<void>);
 
   @override
-  _i7.Future<void> saveDataToDatabase(String? name) => (super.noSuchMethod(
+  _i7.Future<void> saveDataToDatabase(
+    String? name,
+    String? photoUrl,
+  ) =>
+      (super.noSuchMethod(
         Invocation.method(
           #saveDataToDatabase,
-          [name],
+          [
+            name,
+            photoUrl,
+          ],
         ),
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
@@ -3916,18 +3921,26 @@ class MockAuthRepository extends _i1.Mock implements _i12.AuthRepository {
 
   @override
   _i7.Future<_i11.Either<_i17.Failure, void>> saveDataToDatabase(
-          String? name) =>
+    String? name,
+    String? photoUrl,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveDataToDatabase,
-          [name],
+          [
+            name,
+            photoUrl,
+          ],
         ),
         returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
             _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #saveDataToDatabase,
-            [name],
+            [
+              name,
+              photoUrl,
+            ],
           ),
         )),
         returnValueForMissingStub:
@@ -3936,7 +3949,10 @@ class MockAuthRepository extends _i1.Mock implements _i12.AuthRepository {
           this,
           Invocation.method(
             #saveDataToDatabase,
-            [name],
+            [
+              name,
+              photoUrl,
+            ],
           ),
         )),
       ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
@@ -4437,18 +4453,27 @@ class MockSaveToDatabaseUsecase extends _i1.Mock
       ) as _i12.AuthRepository);
 
   @override
-  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? name) =>
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(
+    String? name,
+    String? photoUrl,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
-          [name],
+          [
+            name,
+            photoUrl,
+          ],
         ),
         returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
             _FakeEither_28<_i17.Failure, void>(
           this,
           Invocation.method(
             #call,
-            [name],
+            [
+              name,
+              photoUrl,
+            ],
           ),
         )),
         returnValueForMissingStub:
@@ -4457,7 +4482,10 @@ class MockSaveToDatabaseUsecase extends _i1.Mock
           this,
           Invocation.method(
             #call,
-            [name],
+            [
+              name,
+              photoUrl,
+            ],
           ),
         )),
       ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
@@ -4672,7 +4700,7 @@ class MockGetLocalThemeModeUsecase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetDefaultProfilePicUsecase extends _i1.Mock
-    implements _i20.GetDefaultProfilePicUsecase {
+    implements _i12.GetDefaultProfilePicUsecase {
   @override
   _i12.StorageRepository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),

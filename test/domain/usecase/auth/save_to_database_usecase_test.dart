@@ -17,15 +17,16 @@ void main() {
   });
 
   const tName = 'Tajul';
+  const tProfilePic = 'profilePic';
 
   test("should save name to database", () async {
-    when(mockRepository.saveDataToDatabase(any))
+    when(mockRepository.saveDataToDatabase(any, any))
         .thenAnswer((_) async => const Right(null));
 
-    final result = await usecase.call(tName);
+    final result = await usecase.call(tName, tProfilePic);
 
     expect(result, const Right(null));
-    verify(mockRepository.saveDataToDatabase(tName));
+    verify(mockRepository.saveDataToDatabase(tName, tProfilePic));
     verifyNoMoreInteractions(mockRepository);
   });
 
@@ -33,13 +34,13 @@ void main() {
     "should return failure when save to database fails",
     () async {
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockRepository.saveDataToDatabase(any))
+      when(mockRepository.saveDataToDatabase(any, any))
           .thenAnswer((_) async => Left(ServerFailure(exception.message!)));
 
-      final result = await usecase.call(tName);
+      final result = await usecase.call(tName, tProfilePic);
 
       expect(result, Left(ServerFailure(exception.message!)));
-      verify(mockRepository.saveDataToDatabase(tName));
+      verify(mockRepository.saveDataToDatabase(tName, tProfilePic));
       verifyNoMoreInteractions(mockRepository);
     },
   );

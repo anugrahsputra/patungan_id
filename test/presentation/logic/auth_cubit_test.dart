@@ -17,6 +17,7 @@ void main() {
   late MockGetUserByIdUsecase mockGetUserByIdUsecase;
   late MockGetCurrentIdUsecase mockGetCurrentIdUsecase;
   late MockResendOtpUsecase mockResendOtpUsecase;
+  late MockGetDefaultProfilePicUsecase mockProfilePicUsecase;
   late AuthCubit authCubit;
 
   setUp(() {
@@ -29,21 +30,24 @@ void main() {
     mockGetUserByIdUsecase = MockGetUserByIdUsecase();
     mockGetCurrentIdUsecase = MockGetCurrentIdUsecase();
     mockResendOtpUsecase = MockResendOtpUsecase();
+    mockProfilePicUsecase = MockGetDefaultProfilePicUsecase();
     authCubit = AuthCubit(
-      mockSignInUsecase,
-      mockVerifyOtpUsecase,
-      mockSignOutUsecase,
-      mockGetCurrentUserUsecase,
-      mockGetCachedUserUsecase,
-      mockSaveToDatabaseUsecase,
-      mockGetUserByIdUsecase,
-      mockGetCurrentIdUsecase,
-      mockResendOtpUsecase,
+      signInUsecase: mockSignInUsecase,
+      verifyOtpUsecase: mockVerifyOtpUsecase,
+      signOutUsecase: mockSignOutUsecase,
+      currentUerUsecase: mockGetCurrentUserUsecase,
+      cachedUserUsecase: mockGetCachedUserUsecase,
+      saveToDatabaseUsecase: mockSaveToDatabaseUsecase,
+      userByIdUsecase: mockGetUserByIdUsecase,
+      currentUserIdUsecase: mockGetCurrentIdUsecase,
+      resendOtpUsecase: mockResendOtpUsecase,
+      profilePicUsecase: mockProfilePicUsecase,
     );
   });
 
   group('AuthCubit', () {
     const tPhoneNumber = '1234567890';
+    const tProfilePic = 'profilePic';
     const tOtp = '123456';
     const tName = 'John Doe';
     const tUid = 'uid';
@@ -163,11 +167,11 @@ void main() {
     blocTest<AuthCubit, AuthState>(
       'emits [loading, success] when saveToDatabase is successful',
       build: () {
-        when(mockSaveToDatabaseUsecase.call(tName))
+        when(mockSaveToDatabaseUsecase.call(tName, tProfilePic))
             .thenAnswer((_) async => const Right(null));
         return authCubit;
       },
-      act: (cubit) => cubit.saveToDatabase(name: tName),
+      act: (cubit) => cubit.saveToDatabase(name: tName, photoUrl: tProfilePic),
       expect: () => const <AuthState>[
         AuthState.loading(),
         AuthState.success(),
@@ -177,11 +181,12 @@ void main() {
     blocTest<AuthCubit, AuthState>(
       'emits [loading, error] when saveToDatabase fails',
       build: () {
-        when(mockSaveToDatabaseUsecase.call(tName)).thenAnswer((_) async =>
-            const Left(ServerFailure('Failed to save to database')));
+        when(mockSaveToDatabaseUsecase.call(tName, tProfilePic)).thenAnswer(
+            (_) async =>
+                const Left(ServerFailure('Failed to save to database')));
         return authCubit;
       },
-      act: (cubit) => cubit.saveToDatabase(name: tName),
+      act: (cubit) => cubit.saveToDatabase(name: tName, photoUrl: tProfilePic),
       expect: () => const <AuthState>[
         AuthState.loading(),
         AuthState.error('Failed to save to database'),

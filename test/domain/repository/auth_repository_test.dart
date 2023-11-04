@@ -17,6 +17,8 @@ void main() {
     authRepository = AuthRepositoryImpl(mockAuthProvider);
   });
 
+  const profilePic = 'profilepic';
+
   group("getCurrentId", () {
     test('should return the current user id', () async {
       const userId = '123';
@@ -98,10 +100,11 @@ void main() {
   group("saveDataToDatabase", () {
     test('should save data to the database', () async {
       const name = 'Tajul';
+      const profilePic = 'profilepic';
+      when(mockAuthProvider.saveDataToDatabase(any, any))
+          .thenAnswer((_) async {});
 
-      when(mockAuthProvider.saveDataToDatabase(any)).thenAnswer((_) async {});
-
-      final result = await authRepository.saveDataToDatabase(name);
+      final result = await authRepository.saveDataToDatabase(name, profilePic);
 
       expect(result, equals(const Right(null)));
     });
@@ -109,9 +112,9 @@ void main() {
     test('should return a ServerFailure', () async {
       const name = 'Tajul';
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.saveDataToDatabase(any)).thenThrow(exception);
+      when(mockAuthProvider.saveDataToDatabase(any, any)).thenThrow(exception);
 
-      final result = await authRepository.saveDataToDatabase(name);
+      final result = await authRepository.saveDataToDatabase(name, profilePic);
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
     });
