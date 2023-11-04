@@ -9,7 +9,8 @@ abstract class AuthRepository {
   Future<Either<Failure, void>> verifyOtp(String otp);
   Future<Either<Failure, void>> resendOtp(String phoneNumber);
   Future<Either<Failure, void>> signOut();
-  Future<Either<Failure, void>> saveDataToDatabase(String name);
+  Future<Either<Failure, void>> saveDataToDatabase(
+      String name, String photoUrl);
   Future<Either<Failure, String>> getCurrentId();
   Future<Either<Failure, String>> getCachedLocalCurrentUid();
   Future<Either<Failure, UserModel>> getCurrentUser();

@@ -5,10 +5,19 @@ import '../../../core/core.dart';
 import '../../../injection.dart';
 import '../../presentation.dart';
 
-class SetupProfilePage extends StatelessWidget {
-  SetupProfilePage({super.key});
+class SetupProfilePage extends StatefulWidget {
+  const SetupProfilePage({super.key});
 
+  @override
+  State<SetupProfilePage> createState() => _SetupProfilePageState();
+}
+
+class _SetupProfilePageState extends State<SetupProfilePage> {
   final AppNavigator navigator = sl<AppNavigator>();
+
+  saveData(String name, String photoUrl) {
+    context.read<AuthCubit>().saveToDatabase(name: name, photoUrl: photoUrl);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +35,10 @@ class SetupProfilePage extends StatelessWidget {
         return Scaffold(
           body: Center(
             child: DefaultButton(
-              onTap: () {
-                context.read<AuthCubit>().saveToDatabase(name: 'your mom');
+              onTap: () async {
+                final url =
+                    await context.read<AuthCubit>().getDefaultProfilePic();
+                saveData('your mom', url);
               },
               text: 'let go',
             ),

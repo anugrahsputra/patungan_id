@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patungan_id/app/data/data.dart';
-import 'package:patungan_id/app/domain/usecase/user/get_default_profilepic_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
@@ -34,15 +33,16 @@ Future<void> init() async {
   /*-------------------> CUBIT <-------------------*/
   // AuthCubit
   sl.registerFactory(() => AuthCubit(
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
-        sl(),
+        signInUsecase: sl<SignInUsecase>(),
+        verifyOtpUsecase: sl<VerifyOtpUsecase>(),
+        signOutUsecase: sl<SignOutUsecase>(),
+        currentUerUsecase: sl<GetCurrentUserUsecase>(),
+        cachedUserUsecase: sl<GetCachedUserUsecase>(),
+        saveToDatabaseUsecase: sl<SaveToDatabaseUsecase>(),
+        userByIdUsecase: sl<GetUserByIdUsecase>(),
+        currentUserIdUsecase: sl<GetCurrentIdUsecase>(),
+        resendOtpUsecase: sl<ResendOtpUsecase>(),
+        profilePicUsecase: sl<GetDefaultProfilePicUsecase>(),
       ));
   sl.registerFactory(() => SplashCubit(auth: sl(), currentUser: sl()));
   sl.registerFactory(

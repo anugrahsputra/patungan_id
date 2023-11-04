@@ -11,7 +11,7 @@ abstract class AuthProvider {
   Future<void> verifyOtp(String otp);
   Future<void> resendOtp(String phoneNumber);
   Future<void> signOut();
-  Future<void> saveDataToDatabase(String name);
+  Future<void> saveDataToDatabase(String name, String photoUrl);
   Future<String> getCurrentId();
   Future<UserModel> getCurrentUser();
   Stream<UserModel> getUserById(String uid);
@@ -58,11 +58,10 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  Future<void> saveDataToDatabase(String name) async {
+  Future<void> saveDataToDatabase(String name, String photoUrl) async {
     String uid = await getCurrentId();
     log.fine(uid);
 
-    String photoUrl = '';
     var user = UserModel(
       id: uid,
       phoneNumber: auth.currentUser!.phoneNumber!,

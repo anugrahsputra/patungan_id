@@ -39,9 +39,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> saveDataToDatabase(String name) async {
+  Future<Either<Failure, void>> saveDataToDatabase(
+      String name, String photoUrl) async {
     try {
-      final result = await authProvider.saveDataToDatabase(name);
+      final result = await authProvider.saveDataToDatabase(name, photoUrl);
       authProvider.setUserLoggedIn(await authProvider.getCurrentId());
       return Right(result);
     } on FirebaseAuthException catch (e) {

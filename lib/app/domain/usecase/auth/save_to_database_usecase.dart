@@ -8,7 +8,7 @@ class SaveToDatabaseUsecase {
 
   SaveToDatabaseUsecase(this.authRepository);
 
-  Future<Either<Failure, void>> call(String name) async {
-    return await authRepository.saveDataToDatabase(name);
+  Future<Either<Failure, void>> call(String name, String photoUrl) async {
+    return await authRepository.saveDataToDatabase(name, photoUrl);
   }
 }
