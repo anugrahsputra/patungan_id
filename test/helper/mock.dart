@@ -51,5 +51,8 @@ import 'package:shared_preferences/shared_preferences.dart';
   MockSpec<ChangeThemeModeUsecase>(),
   MockSpec<GetLocalThemeModeUsecase>(),
   MockSpec<GetDefaultProfilePicUsecase>(),
+
+  /*-------------------> ENTITY <-------------------*/
+  MockSpec<UserEntity>(),
 ])
 void main(List<String> args) {}

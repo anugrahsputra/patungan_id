@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 
 import '../../../domain/domain.dart';
-import '../../../domain/usecase/user/user.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';

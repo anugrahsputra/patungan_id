@@ -4712,3 +4712,57 @@ class MockGetDefaultProfilePicUsecase extends _i1.Mock
         )),
       ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
 }
+
+/// A class which mocks [UserEntity].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserEntity extends _i1.Mock implements _i12.UserEntity {
+  @override
+  String get id => (super.noSuchMethod(
+        Invocation.getter(#id),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  String get phoneNumber => (super.noSuchMethod(
+        Invocation.getter(#phoneNumber),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  String get name => (super.noSuchMethod(
+        Invocation.getter(#name),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  String get profilePic => (super.noSuchMethod(
+        Invocation.getter(#profilePic),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+
+  @override
+  List<String> get groupId => (super.noSuchMethod(
+        Invocation.getter(#groupId),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get friendsId => (super.noSuchMethod(
+        Invocation.getter(#friendsId),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  List<Object?> get props => (super.noSuchMethod(
+        Invocation.getter(#props),
+        returnValue: <Object?>[],
+        returnValueForMissingStub: <Object?>[],
+      ) as List<Object?>);
+}
