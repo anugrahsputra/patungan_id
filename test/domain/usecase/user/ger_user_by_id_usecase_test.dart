@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patungan_id/app/domain/domain.dart';
-import 'package:patungan_id/app/domain/usecase/user/user.dart';
 
 import '../../../helper/mock.mocks.dart';
 
