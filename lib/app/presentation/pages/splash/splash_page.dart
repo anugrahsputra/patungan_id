@@ -22,15 +22,16 @@ class SplashPageState extends State<SplashPage> {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(
+          return ScaffoldBuilder(
+            onThemeModeChange: (_) => setState(() {}),
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
           );
         } else if (snapshot.hasData) {
           return const Homepage();
         } else {
-          return AuthPage();
+          return const AuthPage();
         }
       },
     );

@@ -11,9 +11,14 @@ import '../../presentation.dart';
 
 part 'auth_page.component.dart';
 
-class AuthPage extends StatelessWidget {
-  AuthPage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
 
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
   final AppNavigator navigator = sl<AppNavigator>();
 
   @override
@@ -23,21 +28,24 @@ class AuthPage extends StatelessWidget {
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        state.when(
-          initial: () {},
-          loading: () {},
-          success: () {
+        state.whenOrNull(
+          otpSent: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("OTP has been sent"),
+              ),
+            );
             navigator.goToVerify(context, phoneNumber: phoneNumber);
           },
           error: (message) {
             log(message);
           },
-          otpResent: () {},
         );
       },
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
-        return Scaffold(
+        return ScaffoldBuilder(
+          onThemeModeChange: (_) => setState(() {}),
           body: SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(

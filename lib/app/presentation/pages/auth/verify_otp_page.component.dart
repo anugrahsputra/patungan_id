@@ -42,6 +42,8 @@ class InputCode extends StatefulWidget {
 }
 
 class _InputCodeState extends State<InputCode> {
+  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+
   _listenSmsCode() async {
     await SmsAutoFill().listenForCode();
   }
@@ -65,7 +67,7 @@ class _InputCodeState extends State<InputCode> {
       width: double.infinity,
       padding: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: themeMode.isDarkMode() ? Colors.white : Colors.black,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: const Color(0xFF000000).withOpacity(1),

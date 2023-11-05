@@ -21,6 +21,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) =>
@@ -30,6 +31,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) =>
@@ -39,6 +41,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -49,6 +52,7 @@ mixin _$AuthState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) =>
@@ -58,6 +62,7 @@ mixin _$AuthState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) =>
@@ -67,6 +72,7 @@ mixin _$AuthState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),
@@ -132,6 +138,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) {
@@ -144,6 +151,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) {
@@ -156,6 +164,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -172,6 +181,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) {
@@ -184,6 +194,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) {
@@ -196,6 +207,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),
@@ -252,6 +264,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) {
@@ -264,6 +277,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) {
@@ -276,6 +290,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -292,6 +307,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) {
@@ -304,6 +320,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) {
@@ -316,6 +333,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),
@@ -372,6 +390,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) {
@@ -384,6 +403,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) {
@@ -396,6 +416,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -412,6 +433,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) {
@@ -424,6 +446,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) {
@@ -436,6 +459,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),
@@ -449,6 +473,132 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements AuthState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$OtpSentImplCopyWith<$Res> {
+  factory _$$OtpSentImplCopyWith(
+          _$OtpSentImpl value, $Res Function(_$OtpSentImpl) then) =
+      __$$OtpSentImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OtpSentImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$OtpSentImpl>
+    implements _$$OtpSentImplCopyWith<$Res> {
+  __$$OtpSentImplCopyWithImpl(
+      _$OtpSentImpl _value, $Res Function(_$OtpSentImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$OtpSentImpl implements _OtpSent {
+  const _$OtpSentImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.otpSent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OtpSentImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() otpSent,
+    required TResult Function(String message) error,
+    required TResult Function() otpResent,
+  }) {
+    return otpSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? otpSent,
+    TResult? Function(String message)? error,
+    TResult? Function()? otpResent,
+  }) {
+    return otpSent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? otpSent,
+    TResult Function(String message)? error,
+    TResult Function()? otpResent,
+    required TResult orElse(),
+  }) {
+    if (otpSent != null) {
+      return otpSent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
+    required TResult Function(_Error value) error,
+    required TResult Function(_OtpResent value) otpResent,
+  }) {
+    return otpSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_OtpResent value)? otpResent,
+  }) {
+    return otpSent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
+    TResult Function(_Error value)? error,
+    TResult Function(_OtpResent value)? otpResent,
+    required TResult orElse(),
+  }) {
+    if (otpSent != null) {
+      return otpSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OtpSent implements AuthState {
+  const factory _OtpSent() = _$OtpSentImpl;
 }
 
 /// @nodoc
@@ -518,6 +668,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) {
@@ -530,6 +681,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) {
@@ -542,6 +694,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -558,6 +711,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) {
@@ -570,6 +724,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) {
@@ -582,6 +737,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),
@@ -643,6 +799,7 @@ class _$OtpResentImpl implements _OtpResent {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() otpSent,
     required TResult Function(String message) error,
     required TResult Function() otpResent,
   }) {
@@ -655,6 +812,7 @@ class _$OtpResentImpl implements _OtpResent {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? otpSent,
     TResult? Function(String message)? error,
     TResult? Function()? otpResent,
   }) {
@@ -667,6 +825,7 @@ class _$OtpResentImpl implements _OtpResent {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? otpSent,
     TResult Function(String message)? error,
     TResult Function()? otpResent,
     required TResult orElse(),
@@ -683,6 +842,7 @@ class _$OtpResentImpl implements _OtpResent {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OtpSent value) otpSent,
     required TResult Function(_Error value) error,
     required TResult Function(_OtpResent value) otpResent,
   }) {
@@ -695,6 +855,7 @@ class _$OtpResentImpl implements _OtpResent {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OtpSent value)? otpSent,
     TResult? Function(_Error value)? error,
     TResult? Function(_OtpResent value)? otpResent,
   }) {
@@ -707,6 +868,7 @@ class _$OtpResentImpl implements _OtpResent {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OtpSent value)? otpSent,
     TResult Function(_Error value)? error,
     TResult Function(_OtpResent value)? otpResent,
     required TResult orElse(),

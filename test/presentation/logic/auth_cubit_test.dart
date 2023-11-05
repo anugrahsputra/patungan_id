@@ -62,7 +62,7 @@ void main() {
       act: (cubit) => cubit.signIn(phoneNumber: tPhoneNumber),
       expect: () => const <AuthState>[
         AuthState.loading(),
-        AuthState.success(),
+        AuthState.otpSent(),
       ],
     );
 

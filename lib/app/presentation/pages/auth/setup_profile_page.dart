@@ -23,16 +23,15 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        state.when(
-          initial: () {},
-          loading: () {},
+        state.whenOrNull(
           success: () => navigator.goToHome(context),
           error: (_) {},
           otpResent: () {},
         );
       },
       builder: (context, state) {
-        return Scaffold(
+        return ScaffoldBuilder(
+          onThemeModeChange: (_) => setState(() {}),
           body: Center(
             child: DefaultButton(
               onTap: () async {

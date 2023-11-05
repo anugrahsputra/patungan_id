@@ -46,7 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (l) => emit(AuthState.error(l.message)),
       (r) {
-        emit(const AuthState.success());
+        emit(const AuthState.otpSent());
       },
     );
   }

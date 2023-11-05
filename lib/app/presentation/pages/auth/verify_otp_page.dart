@@ -30,9 +30,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        state.when(
-          initial: () {},
-          loading: () {},
+        state.whenOrNull(
           success: () {
             navigator.goToLoading(context);
           },
@@ -45,15 +43,16 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
           },
           error: (message) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Kesalahan otentikasi: Kode tidak sesuai"),
+              SnackBar(
+                content: Text("Kesalahan otentikasi: $message"),
               ),
             );
           },
         );
       },
       builder: (context, state) {
-        return Scaffold(
+        return ScaffoldBuilder(
+          onThemeModeChange: (_) => setState(() {}),
           body: SingleChildScrollView(
             child: Column(
               children: [

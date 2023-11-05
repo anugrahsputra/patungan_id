@@ -40,8 +40,9 @@ class _LoadingPageState extends State<LoadingPage> {
           redirect: () => navigator.goToSetupProfile(context),
         );
       },
-      child: const Scaffold(
-        body: Center(
+      child: ScaffoldBuilder(
+        onThemeModeChange: (theme) => setState(() {}),
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       ),
