@@ -10,8 +10,8 @@ abstract class AppRoutes {
     AppPages.splash: (context) => const SplashPage(),
 
     /* ----------------------- AUTH -----------------------*/
-    AppPages.setupProfile: (context) => SetupProfilePage(),
-    AppPages.login: (context) => AuthPage(),
+    AppPages.setupProfile: (context) => const SetupProfilePage(),
+    AppPages.login: (context) => const AuthPage(),
     AppPages.verify: (context) {
       Map<String, dynamic> arguments =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
