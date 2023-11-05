@@ -1,14 +1,14 @@
 part of 'auth_page.dart';
 
 class Logo extends StatelessWidget {
-  Logo({super.key});
+  const Logo({super.key, required this.logo});
 
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final String logo;
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      theme.isDarkMode() ? LogoPath.logoDark : LogoPath.logoLight,
+      logo,
       width: 90,
       height: 90,
     );
@@ -16,8 +16,8 @@ class Logo extends StatelessWidget {
 }
 
 class Header extends StatefulWidget {
-  const Header({super.key});
-
+  const Header({super.key, required this.logo});
+  final String logo;
   @override
   State<Header> createState() => _HeaderState();
 }
@@ -31,7 +31,11 @@ class _HeaderState extends State<Header> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Logo(),
+          SvgPicture.asset(
+            widget.logo,
+            width: 90,
+            height: 90,
+          ),
           Text(
             'First,\nLogin Here',
             style: GoogleFonts.inter(

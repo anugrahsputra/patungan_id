@@ -52,6 +52,11 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       },
       builder: (context, state) {
         return ScaffoldBuilder(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+          ),
+          extendBodyBehindAppBar: true,
           onThemeModeChange: (_) => setState(() {}),
           body: SingleChildScrollView(
             child: Column(

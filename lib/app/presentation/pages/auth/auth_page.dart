@@ -24,6 +24,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController phoneController = TextEditingController();
+    final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
     late String phoneNumber;
 
     return BlocConsumer<AuthCubit, AuthState>(
@@ -45,7 +46,26 @@ class _AuthPageState extends State<AuthPage> {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return ScaffoldBuilder(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            actions: [
+              IconButton(
+                color: themeMode.isDarkMode() ? Colors.white : Colors.black,
+                onPressed: () {
+                  context.read<SettingCubit>().changeThemeMode(
+                      themeMode.isDarkMode()
+                          ? ThemeMode.light
+                          : ThemeMode.dark);
+                },
+                icon: Icon(themeMode.isDarkMode()
+                    ? Icons.light_mode
+                    : Icons.dark_mode),
+              ),
+            ],
+          ),
           onThemeModeChange: (_) => setState(() {}),
+          extendBodyBehindAppBar: true,
           body: SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
@@ -65,7 +85,11 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   child: Column(
                     children: [
-                      const Header(),
+                      Header(
+                        logo: themeMode.isDarkMode()
+                            ? LogoPath.logoDark
+                            : LogoPath.logoLight,
+                      ),
                       const Spacer(),
                       PhoneField(
                         controller: phoneController,

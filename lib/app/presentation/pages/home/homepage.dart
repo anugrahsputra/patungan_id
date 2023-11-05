@@ -18,7 +18,6 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final UserCubit userCubit = sl<UserCubit>();
   final SettingCubit settingCubit = sl<SettingCubit>();
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
 
   getData() {
     context.read<UserCubit>().getCurrentUser();
@@ -33,21 +32,6 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldBuilder(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            color: themeMode.isDarkMode() ? Colors.white : Colors.black,
-            onPressed: () {
-              context.read<SettingCubit>().changeThemeMode(
-                  themeMode.isDarkMode() ? ThemeMode.light : ThemeMode.dark);
-            },
-            icon: Icon(
-                themeMode.isDarkMode() ? Icons.light_mode : Icons.dark_mode),
-          ),
-        ],
-      ),
       onThemeModeChange: (_) => setState(() {}),
       extendBodyBehindAppBar: true,
       body: Column(
