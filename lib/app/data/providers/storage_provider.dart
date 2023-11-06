@@ -16,7 +16,7 @@ class StorageProviderImpl implements StorageProvider {
   @override
   Future<String> defaultPicUrl(String imgNumber) async {
     String url = await storage
-        .ref("default_avatar/default($imgNumber).svg")
+        .ref("default_avatar/avatar($imgNumber).png")
         .getDownloadURL();
     return url;
   }

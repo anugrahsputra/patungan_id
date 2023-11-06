@@ -81,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<String> getDefaultProfilePic() async {
-    int rng = 1 + Random().nextInt(50);
+    int rng = 1 + Random().nextInt(19);
     String imgNumber = rng.toString();
     String resultString = '';
 

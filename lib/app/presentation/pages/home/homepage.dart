@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 
 import '../../../core/core.dart';
 import '../../../domain/domain.dart';
@@ -17,7 +18,9 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final UserCubit userCubit = sl<UserCubit>();
+  final AppNavigator navigator = sl<AppNavigator>();
   final SettingCubit settingCubit = sl<SettingCubit>();
+  final Logger log = Logger("homepage");
 
   getData() {
     context.read<UserCubit>().getCurrentUser();
@@ -31,36 +34,44 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldBuilder(
-      onThemeModeChange: (_) => setState(() {}),
-      extendBodyBehindAppBar: true,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BlocBuilder<UserCubit, UserState>(
-            builder: (context, state) {
-              return state.when(
-                  initial: () {
-                    return const SizedBox();
-                  },
-                  loading: () {
-                    return const SizedBox();
-                  },
-                  loaded: (userEntity) {
-                    UserEntity? user = userEntity;
-                    return Center(
-                      child: Text(user?.name ?? ''),
-                    );
-                  },
-                  error: (message) {
-                    return Text(message);
-                  },
-                  redirect: () => const Text('Something is wrong'));
-            },
-          ),
-          SignOutBtn(),
-        ],
-      ),
+    return BlocListener<UserCubit, UserState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          redirect: () {
+            log.severe(
+                'User is not exist in the database but manage to authenticate');
+            log.warning('Proceeds to setup profile page');
+            navigator.goToSetupProfile(context);
+          },
+        );
+      },
+      child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+        return state.when(
+          initial: () {
+            return const SizedBox();
+          },
+          loading: () => const SizedBox(),
+          loaded: (userEntity) {
+            UserEntity? user = userEntity;
+            return ScaffoldBuilder(
+              onThemeModeChange: (theme) => setState(() {}),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text(user?.name ?? '')),
+                  SignOutBtn(),
+                ],
+              ),
+            );
+          },
+          redirect: () {
+            return const Center();
+          },
+          error: (_) {
+            return const SizedBox();
+          },
+        );
+      }),
     );
   }
 }

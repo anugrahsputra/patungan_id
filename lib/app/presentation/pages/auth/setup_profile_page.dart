@@ -16,11 +16,26 @@ class SetupProfilePage extends StatefulWidget {
 }
 
 class _SetupProfilePageState extends State<SetupProfilePage> {
+  String picUrl = '';
   final AppNavigator navigator = sl<AppNavigator>();
   final TextEditingController nameController = TextEditingController();
 
   saveData(String name, String photoUrl) {
     context.read<AuthCubit>().saveToDatabase(name: name, photoUrl: photoUrl);
+  }
+
+  getDefaultPic() async {
+    final url = await context.read<AuthCubit>().getDefaultProfilePic();
+
+    setState(() {
+      picUrl = url;
+    });
+  }
+
+  @override
+  void initState() {
+    getDefaultPic();
+    super.initState();
   }
 
   @override
@@ -34,7 +49,7 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
         );
       },
       builder: (context, state) {
-        final url = context.read<AuthCubit>().getDefaultProfilePic();
+        log(picUrl);
 
         return ScaffoldBuilder(
           appBar: AppBar(
@@ -64,8 +79,9 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    backgroundColor: Colors.white,
+                  CircleAvatar(
+                    backgroundImage:
+                        picUrl.isNotEmpty ? NetworkImage(picUrl) : null,
                     radius: 60,
                   ),
                   const SizedBox(height: 45),
@@ -88,7 +104,6 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
                         child: DefaultButton(
                           onTap: () async {
                             if (nameController.text.isNotEmpty) {
-                              String picUrl = await url;
                               saveData(nameController.text, picUrl);
                             }
                             log('name cannot be emtpy');
