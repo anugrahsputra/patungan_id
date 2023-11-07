@@ -5,4 +5,5 @@ abstract class AppPages {
   static String get loading => '/loading';
   static String get setupProfile => '/setup_profile';
   static String get home => '/home';
+  static String get notFound => '/not_found';
 }

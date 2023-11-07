@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logging/logging.dart';
 
 import '../../../core/core.dart';
@@ -36,42 +37,32 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return BlocListener<UserCubit, UserState>(
       listener: (context, state) {
-        state.whenOrNull(
-          redirect: () {
-            log.severe(
-                'User is not exist in the database but manage to authenticate');
-            log.warning('Proceeds to setup profile page');
-            navigator.goToSetupProfile(context);
-          },
-        );
+        state.whenOrNull(redirect: () {
+          log.severe(
+              'User is not exist in the database but manage to authenticate');
+          log.warning('Proceeds to setup profile page');
+          navigator.goToSetupProfile(context);
+        }, error: (message) {
+          log.severe('Error: $message, go to not found page');
+          navigator.notFound(context);
+        });
       },
-      child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-        return state.when(
-          initial: () {
-            return const SizedBox();
-          },
-          loading: () => const SizedBox(),
-          loaded: (userEntity) {
-            UserEntity? user = userEntity;
-            return ScaffoldBuilder(
-              onThemeModeChange: (theme) => setState(() {}),
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: Text(user?.name ?? '')),
-                  SignOutBtn(),
-                ],
-              ),
-            );
-          },
-          redirect: () {
-            return const Center();
-          },
-          error: (_) {
-            return const SizedBox();
-          },
-        );
-      }),
+      child: ScaffoldBuilder(
+          onThemeModeChange: (theme) => setState(() {}),
+          body: BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const SizedBox(),
+                loading: () => const SizedBox(),
+                loaded: (userEntity) {
+                  UserEntity? user = userEntity;
+                  return ContentView(user: user);
+                },
+                redirect: () => Loading(),
+                error: (_) => Loading(),
+              );
+            },
+          )),
     );
   }
 }

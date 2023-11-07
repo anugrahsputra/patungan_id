@@ -32,7 +32,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       listener: (context, state) {
         state.whenOrNull(
           success: () {
-            navigator.goToLoading(context);
+            navigator.goToHome(context);
           },
           otpResent: () {
             ScaffoldMessenger.of(context).showSnackBar(

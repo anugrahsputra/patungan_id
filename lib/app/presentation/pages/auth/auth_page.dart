@@ -54,9 +54,10 @@ class _AuthPageState extends State<AuthPage> {
                 color: themeMode.isDarkMode() ? Colors.white : Colors.black,
                 onPressed: () {
                   context.read<SettingCubit>().changeThemeMode(
-                      themeMode.isDarkMode()
-                          ? ThemeMode.light
-                          : ThemeMode.dark);
+                        themeMode.isDarkMode()
+                            ? ThemeMode.light
+                            : ThemeMode.dark,
+                      );
                 },
                 icon: Icon(themeMode.isDarkMode()
                     ? Icons.light_mode

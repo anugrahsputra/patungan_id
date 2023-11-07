@@ -67,4 +67,10 @@ class AppNavigator {
       (route) => false,
     );
   }
+
+  void notFound(BuildContext context) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.notFound);
+  }
 }

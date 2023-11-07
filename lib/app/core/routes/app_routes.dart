@@ -9,7 +9,7 @@ abstract class AppRoutes {
   static final Map<String, Widget Function(BuildContext context)> routes = {
     AppPages.splash: (context) => const SplashPage(),
 
-    /* ----------------------- AUTH -----------------------*/
+    /* ----------------------- AUTH ----------------------- */
     AppPages.setupProfile: (context) => const SetupProfilePage(),
     AppPages.login: (context) => const AuthPage(),
     AppPages.verify: (context) {
@@ -19,6 +19,11 @@ abstract class AppRoutes {
       return VerifyOtpPage(phoneNumber: phoneNumber);
     },
     AppPages.loading: (context) => const LoadingPage(),
+
+    /* ----------------------- MAIN ----------------------- */
     AppPages.home: (context) => const Homepage(),
+
+    /* ----------------------- REDIRECT ----------------------- */
+    AppPages.notFound: (context) => const NotFoundPage(),
   };
 }
