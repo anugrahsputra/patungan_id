@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
@@ -21,9 +22,19 @@ Future<void> main() async {
     webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
     androidProvider: AndroidProvider.debug,
   );
+  await init();
+
+  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
 
   Bloc.observer = MyBlocObserver();
-  await init();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness:
+          themeMode.isDarkMode() ? Brightness.light : Brightness.dark,
+    ),
+  );
   runApp(MyApp());
 }
 
