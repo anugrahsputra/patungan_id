@@ -43,7 +43,7 @@ class _HeaderState extends State<Header> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 18),
+          const Gap(18),
           Text(
             'enter your mobile number to continue',
             style: GoogleFonts.inter(
@@ -74,7 +74,7 @@ class PhoneFieldState extends State<PhoneField> {
         PhoneTextField(
           controller: widget.controller,
         ),
-        const SizedBox(height: 16),
+        const Gap(16),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 70),
           child: DefaultButton(

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
@@ -86,7 +87,7 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
                         picUrl.isNotEmpty ? NetworkImage(picUrl) : null,
                     radius: 60,
                   ),
-                  const SizedBox(height: 45),
+                  const Gap(45),
                   DefaultTextField(
                     controller: nameController,
                     hintText: "What should we call you?",

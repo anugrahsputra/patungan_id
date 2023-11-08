@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patungan_id/app/presentation/presentation.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -72,7 +73,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   child: Column(
                     children: [
                       PageTitle(phoneNumber: widget.phoneNumber),
-                      const SizedBox(height: 80),
+                      const Gap(80),
                       OTPTextField(
                         onCompleted: (value) {
                           if (value.length == 6) {
@@ -81,7 +82,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           }
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const Gap(20),
                       SubmitOtp(
                         onPressed: () {
                           log(otpCode);

@@ -21,7 +21,7 @@ class PageTitle extends StatelessWidget {
             color: theme.isDarkMode() ? Colors.white : Colors.black,
           ),
         ),
-        const SizedBox(height: 17),
+        const Gap(17),
         Text(
           '${AppString.verifyOtpSubtitle}$phoneNumber',
           style: GoogleFonts.inter(
