@@ -14,7 +14,7 @@ class SettingCubit extends Cubit<SettingState> {
   SettingCubit({
     required this.getThemeModeUsecase,
     required this.themeModeUsecase,
-  }) : super(SettingState.initial(themeMode: getThemeModeUsecase.call()));
+  }) : super(SettingState.success(themeMode: getThemeModeUsecase.call()));
 
   void fetchSetting() async {
     emit(SettingState.success(themeMode: getThemeModeUsecase.call()));
@@ -23,7 +23,6 @@ class SettingCubit extends Cubit<SettingState> {
   void changeThemeMode(ThemeMode themeMode) async {
     final result = await themeModeUsecase.call(themeMode);
     result.fold((l) => emit(SettingState.error(message: l.message)), (r) {
-      emit(SettingState.loading(themeMode: getThemeModeUsecase.call()));
       emit(SettingState.success(themeMode: getThemeModeUsecase.call()));
     });
   }
