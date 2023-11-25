@@ -23,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   final UserCubit userCubit = sl<UserCubit>();
   final AppNavigator navigator = sl<AppNavigator>();
   final SettingCubit settingCubit = sl<SettingCubit>();
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final ChangeThemeMode theme = sl<ChangeThemeMode>();
   final Logger log = Logger("homepage");
 
   getData() {
@@ -38,35 +38,61 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UserCubit, UserState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          loaded: (userEntity) => log.finest('user entity loaded'),
-          redirect: () {
-            log.severe(
-                'User is not exist in the database but manage to authenticate');
-            log.warning('Proceeds to setup profile page');
-            navigator.goToSetupProfile(context);
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<UserCubit, UserState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              loaded: (userEntity) => log.finest('user entity loaded'),
+              redirect: () {
+                log.severe(
+                    'User is not exist in the database but manage to authenticate');
+                log.warning('Proceeds to setup profile page');
+                navigator.goToSetupProfile(context);
+              },
+              error: (message) {
+                log.severe('Error: $message, go to not found page');
+                navigator.notFound(context);
+              },
+            );
           },
-          error: (message) {
-            log.severe('Error: $message, go to not found page');
-            navigator.notFound(context);
+        ),
+        BlocListener<SettingCubit, SettingState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              success: (themeMode) {},
+            );
           },
-        );
-      },
+        )
+      ],
       child: ScaffoldBuilder(
+        onThemeModeChange: (_) => setState(() {}),
         appBar: DefaultAppBar(
           title: const ProfileHeader(),
           actions: [
-            ActionIcons(icon: Icons.search),
-            const Gap(10),
-            ActionIcons(icon: Icons.notifications_none_rounded),
-            const Gap(10),
+            IconButton(
+              color: theme.isDarkMode() ? Colors.white : Colors.black,
+              onPressed: () {
+                context.read<SettingCubit>().changeThemeMode(
+                      theme.isDarkMode() ? ThemeMode.light : ThemeMode.dark,
+                    );
+              },
+              icon:
+                  Icon(theme.isDarkMode() ? Icons.light_mode : Icons.dark_mode),
+            ),
           ],
         ),
-        onThemeModeChange: (theme) => setState(() {}),
         extendBodyBehindAppBar: true,
-        body: const ContentView(),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: ListView(
+            children: [
+              const QuickMenu(),
+              GroupCards(),
+              SignOutBtn(),
+            ],
+          ),
+        ),
       ),
     );
   }

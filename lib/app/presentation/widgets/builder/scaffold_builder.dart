@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/logic.dart';
 
-class ScaffoldBuilder extends StatelessWidget {
+class ScaffoldBuilder extends StatefulWidget {
   const ScaffoldBuilder({
     super.key,
     this.onThemeModeChange,
@@ -22,23 +22,38 @@ class ScaffoldBuilder extends StatelessWidget {
   final Function(ThemeMode theme)? onThemeModeChange;
 
   @override
+  State<ScaffoldBuilder> createState() => _ScaffoldBuilderState();
+}
+
+class _ScaffoldBuilderState extends State<ScaffoldBuilder> {
+  getThemeMode() {
+    context.read<SettingCubit>().fetchSetting();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getThemeMode();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<SettingCubit, SettingState>(
       listener: (context, state) {
         state.whenOrNull(
           success: (themeMode) {
-            if (onThemeModeChange != null) {
-              onThemeModeChange!(themeMode);
+            if (widget.onThemeModeChange != null) {
+              widget.onThemeModeChange!(themeMode);
             }
           },
         );
       },
       child: Scaffold(
-        appBar: appBar,
-        body: body,
-        backgroundColor: backgroundColor,
-        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-        extendBodyBehindAppBar: extendBodyBehindAppBar,
+        appBar: widget.appBar,
+        body: widget.body,
+        backgroundColor: widget.backgroundColor,
+        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+        extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
       ),
     );
   }
