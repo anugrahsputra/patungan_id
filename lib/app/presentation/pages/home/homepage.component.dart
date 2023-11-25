@@ -20,10 +20,7 @@ class Loading extends StatelessWidget {
 class ProfileHeader extends StatefulWidget {
   const ProfileHeader({
     super.key,
-    required this.user,
   });
-
-  final UserEntity? user;
 
   @override
   State<ProfileHeader> createState() => _ProfileHeaderState();
@@ -45,41 +42,56 @@ class _ProfileHeaderState extends State<ProfileHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(widget.user?.profilePic ?? ''),
-        ),
-        const Gap(10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              greeting(),
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w400,
-                color: themeMode.isDarkMode() ? Colors.white : Colors.black,
-              ),
-            ),
-            Text(
-              widget.user?.name ?? 'User',
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w600,
-                color: themeMode.isDarkMode() ? Colors.white : Colors.black,
-              ),
-            )
-          ],
-        ),
-      ],
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          orElse: () {
+            // TODO: use shimmer loading effect
+            return const SizedBox.shrink();
+          },
+          loaded: (userEntity) {
+            UserEntity? user = userEntity;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user?.profilePic ?? ''),
+                ),
+                const Gap(10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      greeting(),
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w400,
+                        color: themeMode.isDarkMode()
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                    Text(
+                      user?.name ?? 'User',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w600,
+                        color: themeMode.isDarkMode()
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }
 
 class ContentView extends StatefulWidget {
-  const ContentView({super.key, required this.user});
-
-  final UserEntity? user;
+  const ContentView({super.key});
 
   @override
   State<ContentView> createState() => _ContentViewState();

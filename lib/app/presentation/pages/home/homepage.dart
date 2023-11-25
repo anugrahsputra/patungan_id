@@ -25,11 +25,9 @@ class _HomepageState extends State<Homepage> {
   final SettingCubit settingCubit = sl<SettingCubit>();
   final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
   final Logger log = Logger("homepage");
-  UserEntity? user;
 
   getData() {
     context.read<UserCubit>().getCurrentUser();
-    user = context.read<UserCubit>().userEntity;
   }
 
   @override
@@ -58,7 +56,7 @@ class _HomepageState extends State<Homepage> {
       },
       child: ScaffoldBuilder(
         appBar: DefaultAppBar(
-          title: ProfileHeader(user: user),
+          title: const ProfileHeader(),
           actions: [
             ActionIcons(icon: Icons.search),
             const Gap(10),
@@ -68,20 +66,7 @@ class _HomepageState extends State<Homepage> {
         ),
         onThemeModeChange: (theme) => setState(() {}),
         extendBodyBehindAppBar: true,
-        body: BlocBuilder<UserCubit, UserState>(
-          builder: (context, state) {
-            return state.maybeWhen(
-              loading: () => Loading(),
-              loaded: (userEntity) {
-                UserEntity? user = userEntity;
-                return ContentView(user: user);
-              },
-              redirect: () => Loading(),
-              error: (_) => Loading(),
-              orElse: () => Loading(),
-            );
-          },
-        ),
+        body: const ContentView(),
       ),
     );
   }
