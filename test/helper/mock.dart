@@ -5,7 +5,6 @@ import 'package:mockito/annotations.dart';
 import 'package:patungan_id/app/core/core.dart';
 import 'package:patungan_id/app/data/data.dart';
 import 'package:patungan_id/app/domain/domain.dart';
-import 'package:patungan_id/app/domain/usecase/user/get_default_profilepic_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateNiceMocks([
@@ -27,7 +26,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   MockSpec<ChangeThemeMode>(),
 
   /*-------------------> Data <-------------------*/
-  MockSpec<AuthProvider>(),
+  MockSpec<AuthenticationProvider>(),
   MockSpec<SettingProvider>(),
   MockSpec<UserProvider>(),
   MockSpec<StorageProvider>(),

@@ -10,11 +10,11 @@ import '../../helper/mock.mocks.dart';
 
 void main() {
   late AuthRepository authRepository;
-  late MockAuthProvider mockAuthProvider;
+  late MockAuthenticationProvider mockAuthenticationProvider;
 
   setUp(() {
-    mockAuthProvider = MockAuthProvider();
-    authRepository = AuthRepositoryImpl(mockAuthProvider);
+    mockAuthenticationProvider = MockAuthenticationProvider();
+    authRepository = AuthRepositoryImpl(mockAuthenticationProvider);
   });
 
   const profilePic = 'profilepic';
@@ -22,24 +22,25 @@ void main() {
   group("getCurrentId", () {
     test('should return the current user id', () async {
       const userId = '123';
-      when(mockAuthProvider.getCurrentId()).thenAnswer((_) async => userId);
+      when(mockAuthenticationProvider.getCurrentId())
+          .thenAnswer((_) async => userId);
 
       final result = await authRepository.getCurrentId();
 
       expect(result, equals(const Right(userId)));
-      verify(mockAuthProvider.getCurrentId());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getCurrentId());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should return a ServerFailure when an exception is thrown', () async {
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.getCurrentId()).thenThrow(exception);
+      when(mockAuthenticationProvider.getCurrentId()).thenThrow(exception);
 
       final result = await authRepository.getCurrentId();
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.getCurrentId());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getCurrentId());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
@@ -53,24 +54,25 @@ void main() {
         groupId: [],
         friendsId: [],
       );
-      when(mockAuthProvider.getCurrentUser()).thenAnswer((_) async => user);
+      when(mockAuthenticationProvider.getCurrentUser())
+          .thenAnswer((_) async => user);
 
       final result = await authRepository.getCurrentUser();
 
       expect(result, equals(const Right(user)));
-      verify(mockAuthProvider.getCurrentUser());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getCurrentUser());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should return a ServerFailure when an exception is throws', () async {
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.getCurrentUser()).thenThrow(exception);
+      when(mockAuthenticationProvider.getCurrentUser()).thenThrow(exception);
 
       final result = await authRepository.getCurrentUser();
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.getCurrentUser());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getCurrentUser());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
@@ -88,12 +90,13 @@ void main() {
         ),
       );
 
-      when(mockAuthProvider.getUserById(any)).thenAnswer((_) => stream);
+      when(mockAuthenticationProvider.getUserById(any))
+          .thenAnswer((_) => stream);
 
       final result = authRepository.getUserById(uid);
       expect(result, equals(stream));
-      verify(mockAuthProvider.getUserById(any));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getUserById(any));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
@@ -101,7 +104,7 @@ void main() {
     test('should save data to the database', () async {
       const name = 'Tajul';
       const profilePic = 'profilepic';
-      when(mockAuthProvider.saveDataToDatabase(any, any))
+      when(mockAuthenticationProvider.saveDataToDatabase(any, any))
           .thenAnswer((_) async {});
 
       final result = await authRepository.saveDataToDatabase(name, profilePic);
@@ -112,7 +115,8 @@ void main() {
     test('should return a ServerFailure', () async {
       const name = 'Tajul';
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.saveDataToDatabase(any, any)).thenThrow(exception);
+      when(mockAuthenticationProvider.saveDataToDatabase(any, any))
+          .thenThrow(exception);
 
       final result = await authRepository.saveDataToDatabase(name, profilePic);
 
@@ -123,126 +127,127 @@ void main() {
   group("signInWithPhoneNumber", () {
     test('should sign in in with phone number', () async {
       const phoneNumber = '+1234567890';
-      when(mockAuthProvider.signInWithPhoneNumber(phoneNumber))
+      when(mockAuthenticationProvider.signInWithPhoneNumber(phoneNumber))
           .thenAnswer((_) async {});
 
       final result = await authRepository.signInWithPhoneNumber(phoneNumber);
 
       expect(result, equals(const Right(null)));
-      verify(mockAuthProvider.signInWithPhoneNumber(phoneNumber));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.signInWithPhoneNumber(phoneNumber));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should retrun a ServerFailure when an exception is thrown', () async {
       const phoneNumber = '+1234567890';
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.signInWithPhoneNumber(phoneNumber))
+      when(mockAuthenticationProvider.signInWithPhoneNumber(phoneNumber))
           .thenThrow(exception);
 
       final result = await authRepository.signInWithPhoneNumber(phoneNumber);
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.signInWithPhoneNumber(phoneNumber));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.signInWithPhoneNumber(phoneNumber));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
   group("signOut", () {
     test('should sign out', () async {
-      when(mockAuthProvider.signOut()).thenAnswer((_) async {});
+      when(mockAuthenticationProvider.signOut()).thenAnswer((_) async {});
 
       final result = await authRepository.signOut();
 
       expect(result, equals(const Right(null)));
-      verify(mockAuthProvider.signOut());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.signOut());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should retrun a ServerFailure when an exception is thrown', () async {
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.signOut()).thenThrow(exception);
+      when(mockAuthenticationProvider.signOut()).thenThrow(exception);
 
       final result = await authRepository.signOut();
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.signOut());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.signOut());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
   group('verifyOtp', () {
     test('should verify OTP', () async {
       const otp = '123456';
-      when(mockAuthProvider.verifyOtp(otp)).thenAnswer((_) async {});
+      when(mockAuthenticationProvider.verifyOtp(otp)).thenAnswer((_) async {});
 
       final result = await authRepository.verifyOtp(otp);
 
       expect(result, equals(const Right(null)));
-      verify(mockAuthProvider.verifyOtp(otp));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.verifyOtp(otp));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should return a ServerFailure when an exception is thrown', () async {
       const otp = '123456';
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.verifyOtp(otp)).thenThrow(exception);
+      when(mockAuthenticationProvider.verifyOtp(otp)).thenThrow(exception);
 
       final result = await authRepository.verifyOtp(otp);
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.verifyOtp(otp));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.verifyOtp(otp));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
   group("getCachedUser", () {
     const cachedUid = '123456';
     test('should return cached uid from auth provider', () async {
-      when(mockAuthProvider.getUser()).thenReturn(cachedUid);
+      when(mockAuthenticationProvider.getUser()).thenReturn(cachedUid);
 
       final result = await authRepository.getCachedLocalCurrentUid();
 
       expect(result, const Right(cachedUid));
-      verify(mockAuthProvider.getUser());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getUser());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should return cached failure when cached exception is thrown',
         () async {
       const errorMessage = 'Error message';
-      when(mockAuthProvider.getUser()).thenThrow(
+      when(mockAuthenticationProvider.getUser()).thenThrow(
           const CachedException(errorMessage, message: errorMessage));
 
       final result = await authRepository.getCachedLocalCurrentUid();
 
       expect(result, const Left(CachedFailure(errorMessage)));
-      verify(mockAuthProvider.getUser());
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.getUser());
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 
   group("resendOtp", () {
     const phoneNumber = '6281234567890';
     test("should return resend otp from auth provider", () async {
-      when(mockAuthProvider.resendOtp(any)).thenAnswer((_) async {});
+      when(mockAuthenticationProvider.resendOtp(any)).thenAnswer((_) async {});
 
       final result = await authRepository.resendOtp(phoneNumber);
 
       expect(result, equals(const Right(null)));
-      verify(mockAuthProvider.resendOtp(phoneNumber));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.resendOtp(phoneNumber));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
 
     test('should retrun a ServerFailure when an exception is thrown', () async {
       const phoneNumber = '+1234567890';
       final exception = FirebaseAuthException(code: 'code', message: 'message');
-      when(mockAuthProvider.resendOtp(phoneNumber)).thenThrow(exception);
+      when(mockAuthenticationProvider.resendOtp(phoneNumber))
+          .thenThrow(exception);
 
       final result = await authRepository.resendOtp(phoneNumber);
 
       expect(result, equals(Left(ServerFailure(exception.message!))));
-      verify(mockAuthProvider.resendOtp(phoneNumber));
-      verifyNoMoreInteractions(mockAuthProvider);
+      verify(mockAuthenticationProvider.resendOtp(phoneNumber));
+      verifyNoMoreInteractions(mockAuthenticationProvider);
     });
   });
 }

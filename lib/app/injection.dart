@@ -81,7 +81,7 @@ Future<void> init() async {
 
   /*-------------------> REPOSITORY <-------------------*/
   sl.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(sl<AuthProvider>()));
+      () => AuthRepositoryImpl(sl<AuthenticationProvider>()));
   sl.registerLazySingleton<SettingRepository>(() => SettingRepositoryImpl(
         settingProvider: sl<SettingProvider>(),
       ));
@@ -93,8 +93,8 @@ Future<void> init() async {
 
   /*-------------------> PROVIDER <-------------------*/
   // auth
-  sl.registerLazySingleton<AuthProvider>(
-      () => AuthProviderImpl(auth, firestore, sharedPref));
+  sl.registerLazySingleton<AuthenticationProvider>(
+      () => AuthenticationProviderImpl(auth, firestore, sharedPref));
 
   // setting
   sl.registerLazySingleton<SettingProvider>(() => SettingProviderImpl(

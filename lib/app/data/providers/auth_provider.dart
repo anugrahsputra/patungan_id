@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../data.dart';
+import '../models/models.dart';
 
-abstract class AuthProvider {
+abstract class AuthenticationProvider {
   Future<void> signInWithPhoneNumber(String phoneNumber);
   Future<void> verifyOtp(String otp);
   Future<void> resendOtp(String phoneNumber);
@@ -21,7 +21,7 @@ abstract class AuthProvider {
   String? getUser();
 }
 
-class AuthProviderImpl implements AuthProvider {
+class AuthenticationProviderImpl implements AuthenticationProvider {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
   final SharedPreferences sharedPreferences;
@@ -31,7 +31,7 @@ class AuthProviderImpl implements AuthProvider {
 
   final Logger log = Logger("Auth Provider");
 
-  AuthProviderImpl(this.auth, this.firestore, this.sharedPreferences);
+  AuthenticationProviderImpl(this.auth, this.firestore, this.sharedPreferences);
 
   @override
   Future<String> getCurrentId() async {

@@ -10,8 +10,8 @@ void main() {
   MockSharedPreferences mockSharedPreferences = MockSharedPreferences();
   MockUser mockUser = MockUser();
 
-  AuthProvider authProvider =
-      AuthProviderImpl(mockAuth, mockFirestore, mockSharedPreferences);
+  AuthenticationProvider authProvider = AuthenticationProviderImpl(
+      mockAuth, mockFirestore, mockSharedPreferences);
 
   final userData = {
     'id': '123',

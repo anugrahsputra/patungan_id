@@ -7,7 +7,7 @@ import '../../domain/domain.dart';
 import '../data.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthProvider authProvider;
+  final AuthenticationProvider authProvider;
 
   final Logger log = Logger("Auth Repository");
 
