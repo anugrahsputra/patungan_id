@@ -35,12 +35,17 @@ Future<void> main() async {
           themeMode.isDarkMode() ? Brightness.light : Brightness.dark,
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final SettingCubit settingCubit = sl<SettingCubit>();
 
   final Logger log = Logger("Themes");
@@ -59,8 +64,6 @@ class MyApp extends StatelessWidget {
         theme: AppThemes.light,
         darkTheme: AppThemes.dark,
         themeMode: settingCubit.state.when(
-          initial: (themeMode) => themeMode,
-          loading: (themeMode) => themeMode,
           success: (themeMode) {
             log.fine('themeMode: $themeMode');
             return themeMode;

@@ -19,11 +19,12 @@ import 'package:firebase_storage/firebase_storage.dart' as _i8;
 import 'package:firebase_storage_platform_interface/firebase_storage_platform_interface.dart'
     as _i9;
 import 'package:flutter/material.dart' as _i18;
-import 'package:image_picker/image_picker.dart' as _i19;
+import 'package:image_picker/image_picker.dart' as _i20;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i14;
 import 'package:patungan_id/app/core/core.dart' as _i17;
-import 'package:patungan_id/app/data/data.dart' as _i10;
+import 'package:patungan_id/app/data/data.dart' as _i19;
+import 'package:patungan_id/app/data/models/models.dart' as _i10;
 import 'package:patungan_id/app/domain/domain.dart' as _i12;
 import 'package:shared_preferences/shared_preferences.dart' as _i13;
 
@@ -3669,7 +3670,7 @@ class MockChangeThemeMode extends _i1.Mock implements _i17.ChangeThemeMode {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthenticationProvider extends _i1.Mock
-    implements _i10.AuthenticationProvider {
+    implements _i19.AuthenticationProvider {
   @override
   _i7.Future<void> signInWithPhoneNumber(String? phoneNumber) =>
       (super.noSuchMethod(
@@ -3818,7 +3819,7 @@ class MockAuthenticationProvider extends _i1.Mock
 /// A class which mocks [SettingProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSettingProvider extends _i1.Mock implements _i10.SettingProvider {
+class MockSettingProvider extends _i1.Mock implements _i19.SettingProvider {
   @override
   _i18.ThemeMode getLocalThemeMode() => (super.noSuchMethod(
         Invocation.method(
@@ -3844,7 +3845,7 @@ class MockSettingProvider extends _i1.Mock implements _i10.SettingProvider {
 /// A class which mocks [UserProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserProvider extends _i1.Mock implements _i10.UserProvider {
+class MockUserProvider extends _i1.Mock implements _i19.UserProvider {
   @override
   _i7.Future<String> getCurrentId() => (super.noSuchMethod(
         Invocation.method(
@@ -3915,10 +3916,10 @@ class MockUserProvider extends _i1.Mock implements _i10.UserProvider {
 /// A class which mocks [StorageProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockStorageProvider extends _i1.Mock implements _i10.StorageProvider {
+class MockStorageProvider extends _i1.Mock implements _i19.StorageProvider {
   @override
   _i7.Future<String> uploadProfilePic(
-    _i19.XFile? file,
+    _i20.XFile? file,
     dynamic Function(double)? onProgress,
   ) =>
       (super.noSuchMethod(
@@ -4328,7 +4329,7 @@ class MockSettingRepository extends _i1.Mock implements _i12.SettingRepository {
 class MockStorageRepository extends _i1.Mock implements _i12.StorageRepository {
   @override
   _i7.Future<_i11.Either<_i17.Failure, String>> uploadProfilePic(
-    _i19.XFile? file,
+    _i20.XFile? file,
     dynamic Function(double)? onProgress,
   ) =>
       (super.noSuchMethod(
