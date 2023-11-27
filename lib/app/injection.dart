@@ -28,7 +28,7 @@ Future<void> init() async {
 
   /*-------------------> CORE <-------------------*/
   sl.registerSingleton<AppNavigator>(AppNavigator());
-  sl.registerSingleton<ChangeThemeMode>(ChangeThemeModeImpl());
+  sl.registerSingleton<AppSettings>(AppSettingsImpl());
 
   /*-------------------> CUBIT <-------------------*/
   // AuthCubit
@@ -66,8 +66,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetLocalThemeModeUsecase(
         settingRepository: sl(),
       ));
-  sl.registerLazySingleton(
-      () => ChangeThemeModeUsecase(settingRepository: sl()));
+  sl.registerLazySingleton(() => AppSettingsUsecase(settingRepository: sl()));
 
   // user
   sl.registerLazySingleton(
@@ -99,7 +98,7 @@ Future<void> init() async {
   // setting
   sl.registerLazySingleton<SettingProvider>(() => SettingProviderImpl(
         sharedPreferences: sharedPref,
-        themes: sl<ChangeThemeMode>(),
+        themes: sl<AppSettings>(),
       ));
 
   // user

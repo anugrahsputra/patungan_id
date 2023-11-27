@@ -5,10 +5,10 @@ import '../../../core/core.dart';
 import '../../domain.dart';
 
 /// Use case for changing the theme mode of the app.
-class ChangeThemeModeUsecase {
+class AppSettingsUsecase {
   final SettingRepository settingRepository;
 
-  ChangeThemeModeUsecase({required this.settingRepository});
+  AppSettingsUsecase({required this.settingRepository});
 
   /// Calls the [changeThemeMode] method of the [settingRepository] with the given [themeMode].
   /// Returns an [Either] object containing a [Failure] or [void].

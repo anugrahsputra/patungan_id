@@ -25,7 +25,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController phoneController = TextEditingController();
-    final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+    final AppSettings themeMode = sl<AppSettings>();
     late String phoneNumber;
 
     return BlocConsumer<AuthCubit, AuthState>(

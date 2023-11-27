@@ -8,7 +8,7 @@ part 'setting_cubit.freezed.dart';
 part 'setting_state.dart';
 
 class SettingCubit extends Cubit<SettingState> {
-  final ChangeThemeModeUsecase themeModeUsecase;
+  final AppSettingsUsecase themeModeUsecase;
   final GetLocalThemeModeUsecase getThemeModeUsecase;
 
   SettingCubit({

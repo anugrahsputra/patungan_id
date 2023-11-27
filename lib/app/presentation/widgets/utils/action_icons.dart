@@ -12,7 +12,7 @@ class ActionIcons extends StatelessWidget {
 
   final IconData? icon;
   final Function()? onTap;
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {

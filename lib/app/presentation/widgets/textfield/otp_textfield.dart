@@ -19,7 +19,7 @@ class OTPTextField extends StatelessWidget {
 
   int get length => 6;
 
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {

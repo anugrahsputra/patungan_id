@@ -2,7 +2,7 @@ part of 'verify_otp_page.dart';
 
 class PageTitle extends StatelessWidget {
   PageTitle({super.key, required this.phoneNumber});
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   final String phoneNumber;
 
@@ -42,7 +42,7 @@ class InputCode extends StatefulWidget {
 }
 
 class _InputCodeState extends State<InputCode> {
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   _listenSmsCode() async {
     await SmsAutoFill().listenForCode();
@@ -105,7 +105,7 @@ class ResendOtp extends StatefulWidget {
 class _ResendOtpState extends State<ResendOtp> {
   final ValueNotifier<int> _time = ValueNotifier<int>(60);
 
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   void initState() {
@@ -168,7 +168,7 @@ class SubmitOtp extends StatefulWidget {
 class _SubmitOtpState extends State<SubmitOtp> {
   final ValueNotifier<int> _time = ValueNotifier<int>(60);
 
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   void initState() {

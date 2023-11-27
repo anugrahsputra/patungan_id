@@ -18,7 +18,7 @@ class DefaultTextField extends StatefulWidget {
 class _DefaultTextFieldState extends State<DefaultTextField> {
   final FocusNode _focusNode = FocusNode();
   bool _hasFocus = false;
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   void initState() {

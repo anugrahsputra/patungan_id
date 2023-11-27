@@ -24,7 +24,7 @@ Future<void> main() async {
   );
   await init();
 
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   Bloc.observer = MyBlocObserver();
 

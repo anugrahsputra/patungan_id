@@ -19,7 +19,7 @@ class SetupProfilePage extends StatefulWidget {
 class _SetupProfilePageState extends State<SetupProfilePage> {
   String picUrl = '';
   final AppNavigator navigator = sl<AppNavigator>();
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
   final TextEditingController nameController = TextEditingController();
 
   saveData(String name, String photoUrl) {

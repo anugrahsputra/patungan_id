@@ -23,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   final UserCubit userCubit = sl<UserCubit>();
   final AppNavigator navigator = sl<AppNavigator>();
   final SettingCubit settingCubit = sl<SettingCubit>();
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
   final Logger log = Logger("homepage");
 
   getData() {

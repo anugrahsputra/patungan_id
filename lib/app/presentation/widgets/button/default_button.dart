@@ -17,7 +17,7 @@ class DefaultButton extends StatefulWidget {
 class _DefaultButtonState extends State<DefaultButton> {
   bool isTapped = false;
 
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {

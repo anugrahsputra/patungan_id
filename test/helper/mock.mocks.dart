@@ -3642,10 +3642,10 @@ class MockReference extends _i1.Mock implements _i8.Reference {
       ) as _i8.DownloadTask);
 }
 
-/// A class which mocks [ChangeThemeMode].
+/// A class which mocks [AppSettings].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChangeThemeMode extends _i1.Mock implements _i17.ChangeThemeMode {
+class MockAppSettings extends _i1.Mock implements _i17.AppSettings {
   @override
   void changeThemeMode(_i18.ThemeMode? themeMode) => super.noSuchMethod(
         Invocation.method(
@@ -4788,11 +4788,11 @@ class MockVerifyOtpUsecase extends _i1.Mock implements _i12.VerifyOtpUsecase {
       ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 }
 
-/// A class which mocks [ChangeThemeModeUsecase].
+/// A class which mocks [AppSettingsUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChangeThemeModeUsecase extends _i1.Mock
-    implements _i12.ChangeThemeModeUsecase {
+class MockAppSettingsUsecase extends _i1.Mock
+    implements _i12.AppSettingsUsecase {
   @override
   _i12.SettingRepository get settingRepository => (super.noSuchMethod(
         Invocation.getter(#settingRepository),

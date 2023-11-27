@@ -3,7 +3,7 @@ part of 'homepage.dart';
 class Loading extends StatelessWidget {
   Loading({super.key});
 
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ProfileHeader extends StatefulWidget {
 }
 
 class _ProfileHeaderState extends State<ProfileHeader> {
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -92,7 +92,7 @@ class ContentView extends StatefulWidget {
 }
 
 class _ContentViewState extends State<ContentView> {
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
   bool isTapped = false;
 
   @override
@@ -146,7 +146,7 @@ class _QuickMenuState extends State<QuickMenu> {
 
 class GroupCards extends StatelessWidget {
   GroupCards({super.key});
-  final ChangeThemeMode themeMode = sl<ChangeThemeMode>();
+  final AppSettings themeMode = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {

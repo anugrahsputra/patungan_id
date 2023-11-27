@@ -8,14 +8,14 @@ import '../../helper/mock.mocks.dart';
 
 void main() {
   late MockSharedPreferences mockSharedPref;
-  late MockChangeThemeMode mockChangeThemeMode;
+  late MockAppSettings mockAppSettings;
   late SettingProvider settingProvider;
 
   setUp(() {
     mockSharedPref = MockSharedPreferences();
-    mockChangeThemeMode = MockChangeThemeMode();
+    mockAppSettings = MockAppSettings();
     settingProvider = SettingProviderImpl(
-        sharedPreferences: mockSharedPref, themes: mockChangeThemeMode);
+        sharedPreferences: mockSharedPref, themes: mockAppSettings);
   });
 
   group("getLocalThemeMode", () {
@@ -51,41 +51,41 @@ void main() {
 
   group('changeThemeMode', () {
     test('should change theme mode to dark', () async {
-      when(mockChangeThemeMode.isDarkMode()).thenReturn(true);
+      when(mockAppSettings.isDarkMode()).thenReturn(true);
 
       await settingProvider.changeThemeMode(ThemeMode.dark);
 
-      verify(mockChangeThemeMode.changeThemeMode(ThemeMode.dark));
-      verify(mockChangeThemeMode.isDarkMode());
+      verify(mockAppSettings.changeThemeMode(ThemeMode.dark));
+      verify(mockAppSettings.isDarkMode());
       verify(mockSharedPref.setString(
           LocalStoragePath.themeMode, ThemeMode.dark.name));
-      verifyNoMoreInteractions(mockChangeThemeMode);
+      verifyNoMoreInteractions(mockAppSettings);
       verifyNoMoreInteractions(mockSharedPref);
     });
 
     test('should change theme mode to light', () async {
-      when(mockChangeThemeMode.isDarkMode()).thenReturn(false);
+      when(mockAppSettings.isDarkMode()).thenReturn(false);
 
       await settingProvider.changeThemeMode(ThemeMode.light);
 
-      verify(mockChangeThemeMode.changeThemeMode(ThemeMode.light));
-      verify(mockChangeThemeMode.isDarkMode());
+      verify(mockAppSettings.changeThemeMode(ThemeMode.light));
+      verify(mockAppSettings.isDarkMode());
       verify(mockSharedPref.setString(
           LocalStoragePath.themeMode, ThemeMode.light.name));
-      verifyNoMoreInteractions(mockChangeThemeMode);
+      verifyNoMoreInteractions(mockAppSettings);
       verifyNoMoreInteractions(mockSharedPref);
     });
 
     test('should change theme mode to system', () async {
-      when(mockChangeThemeMode.isDarkMode()).thenReturn(true);
+      when(mockAppSettings.isDarkMode()).thenReturn(true);
 
       await settingProvider.changeThemeMode(ThemeMode.system);
 
-      verify(mockChangeThemeMode.changeThemeMode(ThemeMode.system));
-      verify(mockChangeThemeMode.isDarkMode());
+      verify(mockAppSettings.changeThemeMode(ThemeMode.system));
+      verify(mockAppSettings.isDarkMode());
       verify(mockSharedPref.setString(
           LocalStoragePath.themeMode, ThemeMode.system.name));
-      verifyNoMoreInteractions(mockChangeThemeMode);
+      verifyNoMoreInteractions(mockAppSettings);
       verifyNoMoreInteractions(mockSharedPref);
     });
   });

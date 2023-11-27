@@ -11,7 +11,7 @@ abstract class SettingProvider {
 
 class SettingProviderImpl implements SettingProvider {
   final SharedPreferences sharedPreferences;
-  final ChangeThemeMode themes;
+  final AppSettings themes;
 
   SettingProviderImpl({
     required this.sharedPreferences,
@@ -49,7 +49,7 @@ class SettingProviderImpl implements SettingProvider {
 
         isChanged = themes.isDarkMode() == false;
       } else {
-        await Future.delayed(const Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 500));
 
         isChanged = themes.isDarkMode() == true;
       }

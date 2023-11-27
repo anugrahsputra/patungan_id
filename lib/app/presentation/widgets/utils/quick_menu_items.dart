@@ -19,7 +19,7 @@ class QuickMenuItem extends StatefulWidget {
 
 class _QuickMenuItemState extends State<QuickMenuItem> {
   bool isTapped = false;
-  final ChangeThemeMode theme = sl<ChangeThemeMode>();
+  final AppSettings theme = sl<AppSettings>();
 
   @override
   Widget build(BuildContext context) {

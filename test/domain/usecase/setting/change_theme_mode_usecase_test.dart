@@ -8,12 +8,12 @@ import 'package:patungan_id/app/domain/usecase/setting/change_theme_mode_usecase
 import '../../../helper/mock.mocks.dart';
 
 void main() {
-  late ChangeThemeModeUsecase usecase;
+  late AppSettingsUsecase usecase;
   late MockSettingRepository mockSettingRepository;
 
   setUp(() {
     mockSettingRepository = MockSettingRepository();
-    usecase = ChangeThemeModeUsecase(settingRepository: mockSettingRepository);
+    usecase = AppSettingsUsecase(settingRepository: mockSettingRepository);
   });
 
   const tThemeMode = ThemeMode.dark;

@@ -23,7 +23,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   MockSpec<Reference>(),
 
   /*-------------------> CORE <-------------------*/
-  MockSpec<ChangeThemeMode>(),
+  MockSpec<AppSettings>(),
 
   /*-------------------> Data <-------------------*/
   MockSpec<AuthenticationProvider>(),
@@ -47,7 +47,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   MockSpec<SignInUsecase>(),
   MockSpec<SignOutUsecase>(),
   MockSpec<VerifyOtpUsecase>(),
-  MockSpec<ChangeThemeModeUsecase>(),
+  MockSpec<AppSettingsUsecase>(),
   MockSpec<GetLocalThemeModeUsecase>(),
   MockSpec<GetDefaultProfilePicUsecase>(),
 
