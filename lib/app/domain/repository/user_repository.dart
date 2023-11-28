@@ -8,4 +8,8 @@ abstract class UserRepository {
   Future<Either<Failure, String>> getCurrentId();
   Future<Either<Failure, UserModel>> getCurrentUser();
   Stream<UserEntity> getUserById(String uid);
+  Future<Either<Failure, void>> addFriend(String friendId);
+  Stream<List<FriendRequest>> getFriendRequest();
+  Future<Either<Failure, void>> acceptFriendRequest(String requestId);
+  Future<Either<Failure, void>> rejectFriendRequest(String requestId);
 }
