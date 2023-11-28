@@ -66,4 +66,14 @@ class UserRepositoryImpl implements UserRepository {
       return Left(ServerFailure(e.message!));
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> getUser(String uid) async {
+    try {
+      final result = await userProvider.getUser(uid);
+      return Right(result);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.message!));
+    }
+  }
 }
