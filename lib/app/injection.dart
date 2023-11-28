@@ -42,17 +42,18 @@ Future<void> init() async {
         profilePicUsecase: sl<GetDefaultProfilePicUsecase>(),
       ));
   sl.registerFactory(() => SplashCubit(
-        auth: sl(),
-        currentUser: sl(),
+        auth: auth,
+        currentUser: sl<GetCurrentUserUsecase>(),
       ));
   sl.registerFactory(() => SettingCubit(
-        getThemeModeUsecase: sl(),
-        themeModeUsecase: sl(),
+        getThemeModeUsecase: sl<GetLocalThemeModeUsecase>(),
+        themeModeUsecase: sl<AppSettingsUsecase>(),
       ));
   sl.registerFactory(() => UserCubit(
         currentUserIdUsecase: sl(),
         userByIdUsecase: sl(),
         currentUserUsecase: sl(),
+        getUserUsecase: sl(),
       ));
   sl.registerFactory(() => FriendRequestCubit(
         addFriendUsecase: sl<AddFriendUsecase>(),
@@ -84,6 +85,16 @@ Future<void> init() async {
       ));
   sl.registerLazySingleton(() => AppSettingsUsecase(settingRepository: sl()));
 
+  // friend request
+  sl.registerLazySingleton(
+      () => AddFriendUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => AcceptRequestUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => RejectRequestUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => GetFriendRequestUsecase(userRepository: sl<UserRepository>()));
+
   // user
   sl.registerLazySingleton(
       () => GetCurrentIdUsecase(userRepository: sl<UserRepository>()));
@@ -93,6 +104,8 @@ Future<void> init() async {
       () => GetUserByIdUsecase(userRepository: sl<UserRepository>()));
   sl.registerLazySingleton(
       () => GetDefaultProfilePicUsecase(repository: sl<StorageRepository>()));
+  sl.registerLazySingleton(
+      () => GetUserUsecase(userRepository: sl<UserRepository>()));
 
   /*-------------------> REPOSITORY <-------------------*/
   sl.registerLazySingleton<AuthRepository>(
