@@ -8,6 +8,7 @@ import '../data.dart';
 abstract class UserProvider {
   Future<String> getCurrentId();
   Future<UserModel> getCurrentUser();
+  Future<UserModel> getUser(String uid);
   Stream<UserModel> getUserById(String uid);
   Future<bool> isUserExist(String uid);
   Future<void> addFriend(String friendId);
@@ -123,5 +124,11 @@ class UserProviderImpl implements UserProvider {
         .collection('friend_requests')
         .doc(requestId)
         .update({'status': 'rejected'});
+  }
+
+  @override
+  Future<UserModel> getUser(String uid) async {
+    var user = await firestore.collection('users').doc(uid).get();
+    return UserModel.fromMap(user.data()!);
   }
 }
