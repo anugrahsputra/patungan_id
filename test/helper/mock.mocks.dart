@@ -26,6 +26,10 @@ import 'package:patungan_id/app/core/core.dart' as _i17;
 import 'package:patungan_id/app/data/data.dart' as _i19;
 import 'package:patungan_id/app/data/models/models.dart' as _i10;
 import 'package:patungan_id/app/domain/domain.dart' as _i12;
+import 'package:patungan_id/app/domain/usecase/friend_requests/accept_request_usecase.dart'
+    as _i21;
+import 'package:patungan_id/app/domain/usecase/friend_requests/reject_request_usecase.dart'
+    as _i22;
 import 'package:shared_preferences/shared_preferences.dart' as _i13;
 
 // ignore_for_file: type=lint
@@ -3911,6 +3915,50 @@ class MockUserProvider extends _i1.Mock implements _i19.UserProvider {
         returnValue: _i7.Future<bool>.value(false),
         returnValueForMissingStub: _i7.Future<bool>.value(false),
       ) as _i7.Future<bool>);
+
+  @override
+  _i7.Future<void> addFriend(String? friendId) => (super.noSuchMethod(
+        Invocation.method(
+          #addFriend,
+          [friendId],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Stream<List<_i10.FriendRequestModel>> getFriendRequests() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getFriendRequests,
+          [],
+        ),
+        returnValue: _i7.Stream<List<_i10.FriendRequestModel>>.empty(),
+        returnValueForMissingStub:
+            _i7.Stream<List<_i10.FriendRequestModel>>.empty(),
+      ) as _i7.Stream<List<_i10.FriendRequestModel>>);
+
+  @override
+  _i7.Future<void> acceptFriendRequest(String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #acceptFriendRequest,
+          [requestId],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> rejectFriendRequest(String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #rejectFriendRequest,
+          [requestId],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }
 
 /// A class which mocks [StorageProvider].
@@ -4279,6 +4327,97 @@ class MockUserRepository extends _i1.Mock implements _i12.UserRepository {
         returnValue: _i7.Stream<_i12.UserEntity>.empty(),
         returnValueForMissingStub: _i7.Stream<_i12.UserEntity>.empty(),
       ) as _i7.Stream<_i12.UserEntity>);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> addFriend(String? friendId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addFriend,
+          [friendId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #addFriend,
+            [friendId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #addFriend,
+            [friendId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+
+  @override
+  _i7.Stream<List<_i12.FriendRequest>> getFriendRequest() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getFriendRequest,
+          [],
+        ),
+        returnValue: _i7.Stream<List<_i12.FriendRequest>>.empty(),
+        returnValueForMissingStub: _i7.Stream<List<_i12.FriendRequest>>.empty(),
+      ) as _i7.Stream<List<_i12.FriendRequest>>);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> acceptFriendRequest(
+          String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #acceptFriendRequest,
+          [requestId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #acceptFriendRequest,
+            [requestId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #acceptFriendRequest,
+            [requestId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> rejectFriendRequest(
+          String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #rejectFriendRequest,
+          [requestId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #rejectFriendRequest,
+            [requestId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #rejectFriendRequest,
+            [requestId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
 }
 
 /// A class which mocks [SettingRepository].
@@ -4905,6 +5044,169 @@ class MockGetDefaultProfilePicUsecase extends _i1.Mock
           ),
         )),
       ) as _i7.Future<_i11.Either<_i17.Failure, String>>);
+}
+
+/// A class which mocks [AddFriendUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAddFriendUsecase extends _i1.Mock implements _i12.AddFriendUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? friendId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [friendId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [friendId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [friendId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [AcceptRequestUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAcceptRequestUsecase extends _i1.Mock
+    implements _i21.AcceptRequestUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [requestId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [requestId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [requestId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [RejectRequestUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRejectRequestUsecase extends _i1.Mock
+    implements _i22.RejectRequestUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, void>> call(String? requestId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [requestId],
+        ),
+        returnValue: _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+            _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [requestId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, void>>.value(
+                _FakeEither_28<_i17.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [requestId],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, void>>);
+}
+
+/// A class which mocks [GetFriendRequestUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetFriendRequestUsecase extends _i1.Mock
+    implements _i12.GetFriendRequestUsecase {
+  @override
+  _i12.UserRepository get userRepository => (super.noSuchMethod(
+        Invocation.getter(#userRepository),
+        returnValue: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+        returnValueForMissingStub: _FakeUserRepository_30(
+          this,
+          Invocation.getter(#userRepository),
+        ),
+      ) as _i12.UserRepository);
+
+  @override
+  _i7.Stream<List<_i12.FriendRequest>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i7.Stream<List<_i12.FriendRequest>>.empty(),
+        returnValueForMissingStub: _i7.Stream<List<_i12.FriendRequest>>.empty(),
+      ) as _i7.Stream<List<_i12.FriendRequest>>);
 }
 
 /// A class which mocks [UserEntity].

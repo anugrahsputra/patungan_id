@@ -5,6 +5,8 @@ import 'package:mockito/annotations.dart';
 import 'package:patungan_id/app/core/core.dart';
 import 'package:patungan_id/app/data/data.dart';
 import 'package:patungan_id/app/domain/domain.dart';
+import 'package:patungan_id/app/domain/usecase/friend_requests/accept_request_usecase.dart';
+import 'package:patungan_id/app/domain/usecase/friend_requests/reject_request_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateNiceMocks([
@@ -50,6 +52,10 @@ import 'package:shared_preferences/shared_preferences.dart';
   MockSpec<AppSettingsUsecase>(),
   MockSpec<GetLocalThemeModeUsecase>(),
   MockSpec<GetDefaultProfilePicUsecase>(),
+  MockSpec<AddFriendUsecase>(),
+  MockSpec<AcceptRequestUsecase>(),
+  MockSpec<RejectRequestUsecase>(),
+  MockSpec<GetFriendRequestUsecase>(),
 
   /*-------------------> ENTITY <-------------------*/
   MockSpec<UserEntity>(),
