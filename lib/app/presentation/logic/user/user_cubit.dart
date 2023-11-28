@@ -11,11 +11,13 @@ class UserCubit extends Cubit<UserState> {
   final GetCurrentUserUsecase currentUserUsecase;
   final GetUserByIdUsecase userByIdUsecase;
   final GetCurrentIdUsecase currentUserIdUsecase;
+  final GetUserUsecase getUserUsecase;
 
   UserCubit({
     required this.currentUserUsecase,
     required this.userByIdUsecase,
     required this.currentUserIdUsecase,
+    required this.getUserUsecase,
   }) : super(const UserState.initial());
 
   static UserCubit get(context) => BlocProvider.of(context);
@@ -44,6 +46,19 @@ class UserCubit extends Cubit<UserState> {
       log.warning("User data is not exist for this user");
       emit(const UserState.redirect());
     }
+  }
+
+  Future<void> getUser(String uid) async {
+    emit(const UserState.loading());
+    log.info('getting user ...');
+    final result = await getUserUsecase.call(uid);
+    result.fold((l) {
+      emit(UserState.error(l.message));
+      log.severe('error getting user');
+    }, (r) {
+      emit(UserState.loaded(userEntity));
+      log.fine('user loaded success!');
+    });
   }
 
   Stream<UserEntity> getUserById(String uid) {
