@@ -13,22 +13,22 @@ class UserModel extends UserEntity {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
-      phoneNumber: map['phoneNumber'],
+      phoneNumber: map['phone_number'],
       name: map['name'],
-      profilePic: map['profilePic'],
-      groupId: List<String>.from(map['groupId']),
-      friendsId: List<String>.from(map['friendsId']),
+      profilePic: map['profile_pic'],
+      groupId: List<String>.from(map['group_id']),
+      friendsId: List<String>.from(map['friends_id']),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'phoneNumber': phoneNumber,
+      'phone_number': phoneNumber,
       'name': name,
-      'profilePic': profilePic,
-      'groupId': groupId,
-      'friendsId': friendsId,
+      'profile_pic': profilePic,
+      'group_id': groupId,
+      'friends_id': friendsId,
     };
   }
 }
