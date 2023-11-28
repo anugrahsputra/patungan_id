@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
-import 'package:patungan_id/app/bloc_observer.dart';
 import 'package:patungan_id/firebase_options.dart';
 
 import 'app/core/core.dart';
@@ -25,8 +24,6 @@ Future<void> main() async {
   await init();
 
   final AppSettings themeMode = sl<AppSettings>();
-
-  Bloc.observer = MyBlocObserver();
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
