@@ -27,12 +27,17 @@ class UserCubit extends Cubit<UserState> {
   Future<void> getCurrentUser() async {
     emit(const UserState.loading());
     try {
+      log.info("getting current user...");
       final result = await currentUserUsecase.call();
       result.fold(
-        (fail) => emit(UserState.error(fail.message)),
+        (fail) {
+          emit(UserState.error(fail.message));
+          log.severe('error getting current user!');
+        },
         (user) {
           userEntity = user;
           emit(UserState.loaded(userEntity));
+          log.fine('current user loaded success!');
         },
       );
     } catch (e) {

@@ -86,11 +86,14 @@ class AuthCubit extends Cubit<AuthState> {
     String resultString = '';
 
     final result = await profilePicUsecase.call(imgNumber);
+    log.info('getting default profile pic..');
     result.fold((l) {
       emit(AuthState.error(l.message));
+      log.severe('error getting default profile pic!');
     }, (r) {
-      emit(const AuthState.success());
       resultString = r;
+      emit(const AuthState.success());
+      log.fine('default profile pic loaded success');
     });
 
     return resultString;
@@ -103,6 +106,12 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Stream<UserEntity> getUserById(String uid) {
-    return userByIdUsecase.call(uid);
+    try {
+      log.fine('user by id loaded!');
+      return userByIdUsecase.call(uid);
+    } catch (e) {
+      log.severe('error get user by id: $e');
+      rethrow;
+    }
   }
 }

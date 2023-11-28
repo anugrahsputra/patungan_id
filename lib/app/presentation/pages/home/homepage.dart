@@ -82,14 +82,14 @@ class _HomepageState extends State<Homepage> {
             ),
           ],
         ),
-        extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: false,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView(
+          child: Column(
             children: [
               const QuickMenu(),
+              const Gap(28),
               GroupCards(),
-              SignOutBtn(),
             ],
           ),
         ),
