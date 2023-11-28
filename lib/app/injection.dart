@@ -3,13 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patungan_id/app/data/data.dart';
+import 'package:patungan_id/app/domain/domain.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/core.dart';
-import 'domain/repository/repository.dart';
-import 'domain/usecase/auth/auth.dart';
-import 'domain/usecase/setting/setting.dart';
-import 'domain/usecase/user/user.dart';
 import 'presentation/presentation.dart';
 
 final sl = GetIt.instance;
@@ -44,13 +41,24 @@ Future<void> init() async {
         resendOtpUsecase: sl<ResendOtpUsecase>(),
         profilePicUsecase: sl<GetDefaultProfilePicUsecase>(),
       ));
-  sl.registerFactory(() => SplashCubit(auth: sl(), currentUser: sl()));
-  sl.registerFactory(
-      () => SettingCubit(getThemeModeUsecase: sl(), themeModeUsecase: sl()));
+  sl.registerFactory(() => SplashCubit(
+        auth: sl(),
+        currentUser: sl(),
+      ));
+  sl.registerFactory(() => SettingCubit(
+        getThemeModeUsecase: sl(),
+        themeModeUsecase: sl(),
+      ));
   sl.registerFactory(() => UserCubit(
         currentUserIdUsecase: sl(),
         userByIdUsecase: sl(),
         currentUserUsecase: sl(),
+      ));
+  sl.registerFactory(() => FriendRequestCubit(
+        addFriendUsecase: sl<AddFriendUsecase>(),
+        acceptRequestUsecase: sl<AcceptRequestUsecase>(),
+        rejectRequestUsecase: sl<RejectRequestUsecase>(),
+        getFriendRequestUsecase: sl<GetFriendRequestUsecase>(),
       ));
 
   /*-------------------> USECASE <-------------------*/
@@ -61,6 +69,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCachedUserUsecase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl<AuthRepository>()));
+  sl.registerLazySingleton(
+      () => AddFriendUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => RejectRequestUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => AcceptRequestUsecase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton(
+      () => GetFriendRequestUsecase(userRepository: sl<UserRepository>()));
 
   // setting
   sl.registerLazySingleton(() => GetLocalThemeModeUsecase(

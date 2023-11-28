@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(create: (context) => sl<AuthCubit>()),
         BlocProvider(create: (context) => sl<UserCubit>()),
+        BlocProvider(create: (context) => sl<FriendRequestCubit>()),
         BlocProvider(create: (context) => settingCubit),
       ],
       child: GetMaterialApp(
