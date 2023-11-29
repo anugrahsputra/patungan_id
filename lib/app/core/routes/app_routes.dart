@@ -22,6 +22,7 @@ abstract class AppRoutes {
 
     /* ----------------------- MAIN ----------------------- */
     AppPages.home: (context) => const Homepage(),
+    AppPages.profile: (context) => const ProfilePage(),
 
     /* ----------------------- REDIRECT ----------------------- */
     AppPages.notFound: (context) => const NotFoundPage(),

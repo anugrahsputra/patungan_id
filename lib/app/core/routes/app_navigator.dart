@@ -68,6 +68,12 @@ class AppNavigator {
     );
   }
 
+  void goToProfile(BuildContext context) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.profile);
+  }
+
   void notFound(BuildContext context) {
     if (!canNavigate(context)) return;
 
