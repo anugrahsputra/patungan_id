@@ -20,7 +20,10 @@ class Loading extends StatelessWidget {
 class ProfileHeader extends StatefulWidget {
   const ProfileHeader({
     super.key,
+    this.onTap,
   });
+
+  final void Function()? onTap;
 
   @override
   State<ProfileHeader> createState() => _ProfileHeaderState();
@@ -54,8 +57,11 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user?.profilePic ?? ''),
+                GestureDetector(
+                  onTap: widget.onTap,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(user?.profilePic ?? ''),
+                  ),
                 ),
                 const Gap(10),
                 Column(

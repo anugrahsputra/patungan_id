@@ -68,7 +68,11 @@ class _HomepageState extends State<Homepage> {
       child: ScaffoldBuilder(
         onThemeModeChange: (_) => setState(() {}),
         appBar: DefaultAppBar(
-          title: const ProfileHeader(),
+          title: ProfileHeader(
+            onTap: () {
+              navigator.goToProfile(context);
+            },
+          ),
           actions: [
             IconButton(
               color: theme.isDarkMode() ? Colors.white : Colors.black,
