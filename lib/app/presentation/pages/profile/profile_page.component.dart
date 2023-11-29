@@ -42,7 +42,7 @@ class UserHeader extends StatelessWidget {
                   ),
                   const Gap(10),
                   Flexible(
-                    flex: 2,
+                    flex: 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -50,7 +50,7 @@ class UserHeader extends StatelessWidget {
                           user.name,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.inter(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

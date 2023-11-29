@@ -35,7 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 24,
-          vertical: 12,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
