@@ -26,10 +26,6 @@ import 'package:patungan_id/app/core/core.dart' as _i17;
 import 'package:patungan_id/app/data/data.dart' as _i19;
 import 'package:patungan_id/app/data/models/models.dart' as _i10;
 import 'package:patungan_id/app/domain/domain.dart' as _i12;
-import 'package:patungan_id/app/domain/usecase/friend_requests/accept_request_usecase.dart'
-    as _i21;
-import 'package:patungan_id/app/domain/usecase/friend_requests/reject_request_usecase.dart'
-    as _i22;
 import 'package:shared_preferences/shared_preferences.dart' as _i13;
 
 // ignore_for_file: type=lint
@@ -3897,6 +3893,29 @@ class MockUserProvider extends _i1.Mock implements _i19.UserProvider {
       ) as _i7.Future<_i10.UserModel>);
 
   @override
+  _i7.Future<_i10.UserModel> getUser(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #getUser,
+          [uid],
+        ),
+        returnValue: _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
+          this,
+          Invocation.method(
+            #getUser,
+            [uid],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i10.UserModel>.value(_FakeUserModel_27(
+          this,
+          Invocation.method(
+            #getUser,
+            [uid],
+          ),
+        )),
+      ) as _i7.Future<_i10.UserModel>);
+
+  @override
   _i7.Stream<_i10.UserModel> getUserById(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
@@ -4314,6 +4333,33 @@ class MockUserRepository extends _i1.Mock implements _i12.UserRepository {
           Invocation.method(
             #getCurrentUser,
             [],
+          ),
+        )),
+      ) as _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>);
+
+  @override
+  _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>> getUser(String? uid) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUser,
+          [uid],
+        ),
+        returnValue:
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
+          this,
+          Invocation.method(
+            #getUser,
+            [uid],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>.value(
+                _FakeEither_28<_i17.Failure, _i10.UserModel>(
+          this,
+          Invocation.method(
+            #getUser,
+            [uid],
           ),
         )),
       ) as _i7.Future<_i11.Either<_i17.Failure, _i10.UserModel>>);
@@ -5094,7 +5140,7 @@ class MockAddFriendUsecase extends _i1.Mock implements _i12.AddFriendUsecase {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAcceptRequestUsecase extends _i1.Mock
-    implements _i21.AcceptRequestUsecase {
+    implements _i12.AcceptRequestUsecase {
   @override
   _i12.UserRepository get userRepository => (super.noSuchMethod(
         Invocation.getter(#userRepository),
@@ -5139,7 +5185,7 @@ class MockAcceptRequestUsecase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRejectRequestUsecase extends _i1.Mock
-    implements _i22.RejectRequestUsecase {
+    implements _i12.RejectRequestUsecase {
   @override
   _i12.UserRepository get userRepository => (super.noSuchMethod(
         Invocation.getter(#userRepository),
