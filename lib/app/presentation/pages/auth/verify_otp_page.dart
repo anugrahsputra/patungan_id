@@ -27,6 +27,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   String otpCode = '';
 
   final AppNavigator navigator = sl<AppNavigator>();
+  final AppSettings appSettings = sl<AppSettings>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -53,10 +54,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       },
       builder: (context, state) {
         return ScaffoldBuilder(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
+          appBar: const DefaultAppBar(),
           extendBodyBehindAppBar: true,
           onThemeModeChange: (_) => setState(() {}),
           body: SingleChildScrollView(

@@ -152,18 +152,18 @@ class GrousView extends StatelessWidget {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loading: () => Text('loading groups'),
+          loading: () => const Text('loading groups'),
           loaded: (userEntity) {
             UserEntity? user = userEntity;
             List<String>? groups = user?.groupId;
             return ListView.builder(
               itemCount: groups!.length,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox();
+                return const SizedBox();
               },
             );
           },
-          orElse: () => SizedBox.shrink(),
+          orElse: () => const SizedBox.shrink(),
         );
       },
     );
@@ -287,6 +287,7 @@ class SignOutBtn extends StatelessWidget {
   SignOutBtn({super.key});
 
   final AppNavigator navigator = sl<AppNavigator>();
+  final AuthCubit authCubit = sl<AuthCubit>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -299,7 +300,7 @@ class SignOutBtn extends StatelessWidget {
       builder: (context, state) {
         return DefaultButton(
           text: AppString.logout,
-          onTap: () async => await AuthCubit.get(context).signOUt(),
+          onTap: () async => await context.read<AuthCubit>().signOUt(),
         );
       },
     );

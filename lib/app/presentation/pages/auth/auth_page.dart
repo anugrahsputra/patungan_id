@@ -47,9 +47,7 @@ class _AuthPageState extends State<AuthPage> {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return ScaffoldBuilder(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
+          appBar: DefaultAppBar(
             actions: [
               IconButton(
                 color: themeMode.isDarkMode() ? Colors.white : Colors.black,

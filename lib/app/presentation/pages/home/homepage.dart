@@ -90,6 +90,7 @@ class _HomepageState extends State<Homepage> {
               const QuickMenu(),
               const Gap(28),
               GroupCards(),
+              SignOutBtn(),
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/core.dart';
+import '../../../injection.dart';
 import '../../logic/logic.dart';
 
 class ScaffoldBuilder extends StatefulWidget {
@@ -26,6 +28,8 @@ class ScaffoldBuilder extends StatefulWidget {
 }
 
 class _ScaffoldBuilderState extends State<ScaffoldBuilder> {
+  final AppSettings appSettings = sl<AppSettings>();
+
   getThemeMode() {
     context.read<SettingCubit>().fetchSetting();
   }
@@ -38,6 +42,7 @@ class _ScaffoldBuilderState extends State<ScaffoldBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    final color = appSettings.isDarkMode() ? Colors.black : Colors.white;
     return BlocListener<SettingCubit, SettingState>(
       listener: (context, state) {
         state.whenOrNull(
@@ -51,7 +56,7 @@ class _ScaffoldBuilderState extends State<ScaffoldBuilder> {
       child: Scaffold(
         appBar: widget.appBar,
         body: widget.body,
-        backgroundColor: widget.backgroundColor,
+        backgroundColor: widget.backgroundColor ?? color,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
         extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
       ),

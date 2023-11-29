@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class AppCOlors {
+abstract class AppColors {
   static Color get backGroundDark => const Color.fromRGBO(17, 17, 17, 1.0);
 
   /* -------------------------> ADDITIONAL COLOR <--------------------------- */

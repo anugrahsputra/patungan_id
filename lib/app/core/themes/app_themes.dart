@@ -95,7 +95,7 @@ abstract class AppThemes with WidgetsBindingObserver {
       error: Colors.red,
       onPrimary: Colors.white,
       onSecondary: Colors.black,
-      onSurface: primaryColorLight,
+      onSurface: primaryColor,
       onBackground: backgroundColor,
       onError: Colors.redAccent,
       brightness: Brightness.light,

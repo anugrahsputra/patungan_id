@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
+import '../../../injection.dart';
+
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
     super.key,
@@ -21,10 +24,11 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppSettings appSettings = sl<AppSettings>();
     return PreferredSize(
       preferredSize: preferredSize,
       child: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: appSettings.isDarkMode() ? Colors.black : Colors.white,
         elevation: 0,
         centerTitle: centerTitle,
         automaticallyImplyLeading: automaticallyImplyLeading,

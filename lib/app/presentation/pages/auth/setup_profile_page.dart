@@ -57,6 +57,8 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
           appBar: AppBar(
             elevation: 0,
             automaticallyImplyLeading: false,
+            backgroundColor:
+                themeMode.isDarkMode() ? Colors.black : Colors.white,
             title: Text(
               'Set up your profile',
               style: GoogleFonts.inter(
@@ -66,6 +68,7 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
             ),
           ),
           extendBodyBehindAppBar: true,
+          backgroundColor: themeMode.isDarkMode() ? Colors.black : Colors.white,
           onThemeModeChange: (_) => setState(() {}),
           body: Align(
             alignment: Alignment.center,

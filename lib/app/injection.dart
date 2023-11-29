@@ -61,6 +61,7 @@ Future<void> init() async {
         rejectRequestUsecase: sl<RejectRequestUsecase>(),
         getFriendRequestUsecase: sl<GetFriendRequestUsecase>(),
       ));
+  sl.registerFactory(() => NavbarCubit());
 
   /*-------------------> USECASE <-------------------*/
   // auth
@@ -70,14 +71,6 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCachedUserUsecase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => SaveToDatabaseUsecase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl<AuthRepository>()));
-  sl.registerLazySingleton(
-      () => AddFriendUsecase(userRepository: sl<UserRepository>()));
-  sl.registerLazySingleton(
-      () => RejectRequestUsecase(userRepository: sl<UserRepository>()));
-  sl.registerLazySingleton(
-      () => AcceptRequestUsecase(userRepository: sl<UserRepository>()));
-  sl.registerLazySingleton(
-      () => GetFriendRequestUsecase(userRepository: sl<UserRepository>()));
 
   // setting
   sl.registerLazySingleton(() => GetLocalThemeModeUsecase(
