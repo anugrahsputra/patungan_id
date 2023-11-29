@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
@@ -18,20 +17,9 @@ Future<void> main() async {
   _Logging.initialize(showLog: true);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAppCheck.instance.activate(
-    webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
-    androidProvider: AndroidProvider.debug,
+    androidProvider: AndroidProvider.playIntegrity,
   );
   await init();
-
-  final AppSettings themeMode = sl<AppSettings>();
-
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness:
-          themeMode.isDarkMode() ? Brightness.light : Brightness.dark,
-    ),
-  );
   runApp(const MyApp());
 }
 
@@ -48,12 +36,21 @@ class _MyAppState extends State<MyApp> {
   final Logger log = Logger("Themes");
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1)).then((_) {
+      SystemOverlay.updateSystemOverlay();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<AuthCubit>()),
         BlocProvider(create: (context) => sl<UserCubit>()),
         BlocProvider(create: (context) => sl<FriendRequestCubit>()),
+        BlocProvider(create: (context) => sl<NavbarCubit>()),
         BlocProvider(create: (context) => settingCubit),
       ],
       child: GetMaterialApp(
