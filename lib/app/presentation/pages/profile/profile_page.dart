@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
 import '../../../injection.dart';
 import '../../presentation.dart';
+
+part 'profile_page.component.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -17,10 +22,27 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldBuilder(
+      appBar: DefaultAppBar(
+        title: Text(
+          'Profile',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
       onThemeModeChange: (_) => setState(() {}),
       backgroundColor: appSetting.isDarkMode() ? Colors.black : Colors.white,
-      body: const Center(
-        child: Text('profilePage'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 12,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            UserHeader(),
+          ],
+        ),
       ),
     );
   }

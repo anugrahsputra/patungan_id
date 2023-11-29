@@ -1,4 +1,5 @@
 export 'appbar/appbar.dart';
+export 'avatar/avatar.dart';
 export 'bottom_sheets/bottom_sheets.dart';
 export 'builder/builder.dart';
 export 'button/button.dart';
