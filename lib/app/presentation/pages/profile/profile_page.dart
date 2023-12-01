@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
+import '../../../domain/domain.dart';
 import '../../../injection.dart';
 import '../../presentation.dart';
 
@@ -32,17 +33,27 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       onThemeModeChange: (_) => setState(() {}),
       backgroundColor: appSetting.isDarkMode() ? Colors.black : Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            UserHeader(),
-          ],
-        ),
-      ),
+      body: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+        return state.maybeWhen(
+          loaded: (user) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UserHeader(user: user!),
+                  const Gap(20),
+                  MenuCard(),
+                ],
+              ),
+            );
+          },
+          orElse: () =>
+              const Center(child: CircularProgressIndicator.adaptive()),
+        );
+      }),
     );
   }
 }
