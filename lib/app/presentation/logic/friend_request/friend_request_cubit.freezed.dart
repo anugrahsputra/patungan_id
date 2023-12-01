@@ -20,7 +20,9 @@ mixin _$FriendRequestState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(FriendRequest friendRequest) loaded,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,9 @@ mixin _$FriendRequestState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(FriendRequest friendRequest)? loaded,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +40,9 @@ mixin _$FriendRequestState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(FriendRequest friendRequest)? loaded,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -45,7 +51,9 @@ mixin _$FriendRequestState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +61,9 @@ mixin _$FriendRequestState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +71,9 @@ mixin _$FriendRequestState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +138,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(FriendRequest friendRequest) loaded,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +151,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(FriendRequest friendRequest)? loaded,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +164,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(FriendRequest friendRequest)? loaded,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -163,7 +181,9 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -174,7 +194,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -185,7 +207,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +264,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(FriendRequest friendRequest) loaded,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +277,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(FriendRequest friendRequest)? loaded,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +290,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(FriendRequest friendRequest)? loaded,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -277,7 +307,9 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -288,7 +320,9 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -299,7 +333,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -315,76 +351,51 @@ abstract class _Loading implements FriendRequestState {
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({FriendRequest friendRequest});
+abstract class _$$AcceptFriendReqImplCopyWith<$Res> {
+  factory _$$AcceptFriendReqImplCopyWith(_$AcceptFriendReqImpl value,
+          $Res Function(_$AcceptFriendReqImpl) then) =
+      __$$AcceptFriendReqImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$FriendRequestStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$AcceptFriendReqImplCopyWithImpl<$Res>
+    extends _$FriendRequestStateCopyWithImpl<$Res, _$AcceptFriendReqImpl>
+    implements _$$AcceptFriendReqImplCopyWith<$Res> {
+  __$$AcceptFriendReqImplCopyWithImpl(
+      _$AcceptFriendReqImpl _value, $Res Function(_$AcceptFriendReqImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? friendRequest = null,
-  }) {
-    return _then(_$LoadedImpl(
-      null == friendRequest
-          ? _value.friendRequest
-          : friendRequest // ignore: cast_nullable_to_non_nullable
-              as FriendRequest,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.friendRequest);
-
-  @override
-  final FriendRequest friendRequest;
+class _$AcceptFriendReqImpl implements _AcceptFriendReq {
+  const _$AcceptFriendReqImpl();
 
   @override
   String toString() {
-    return 'FriendRequestState.loaded(friendRequest: $friendRequest)';
+    return 'FriendRequestState.accepFriendReq()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.friendRequest, friendRequest) ||
-                other.friendRequest == friendRequest));
+        (other.runtimeType == runtimeType && other is _$AcceptFriendReqImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friendRequest);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(FriendRequest friendRequest) loaded,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
     required TResult Function(String message) error,
   }) {
-    return loaded(friendRequest);
+    return accepFriendReq();
   }
 
   @override
@@ -392,10 +403,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(FriendRequest friendRequest)? loaded,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(friendRequest);
+    return accepFriendReq?.call();
   }
 
   @override
@@ -403,12 +416,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(FriendRequest friendRequest)? loaded,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(friendRequest);
+    if (accepFriendReq != null) {
+      return accepFriendReq();
     }
     return orElse();
   }
@@ -418,10 +433,12 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
     required TResult Function(_Error value) error,
   }) {
-    return loaded(this);
+    return accepFriendReq(this);
   }
 
   @override
@@ -429,10 +446,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
     TResult? Function(_Error value)? error,
   }) {
-    return loaded?.call(this);
+    return accepFriendReq?.call(this);
   }
 
   @override
@@ -440,24 +459,273 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (accepFriendReq != null) {
+      return accepFriendReq(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements FriendRequestState {
-  const factory _Loaded(final FriendRequest friendRequest) = _$LoadedImpl;
+abstract class _AcceptFriendReq implements FriendRequestState {
+  const factory _AcceptFriendReq() = _$AcceptFriendReqImpl;
+}
 
-  FriendRequest get friendRequest;
-  @JsonKey(ignore: true)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class _$$RejectFriendReqImplCopyWith<$Res> {
+  factory _$$RejectFriendReqImplCopyWith(_$RejectFriendReqImpl value,
+          $Res Function(_$RejectFriendReqImpl) then) =
+      __$$RejectFriendReqImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RejectFriendReqImplCopyWithImpl<$Res>
+    extends _$FriendRequestStateCopyWithImpl<$Res, _$RejectFriendReqImpl>
+    implements _$$RejectFriendReqImplCopyWith<$Res> {
+  __$$RejectFriendReqImplCopyWithImpl(
+      _$RejectFriendReqImpl _value, $Res Function(_$RejectFriendReqImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RejectFriendReqImpl implements _RejectFriendReq {
+  const _$RejectFriendReqImpl();
+
+  @override
+  String toString() {
+    return 'FriendRequestState.rejectFriendReq()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RejectFriendReqImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
+    required TResult Function(String message) error,
+  }) {
+    return rejectFriendReq();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
+    TResult? Function(String message)? error,
+  }) {
+    return rejectFriendReq?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (rejectFriendReq != null) {
+      return rejectFriendReq();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
+    required TResult Function(_Error value) error,
+  }) {
+    return rejectFriendReq(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
+    TResult? Function(_Error value)? error,
+  }) {
+    return rejectFriendReq?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (rejectFriendReq != null) {
+      return rejectFriendReq(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RejectFriendReq implements FriendRequestState {
+  const factory _RejectFriendReq() = _$RejectFriendReqImpl;
+}
+
+/// @nodoc
+abstract class _$$SendFriendReqImplCopyWith<$Res> {
+  factory _$$SendFriendReqImplCopyWith(
+          _$SendFriendReqImpl value, $Res Function(_$SendFriendReqImpl) then) =
+      __$$SendFriendReqImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SendFriendReqImplCopyWithImpl<$Res>
+    extends _$FriendRequestStateCopyWithImpl<$Res, _$SendFriendReqImpl>
+    implements _$$SendFriendReqImplCopyWith<$Res> {
+  __$$SendFriendReqImplCopyWithImpl(
+      _$SendFriendReqImpl _value, $Res Function(_$SendFriendReqImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SendFriendReqImpl implements _SendFriendReq {
+  const _$SendFriendReqImpl();
+
+  @override
+  String toString() {
+    return 'FriendRequestState.sendFriendReq()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SendFriendReqImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
+    required TResult Function(String message) error,
+  }) {
+    return sendFriendReq();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
+    TResult? Function(String message)? error,
+  }) {
+    return sendFriendReq?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (sendFriendReq != null) {
+      return sendFriendReq();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
+    required TResult Function(_Error value) error,
+  }) {
+    return sendFriendReq(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
+    TResult? Function(_Error value)? error,
+  }) {
+    return sendFriendReq?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (sendFriendReq != null) {
+      return sendFriendReq(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendFriendReq implements FriendRequestState {
+  const factory _SendFriendReq() = _$SendFriendReqImpl;
 }
 
 /// @nodoc
@@ -526,7 +794,9 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(FriendRequest friendRequest) loaded,
+    required TResult Function() accepFriendReq,
+    required TResult Function() rejectFriendReq,
+    required TResult Function() sendFriendReq,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -537,7 +807,9 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(FriendRequest friendRequest)? loaded,
+    TResult? Function()? accepFriendReq,
+    TResult? Function()? rejectFriendReq,
+    TResult? Function()? sendFriendReq,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -548,7 +820,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(FriendRequest friendRequest)? loaded,
+    TResult Function()? accepFriendReq,
+    TResult Function()? rejectFriendReq,
+    TResult Function()? sendFriendReq,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -563,7 +837,9 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_AcceptFriendReq value) accepFriendReq,
+    required TResult Function(_RejectFriendReq value) rejectFriendReq,
+    required TResult Function(_SendFriendReq value) sendFriendReq,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -574,7 +850,9 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult? Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult? Function(_SendFriendReq value)? sendFriendReq,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -585,7 +863,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_AcceptFriendReq value)? accepFriendReq,
+    TResult Function(_RejectFriendReq value)? rejectFriendReq,
+    TResult Function(_SendFriendReq value)? sendFriendReq,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

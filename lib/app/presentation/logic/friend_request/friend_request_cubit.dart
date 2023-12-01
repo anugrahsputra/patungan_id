@@ -17,4 +17,35 @@ class FriendRequestCubit extends Cubit<FriendRequestState> {
     required this.rejectRequestUsecase,
     required this.getFriendRequestUsecase,
   }) : super(const FriendRequestState.initial());
+
+  void addFriend(String friendId) async {
+    emit(const FriendRequestState.loading());
+    final result = await addFriendUsecase.call(friendId);
+    result.fold(
+      (fail) => emit(FriendRequestState.error(fail.message)),
+      (success) => emit(const FriendRequestState.sendFriendReq()),
+    );
+  }
+
+  void acceptFriendReq(String reqId) async {
+    emit(const FriendRequestState.loading());
+    final result = await acceptRequestUsecase.call(reqId);
+    result.fold(
+      (fail) => emit(FriendRequestState.error(fail.message)),
+      (success) => emit(const FriendRequestState.accepFriendReq()),
+    );
+  }
+
+  void rejectFriendReq(String reqId) async {
+    emit(const FriendRequestState.loading());
+    final result = await rejectRequestUsecase.call(reqId);
+    result.fold(
+      (fail) => emit(FriendRequestState.error(fail.message)),
+      (success) => emit(const FriendRequestState.rejectFriendReq()),
+    );
+  }
+
+  Stream<List<FriendRequest>> getFriendReq() {
+    return getFriendRequestUsecase.call();
+  }
 }
