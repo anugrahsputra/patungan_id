@@ -45,7 +45,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   UserHeader(user: user!),
                   const Gap(20),
-                  MenuCard(),
+                  MenuCard(
+                    user: user,
+                  ),
                 ],
               ),
             );

@@ -68,13 +68,16 @@ class UserHeader extends StatelessWidget {
 }
 
 class MenuCard extends StatelessWidget {
-  MenuCard({super.key});
+  MenuCard({super.key, this.user});
+  final UserEntity? user;
+
   final AppSettings appSettings = sl<AppSettings>();
+  final AppNavigator navigate = sl<AppNavigator>();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
         width: MediaQuery.sizeOf(context).width,
         child: GridView.count(
           physics: const NeverScrollableScrollPhysics(),
@@ -87,6 +90,10 @@ class MenuCard extends StatelessWidget {
             MenuItems(
               appSettings: appSettings,
               menuText: 'QRCode',
+              onTap: () {
+                String data = user!.id;
+                navigate.gotoQrCode(context, data: data);
+              },
             ),
             MenuItems(
               appSettings: appSettings,
