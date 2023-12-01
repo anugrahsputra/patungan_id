@@ -74,6 +74,14 @@ class AppNavigator {
     Navigator.of(context).pushNamed(AppPages.profile);
   }
 
+  void gotoQrCode(BuildContext context, {required String data}) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.qrcode, arguments: {
+      'data': data,
+    });
+  }
+
   void notFound(BuildContext context) {
     if (!canNavigate(context)) return;
 

@@ -23,6 +23,12 @@ abstract class AppRoutes {
     /* ----------------------- MAIN ----------------------- */
     AppPages.home: (context) => const Homepage(),
     AppPages.profile: (context) => const ProfilePage(),
+    AppPages.qrcode: (context) {
+      Map<String, dynamic> arguments =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      String data = arguments['data'];
+      return QrCodePage(data: data);
+    },
 
     /* ----------------------- REDIRECT ----------------------- */
     AppPages.notFound: (context) => const NotFoundPage(),
