@@ -50,6 +50,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   logging: ^1.2.0
   lottie: ^2.7.0
+  mobile_scanner: ^3.5.5
   modal_bottom_sheet: ^3.0.0-pre
   pin_code_fields: ^8.0.1
   qr_flutter: ^4.1.0
