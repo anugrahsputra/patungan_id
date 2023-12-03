@@ -3,6 +3,7 @@ import 'package:logging/logging.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../core/core.dart';
+import '../../../domain/domain.dart';
 import '../../../injection.dart';
 import '../../presentation.dart';
 
@@ -20,71 +21,82 @@ class _QrScanPageState extends State<QrScanPage>
 
   final Logger log = Logger("qr scan page");
 
-  final MobileScannerController cameraControler = MobileScannerController(
+  final MobileScannerController cameraController = MobileScannerController(
     detectionSpeed: DetectionSpeed.noDuplicates,
   );
 
   final AppNavigator navigate = sl<AppNavigator>();
-
-  void _startOrStop() {
-    try {
-      if (isStarted) {
-        cameraControler.stop();
-      } else {
-        cameraControler.start();
-      }
-      setState(() {
-        isStarted = !isStarted;
-      });
-    } on Exception catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Something went wrong! $e'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  }
+  final GetCurrentIdUsecase getCurrentId = sl<GetCurrentIdUsecase>();
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldBuilder(
-        appBar: const DefaultAppBar(
-          title: Text('Scan your friend qrcode'),
-        ),
-        onThemeModeChange: (_) => setState(() {}),
-        body: Builder(
-          builder: (context) {
-            return Stack(
-              children: [
-                MobileScanner(
-                  controller: cameraControler,
-                  errorBuilder: (context, error, child) {
-                    return ScannerErrorWidget(error: error);
-                  },
-                  fit: BoxFit.fill,
-                  onDetect: (barcode) {
-                    setState(() {
-                      this.barcode = barcode;
-                    });
-                    String? uid = barcode.barcodes.first.rawValue;
-                    log.info(uid);
+      appBar: const DefaultAppBar(
+        title: Text('Scan your friend qrcode'),
+      ),
+      onThemeModeChange: (_) => setState(() {}),
+      body: Builder(
+        builder: (context) {
+          return MobileScanner(
+            controller: cameraController,
+            errorBuilder: (context, error, child) {
+              return ScannerErrorWidget(error: error);
+            },
+            fit: BoxFit.cover,
+            overlay: Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.red, width: 3),
+                ),
+              ),
+            ),
+            onDetect: (barcode) async {
+              setState(() {
+                this.barcode = barcode;
+              });
+              final result = await getCurrentId.call();
+              result.fold(
+                (failure) {
+                  log.severe('Failed to get user ID: ${failure.toString()}');
+                  return null;
+                },
+                (userId) {
+                  String? uid = barcode.barcodes.first.rawValue;
+                  log.fine('User ID: $userId');
+                  cameraController.stop();
+                  if (uid != userId) {
                     navigate.goToAddFriend(context, friendId: uid!);
-                  },
-                ),
-                Center(
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red, width: 3),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ));
+                    cameraController.start();
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Error'),
+                          content: const Text(
+                              'Are you trying to add yourself as a friend? :('),
+                          actions: [
+                            FilledButton(
+                              child: const Text('Close'),
+                              onPressed: () {
+                                navigate.back(context);
+                                cameraController.start();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
 
