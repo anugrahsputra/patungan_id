@@ -38,7 +38,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await userProvider.acceptFriendRequest(requestId);
       return Right(result);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message!));
     }
   }
@@ -72,7 +72,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await userProvider.getUser(uid);
       return Right(result);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message!));
     }
   }

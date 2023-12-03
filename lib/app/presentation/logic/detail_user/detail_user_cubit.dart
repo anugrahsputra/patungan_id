@@ -18,13 +18,18 @@ class DetailUserCubit extends Cubit<DetailUserState> {
   Future<void> getUser(String uid) async {
     emit(const DetailUserState.loading());
     log.info('getting user ...');
-    final result = await getUserUsecase.call(uid);
-    result.fold((l) {
-      emit(DetailUserState.error(l.message));
-      log.severe('error getting user');
-    }, (r) {
-      emit(DetailUserState.loaded(r));
-      log.fine('user loaded success!');
-    });
+    try {
+      final result = await getUserUsecase.call(uid);
+      result.fold((l) {
+        emit(DetailUserState.error(l.message));
+        log.severe('error getting user');
+      }, (r) {
+        emit(DetailUserState.loaded(r));
+        log.fine('user loaded success!');
+      });
+    } catch (e) {
+      emit(DetailUserState.error(e.toString()));
+      log.severe('Exception when getting user: $e');
+    }
   }
 }

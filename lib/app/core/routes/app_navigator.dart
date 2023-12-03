@@ -99,6 +99,9 @@ class AppNavigator {
   void notFound(BuildContext context) {
     if (!canNavigate(context)) return;
 
-    Navigator.of(context).pushNamed(AppPages.notFound);
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      AppPages.notFound,
+      (route) => false,
+    );
   }
 }

@@ -128,7 +128,14 @@ class UserProviderImpl implements UserProvider {
 
   @override
   Future<UserModel> getUser(String uid) async {
-    var user = await firestore.collection('users').doc(uid).get();
-    return UserModel.fromMap(user.data()!);
+    var userSnapshot = await firestore.collection('users').doc(uid).get();
+
+    if (userSnapshot.exists) {
+      var user = UserModel.fromMap(userSnapshot.data()!);
+      return user;
+    } else {
+      log.severe('User not found');
+      throw Exception("User not found.");
+    }
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:patungan_id/app/presentation/presentation.dart';
 
 import '../../../core/core.dart';
+import '../../../injection.dart';
+import '../../presentation.dart';
 
 class NotFoundPage extends StatefulWidget {
   const NotFoundPage({super.key});
@@ -13,6 +14,7 @@ class NotFoundPage extends StatefulWidget {
 }
 
 class _NotFoundPageState extends State<NotFoundPage> {
+  final AppNavigator navigate = sl<AppNavigator>();
   @override
   Widget build(BuildContext context) {
     return ScaffoldBuilder(
@@ -35,6 +37,12 @@ class _NotFoundPageState extends State<NotFoundPage> {
               fontWeight: FontWeight.w500,
             ),
           ),
+          DefaultButton(
+            onTap: () {
+              navigate.goToSplah(context);
+            },
+            text: 'Go back',
+          )
         ],
       ),
     );
