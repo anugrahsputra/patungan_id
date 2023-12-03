@@ -39,6 +39,6 @@
         <!-- Enable Impeller (Disable it if it runs an issue) -->
         <meta-data
           android:name="io.flutter.embedding.android.EnableImpeller"
-          android:value="true" />
+          android:value="false" />
     </application>
 </manifest>
