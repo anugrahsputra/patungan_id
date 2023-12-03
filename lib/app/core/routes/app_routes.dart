@@ -29,7 +29,7 @@ abstract class AppRoutes {
       String data = arguments['data'];
       return QrCodePage(data: data);
     },
-
+    AppPages.qrscan: (context) => const QrScanPage(),
     /* ----------------------- REDIRECT ----------------------- */
     AppPages.notFound: (context) => const NotFoundPage(),
   };

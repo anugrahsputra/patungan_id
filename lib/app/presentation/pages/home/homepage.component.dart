@@ -122,6 +122,8 @@ class QuickMenu extends StatefulWidget {
 }
 
 class _QuickMenuState extends State<QuickMenu> {
+  final AppNavigator navigate = sl<AppNavigator>();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingCubit, SettingState>(
@@ -136,7 +138,12 @@ class _QuickMenuState extends State<QuickMenu> {
                 icon: Icons.group_add_outlined,
                 onTap: () {},
               ),
-              QuickMenuItem(icon: Icons.person_add_alt, onTap: () {}),
+              QuickMenuItem(
+                icon: Icons.person_add_alt,
+                onTap: () {
+                  navigate.goToQrScanPage(context);
+                },
+              ),
               QuickMenuItem(icon: Icons.receipt_outlined, onTap: () {}),
               QuickMenuItem(
                 icon: Icons.more_horiz_outlined,

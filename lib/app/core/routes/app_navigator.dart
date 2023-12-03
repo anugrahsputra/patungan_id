@@ -82,6 +82,12 @@ class AppNavigator {
     });
   }
 
+  void goToQrScanPage(BuildContext context) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.qrscan);
+  }
+
   void notFound(BuildContext context) {
     if (!canNavigate(context)) return;
 
