@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_cubit.dart';
+part of 'detail_user_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,14 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserState {
+mixin _$DetailUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,8 +29,6 @@ mixin _$UserState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,8 +37,6 @@ mixin _$UserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -51,9 +45,7 @@ mixin _$UserState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
+    required TResult Function(_Loeaded value) loaded,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +53,7 @@ mixin _$UserState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
+    TResult? Function(_Loeaded value)? loaded,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,9 +61,7 @@ mixin _$UserState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
+    TResult Function(_Loeaded value)? loaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -81,15 +69,16 @@ mixin _$UserState {
 }
 
 /// @nodoc
-abstract class $UserStateCopyWith<$Res> {
-  factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
-      _$UserStateCopyWithImpl<$Res, UserState>;
+abstract class $DetailUserStateCopyWith<$Res> {
+  factory $DetailUserStateCopyWith(
+          DetailUserState value, $Res Function(DetailUserState) then) =
+      _$DetailUserStateCopyWithImpl<$Res, DetailUserState>;
 }
 
 /// @nodoc
-class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
-    implements $UserStateCopyWith<$Res> {
-  _$UserStateCopyWithImpl(this._value, this._then);
+class _$DetailUserStateCopyWithImpl<$Res, $Val extends DetailUserState>
+    implements $DetailUserStateCopyWith<$Res> {
+  _$DetailUserStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -106,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$DetailUserStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -120,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'UserState.initial()';
+    return 'DetailUserState.initial()';
   }
 
   @override
@@ -138,8 +127,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -151,8 +138,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -164,8 +149,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -180,9 +163,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
+    required TResult Function(_Loeaded value) loaded,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -193,9 +174,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
+    TResult? Function(_Loeaded value)? loaded,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -206,9 +185,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
+    TResult Function(_Loeaded value)? loaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -219,7 +196,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements UserState {
+abstract class _Initial implements DetailUserState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -232,7 +209,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$DetailUserStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -246,7 +223,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'UserState.loading()';
+    return 'DetailUserState.loading()';
   }
 
   @override
@@ -264,8 +241,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -277,8 +252,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -290,8 +263,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -306,9 +277,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
+    required TResult Function(_Loeaded value) loaded,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -319,9 +288,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
+    TResult? Function(_Loeaded value)? loaded,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -332,9 +299,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
+    TResult Function(_Loeaded value)? loaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -345,25 +310,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements UserState {
+abstract class _Loading implements DetailUserState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$LoeadedImplCopyWith<$Res> {
+  factory _$$LoeadedImplCopyWith(
+          _$LoeadedImpl value, $Res Function(_$LoeadedImpl) then) =
+      __$$LoeadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserEntity? userEntity});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$LoeadedImplCopyWithImpl<$Res>
+    extends _$DetailUserStateCopyWithImpl<$Res, _$LoeadedImpl>
+    implements _$$LoeadedImplCopyWith<$Res> {
+  __$$LoeadedImplCopyWithImpl(
+      _$LoeadedImpl _value, $Res Function(_$LoeadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -371,7 +336,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? userEntity = freezed,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$LoeadedImpl(
       freezed == userEntity
           ? _value.userEntity
           : userEntity // ignore: cast_nullable_to_non_nullable
@@ -382,22 +347,22 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.userEntity);
+class _$LoeadedImpl implements _Loeaded {
+  const _$LoeadedImpl(this.userEntity);
 
   @override
   final UserEntity? userEntity;
 
   @override
   String toString() {
-    return 'UserState.loaded(userEntity: $userEntity)';
+    return 'DetailUserState.loaded(userEntity: $userEntity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$LoeadedImpl &&
             (identical(other.userEntity, userEntity) ||
                 other.userEntity == userEntity));
   }
@@ -408,8 +373,8 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$LoeadedImplCopyWith<_$LoeadedImpl> get copyWith =>
+      __$$LoeadedImplCopyWithImpl<_$LoeadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -417,8 +382,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
     required TResult Function(String message) error,
   }) {
     return loaded(userEntity);
@@ -430,8 +393,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(userEntity);
@@ -443,8 +404,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -459,9 +418,7 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
+    required TResult Function(_Loeaded value) loaded,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -472,9 +429,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
+    TResult? Function(_Loeaded value)? loaded,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -485,9 +440,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
+    TResult Function(_Loeaded value)? loaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -498,296 +451,13 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements UserState {
-  const factory _Loaded(final UserEntity? userEntity) = _$LoadedImpl;
+abstract class _Loeaded implements DetailUserState {
+  const factory _Loeaded(final UserEntity? userEntity) = _$LoeadedImpl;
 
   UserEntity? get userEntity;
   @JsonKey(ignore: true)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$LoeadedImplCopyWith<_$LoeadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserLoadedImplCopyWith<$Res> {
-  factory _$$UserLoadedImplCopyWith(
-          _$UserLoadedImpl value, $Res Function(_$UserLoadedImpl) then) =
-      __$$UserLoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserEntity? user});
-}
-
-/// @nodoc
-class __$$UserLoadedImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserLoadedImpl>
-    implements _$$UserLoadedImplCopyWith<$Res> {
-  __$$UserLoadedImplCopyWithImpl(
-      _$UserLoadedImpl _value, $Res Function(_$UserLoadedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_$UserLoadedImpl(
-      freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserLoadedImpl implements _UserLoaded {
-  const _$UserLoadedImpl(this.user);
-
-  @override
-  final UserEntity? user;
-
-  @override
-  String toString() {
-    return 'UserState.userLoaded(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserLoadedImpl &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserLoadedImplCopyWith<_$UserLoadedImpl> get copyWith =>
-      __$$UserLoadedImplCopyWithImpl<_$UserLoadedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
-    required TResult Function(String message) error,
-  }) {
-    return userLoaded(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
-    TResult? Function(String message)? error,
-  }) {
-    return userLoaded?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (userLoaded != null) {
-      return userLoaded(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
-    required TResult Function(_Error value) error,
-  }) {
-    return userLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
-    TResult? Function(_Error value)? error,
-  }) {
-    return userLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (userLoaded != null) {
-      return userLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserLoaded implements UserState {
-  const factory _UserLoaded(final UserEntity? user) = _$UserLoadedImpl;
-
-  UserEntity? get user;
-  @JsonKey(ignore: true)
-  _$$UserLoadedImplCopyWith<_$UserLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RedirectImplCopyWith<$Res> {
-  factory _$$RedirectImplCopyWith(
-          _$RedirectImpl value, $Res Function(_$RedirectImpl) then) =
-      __$$RedirectImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RedirectImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$RedirectImpl>
-    implements _$$RedirectImplCopyWith<$Res> {
-  __$$RedirectImplCopyWithImpl(
-      _$RedirectImpl _value, $Res Function(_$RedirectImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$RedirectImpl implements _Redirect {
-  const _$RedirectImpl();
-
-  @override
-  String toString() {
-    return 'UserState.redirect()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RedirectImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
-    required TResult Function(String message) error,
-  }) {
-    return redirect();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
-    TResult? Function(String message)? error,
-  }) {
-    return redirect?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (redirect != null) {
-      return redirect();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
-    required TResult Function(_Error value) error,
-  }) {
-    return redirect(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
-    TResult? Function(_Error value)? error,
-  }) {
-    return redirect?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (redirect != null) {
-      return redirect(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Redirect implements UserState {
-  const factory _Redirect() = _$RedirectImpl;
 }
 
 /// @nodoc
@@ -801,7 +471,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$DetailUserStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -831,7 +501,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'UserState.error(message: $message)';
+    return 'DetailUserState.error(message: $message)';
   }
 
   @override
@@ -857,8 +527,6 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserEntity? userEntity) loaded,
-    required TResult Function(UserEntity? user) userLoaded,
-    required TResult Function() redirect,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -870,8 +538,6 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserEntity? userEntity)? loaded,
-    TResult? Function(UserEntity? user)? userLoaded,
-    TResult? Function()? redirect,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -883,8 +549,6 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserEntity? userEntity)? loaded,
-    TResult Function(UserEntity? user)? userLoaded,
-    TResult Function()? redirect,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -899,9 +563,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_UserLoaded value) userLoaded,
-    required TResult Function(_Redirect value) redirect,
+    required TResult Function(_Loeaded value) loaded,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -912,9 +574,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_UserLoaded value)? userLoaded,
-    TResult? Function(_Redirect value)? redirect,
+    TResult? Function(_Loeaded value)? loaded,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -925,9 +585,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_UserLoaded value)? userLoaded,
-    TResult Function(_Redirect value)? redirect,
+    TResult Function(_Loeaded value)? loaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -938,7 +596,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements UserState {
+abstract class _Error implements DetailUserState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

@@ -88,6 +88,14 @@ class AppNavigator {
     Navigator.of(context).pushNamed(AppPages.qrscan);
   }
 
+  void goToAddFriend(BuildContext context, {required String friendId}) {
+    if (!canNavigate(context)) return;
+
+    Navigator.of(context).pushNamed(AppPages.addFriend, arguments: {
+      'friend_id': friendId,
+    });
+  }
+
   void notFound(BuildContext context) {
     if (!canNavigate(context)) return;
 

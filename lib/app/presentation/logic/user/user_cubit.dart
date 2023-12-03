@@ -56,7 +56,7 @@ class UserCubit extends Cubit<UserState> {
       emit(UserState.error(l.message));
       log.severe('error getting user');
     }, (r) {
-      emit(UserState.loaded(userEntity));
+      emit(UserState.userLoaded(r));
       log.fine('user loaded success!');
     });
   }

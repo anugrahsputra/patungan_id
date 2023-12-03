@@ -30,6 +30,12 @@ abstract class AppRoutes {
       return QrCodePage(data: data);
     },
     AppPages.qrscan: (context) => const QrScanPage(),
+    AppPages.addFriend: (context) {
+      Map<String, dynamic> arguments =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      String friendId = arguments['friend_id'];
+      return AddFriendPage(friendId: friendId);
+    },
     /* ----------------------- REDIRECT ----------------------- */
     AppPages.notFound: (context) => const NotFoundPage(),
   };

@@ -50,7 +50,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
         return state.maybeWhen(
           orElse: () {
             // TODO: use shimmer loading effect
-            return const SizedBox.shrink();
+            return const Text('Loading...');
           },
           loaded: (userEntity) {
             UserEntity? user = userEntity;

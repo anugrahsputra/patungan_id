@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+import '../../../core/core.dart';
+import '../../../injection.dart';
 import '../../presentation.dart';
 
 class QrScanPage extends StatefulWidget {
@@ -18,7 +20,11 @@ class _QrScanPageState extends State<QrScanPage>
 
   final Logger log = Logger("qr scan page");
 
-  final MobileScannerController cameraControler = MobileScannerController();
+  final MobileScannerController cameraControler = MobileScannerController(
+    detectionSpeed: DetectionSpeed.noDuplicates,
+  );
+
+  final AppNavigator navigate = sl<AppNavigator>();
 
   void _startOrStop() {
     try {
@@ -61,7 +67,9 @@ class _QrScanPageState extends State<QrScanPage>
                     setState(() {
                       this.barcode = barcode;
                     });
-                    log.info(barcode.barcodes.first.rawValue);
+                    String? uid = barcode.barcodes.first.rawValue;
+                    log.info(uid);
+                    navigate.goToAddFriend(context, friendId: uid!);
                   },
                 ),
                 Center(

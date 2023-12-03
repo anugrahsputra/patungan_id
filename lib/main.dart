@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => sl<UserCubit>()),
         BlocProvider(create: (context) => sl<FriendRequestCubit>()),
         BlocProvider(create: (context) => sl<NavbarCubit>()),
+        BlocProvider(create: (context) => sl<DetailUserCubit>()),
         BlocProvider(create: (context) => settingCubit),
       ],
       child: GetMaterialApp(

@@ -8,5 +8,6 @@ abstract class AppPages {
   static String get profile => '/profile';
   static String get qrcode => '/qrcode';
   static String get qrscan => '/qrscan';
+  static String get addFriend => '/add_friend';
   static String get notFound => '/not_found';
 }

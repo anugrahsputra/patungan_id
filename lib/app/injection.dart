@@ -55,6 +55,8 @@ Future<void> init() async {
         currentUserUsecase: sl(),
         getUserUsecase: sl(),
       ));
+  sl.registerFactory(
+      () => DetailUserCubit(getUserUsecase: sl<GetUserUsecase>()));
   sl.registerFactory(() => FriendRequestCubit(
         addFriendUsecase: sl<AddFriendUsecase>(),
         acceptRequestUsecase: sl<AcceptRequestUsecase>(),
