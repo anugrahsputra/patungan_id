@@ -74,11 +74,16 @@ class AppNavigator {
     Navigator.of(context).pushNamed(AppPages.profile);
   }
 
-  void gotoQrCode(BuildContext context, {required String data}) {
+  void gotoQrCode(
+    BuildContext context, {
+    required String data,
+    required String profilePic,
+  }) {
     if (!canNavigate(context)) return;
 
     Navigator.of(context).pushNamed(AppPages.qrcode, arguments: {
       'data': data,
+      'profile_pic': profilePic,
     });
   }
 

@@ -27,7 +27,11 @@ abstract class AppRoutes {
       Map<String, dynamic> arguments =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       String data = arguments['data'];
-      return QrCodePage(data: data);
+      String profilePic = arguments['profile_pic'];
+      return QrCodePage(
+        data: data,
+        profilePic: profilePic,
+      );
     },
     AppPages.qrscan: (context) => const QrScanPage(),
     AppPages.addFriend: (context) {

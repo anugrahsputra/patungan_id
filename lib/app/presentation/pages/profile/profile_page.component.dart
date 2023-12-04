@@ -92,7 +92,9 @@ class MenuCard extends StatelessWidget {
               menuText: 'QRCode',
               onTap: () {
                 String data = user!.id;
-                navigate.gotoQrCode(context, data: data);
+                String profilePic = user!.profilePic;
+                navigate.gotoQrCode(context,
+                    data: data, profilePic: profilePic);
               },
             ),
             MenuItems(

@@ -49,6 +49,7 @@ class _QuickMenuItemState extends State<QuickMenuItem> {
           color: theme.isDarkMode() ? Colors.black : Colors.white,
           border: Border.all(
             color: color,
+            width: 2,
           ),
           boxShadow: isTapped
               ? []

@@ -246,7 +246,9 @@ class GroupCards extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(),
+          Divider(
+            color: themeMode.isDarkMode() ? Colors.white : Colors.black,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: Row(

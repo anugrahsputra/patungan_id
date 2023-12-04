@@ -18,6 +18,7 @@ class _QrScanPageState extends State<QrScanPage>
     with SingleTickerProviderStateMixin {
   BarcodeCapture? barcode;
   bool isStarted = true;
+  String userId = '';
 
   final Logger log = Logger("qr scan page");
 
@@ -27,6 +28,22 @@ class _QrScanPageState extends State<QrScanPage>
 
   final AppNavigator navigate = sl<AppNavigator>();
   final GetCurrentIdUsecase getCurrentId = sl<GetCurrentIdUsecase>();
+
+  void getCurrentIds() async {
+    final result = await getCurrentId.call();
+    result.fold((l) {
+      log.severe(l.message);
+    }, (currentId) {
+      userId = currentId;
+      log.shout(userId);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentIds();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,51 +69,47 @@ class _QrScanPageState extends State<QrScanPage>
                 ),
               ),
             ),
-            onDetect: (barcode) async {
+            onDetect: (barcode) {
               setState(() {
                 this.barcode = barcode;
               });
-              final result = await getCurrentId.call();
-              result.fold(
-                (failure) {
-                  log.severe('Failed to get user ID: ${failure.toString()}');
-                  return null;
-                },
-                (userId) {
-                  String? uid = barcode.barcodes.first.rawValue;
-                  log.fine('User ID: $userId');
-                  cameraController.stop();
-                  if (uid != userId) {
-                    navigate.goToAddFriend(context, friendId: uid!);
-                    cameraController.start();
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Error'),
-                          content: const Text(
-                              'Are you trying to add yourself as a friend? :('),
-                          actions: [
-                            FilledButton(
-                              child: const Text('Close'),
-                              onPressed: () {
-                                navigate.back(context);
-                                cameraController.start();
-                              },
-                            ),
-                          ],
-                        );
-                      },
+              String? uid = barcode.barcodes.first.rawValue;
+              cameraController.stop();
+              if (uid != userId) {
+                navigate.goToAddFriend(context, friendId: uid!);
+                cameraController.start();
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Error'),
+                      content: const Text(
+                          'Are you trying to add yourself as a friend? :('),
+                      actions: [
+                        FilledButton(
+                          child: const Text('Close'),
+                          onPressed: () {
+                            navigate.back(context);
+                            cameraController.start();
+                          },
+                        ),
+                      ],
                     );
-                  }
-                },
-              );
+                  },
+                );
+              }
             },
           );
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    getCurrentIds();
+    super.dispose();
   }
 }
 

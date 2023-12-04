@@ -6,9 +6,14 @@ import '../../../injection.dart';
 import '../../presentation.dart';
 
 class QrCodePage extends StatefulWidget {
-  const QrCodePage({super.key, required this.data});
+  const QrCodePage({
+    super.key,
+    required this.data,
+    required this.profilePic,
+  });
 
   final String data;
+  final String profilePic;
 
   @override
   State<QrCodePage> createState() => _QrCodePageState();
@@ -33,7 +38,7 @@ class _QrCodePageState extends State<QrCodePage> {
           decoration: BoxDecoration(
             color: appSettings.isDarkMode() ? Colors.black : Colors.white,
             border: Border.all(
-              width: 3,
+              width: 2,
               color: appSettings.isDarkMode() ? Colors.white : Colors.black,
             ),
             borderRadius: BorderRadius.circular(14),
@@ -49,6 +54,7 @@ class _QrCodePageState extends State<QrCodePage> {
           child: QrImageView(
             data: widget.data,
             gapless: true,
+            embeddedImage: NetworkImage(widget.profilePic),
             eyeStyle: QrEyeStyle(
               eyeShape: QrEyeShape.square,
               color: appSettings.isDarkMode() ? Colors.white : Colors.black,
