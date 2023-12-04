@@ -48,8 +48,8 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await userProvider.addFriend(friendId);
       return Right(result);
-    } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(e.message!));
+    } on ServerException {
+      return const Left(ServerFailure('server failure'));
     }
   }
 

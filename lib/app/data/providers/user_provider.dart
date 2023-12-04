@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../core/core.dart';
 import '../data.dart';
 
 abstract class UserProvider {
@@ -94,15 +95,23 @@ class UserProviderImpl implements UserProvider {
       throw Exception('User with $friendId is not exist');
     }
 
-    await firestore.collection('users').doc(currentUserId).update({
-      'friends_id': FieldValue.arrayUnion([friendId])
-    });
-
-    await firestore
+    var requestDoc = await firestore
         .collection('users')
         .doc(currentUserId)
         .collection('friend_requests')
-        .add(data.toMap());
+        .doc(friendId)
+        .get();
+
+    if (!requestDoc.exists) {
+      await firestore
+          .collection('users')
+          .doc(currentUserId)
+          .collection('friend_requests')
+          .doc(friendId)
+          .set(data.toMap());
+    } else {
+      throw ServerException();
+    }
   }
 
   @override

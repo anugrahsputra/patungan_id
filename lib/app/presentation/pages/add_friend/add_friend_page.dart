@@ -2,11 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
 import '../../../domain/domain.dart';
 import '../../../injection.dart';
 import '../../presentation.dart';
+
+part 'add_friend_page.component.dart';
 
 class AddFriendPage extends StatefulWidget {
   const AddFriendPage({super.key, required this.friendId});
@@ -19,22 +23,76 @@ class AddFriendPage extends StatefulWidget {
 
 class _AddFriendPageState extends State<AddFriendPage> {
   final AppNavigator navigate = sl<AppNavigator>();
+  final AppSettings appSettings = sl<AppSettings>();
+  final FriendRequestCubit friendRequestCubit = sl<FriendRequestCubit>();
 
   @override
   Widget build(BuildContext context) {
     context.read<DetailUserCubit>().getUser(widget.friendId);
-    return BlocListener<DetailUserCubit, DetailUserState>(
-      listener: (context, state) {
-        state.when(
-          initial: () {},
-          loading: () {},
-          loaded: (user) {},
-          error: (message) {
-            navigate.notFound(context);
-            log(message);
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<DetailUserCubit, DetailUserState>(
+          listener: (context, state) {
+            state.when(
+              initial: () {},
+              loading: () {},
+              loaded: (user) {},
+              error: (message) {
+                navigate.notFound(context);
+                log(message);
+              },
+            );
           },
-        );
-      },
+        ),
+        BlocListener<FriendRequestCubit, FriendRequestState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              error: (message) {
+                log(message);
+                showAdaptiveDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('did you forget?'),
+                      content: const SizedBox(
+                        height: 200,
+                        child: Center(
+                          child: Text('You already sent it!'),
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            navigate.goToSplah(context);
+                          },
+                          child: const Text('Go Back'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              sendFriendReq: () {
+                log('sent');
+                showAdaptiveDialog(
+                    context: context,
+                    builder: (context) {
+                      return const AlertDialog(
+                        title: Text('Friend request sent!'),
+                        content: SizedBox(
+                          height: 200,
+                          child: Center(child: Text('Friend request sent!')),
+                        ),
+                      );
+                    });
+
+                Future.delayed(const Duration(seconds: 3))
+                    .then((value) => navigate.goToSplah(context));
+              },
+            );
+          },
+        ),
+      ],
       child: ScaffoldBuilder(
         appBar: const DefaultAppBar(
           title: Text('Add to friend list'),
@@ -47,15 +105,21 @@ class _AddFriendPageState extends State<AddFriendPage> {
               ),
               loaded: (userEntity) {
                 UserEntity? user = userEntity;
-                return Center(
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(user!.profilePic),
-                      ),
-                      Text(user.name),
+                      FriendView(user: user!),
+                      const Gap(10),
+                      DefaultButton(
+                        onTap: () {
+                          context.read<FriendRequestCubit>().addFriend(user.id);
+                        },
+                        text: 'Add',
+                      )
                     ],
                   ),
                 );

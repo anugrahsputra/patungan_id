@@ -4,6 +4,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:patungan_id/firebase_options.dart';
@@ -54,21 +55,27 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => sl<DetailUserCubit>()),
         BlocProvider(create: (context) => settingCubit),
       ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Patungan Id',
-        theme: AppThemes.light,
-        darkTheme: AppThemes.dark,
-        themeMode: settingCubit.state.when(
-          success: (themeMode) {
-            log.fine('themeMode: $themeMode');
-            return themeMode;
-          },
-          error: (_) =>
-              ThemeMode.system, // default to system theme mode in case of error
-        ),
-        initialRoute: AppRoutes.initial,
-        routes: AppRoutes.routes,
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        builder: (_, child) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Patungan Id',
+            theme: AppThemes.light,
+            darkTheme: AppThemes.dark,
+            themeMode: settingCubit.state.when(
+              success: (themeMode) {
+                log.fine('themeMode: $themeMode');
+                return themeMode;
+              },
+              error: (_) => ThemeMode
+                  .system, // default to system theme mode in case of error
+            ),
+            initialRoute: AppRoutes.initial,
+            routes: AppRoutes.routes,
+          );
+        },
       ),
     );
   }
