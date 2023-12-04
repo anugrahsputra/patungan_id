@@ -47,6 +47,7 @@ class _AddFriendPageState extends State<AddFriendPage> {
         BlocListener<FriendRequestCubit, FriendRequestState>(
           listener: (context, state) {
             state.whenOrNull(
+              loading: () => AppDialog(context).showLoadingPanel(),
               error: (message) {
                 log(message);
                 showAdaptiveDialog(
