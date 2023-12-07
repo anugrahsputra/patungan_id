@@ -15,7 +15,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await userProvider.getCurrentId();
       return Right(result);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message!));
     }
   }
@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await userProvider.getCurrentUser();
       return Right(result);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message!));
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../core/core.dart';
 import '../models/models.dart';
 
 abstract class AuthenticationProvider {
@@ -72,10 +73,10 @@ class AuthenticationProviderImpl implements AuthenticationProvider {
     );
 
     var userDoc = await firestore.collection('users').doc(uid).get();
-    if (userDoc.exists) {
-      await firestore.collection('users').doc(uid).update(user.toMap());
-    } else {
+    if (!userDoc.exists) {
       await firestore.collection('users').doc(uid).set(user.toMap());
+    } else {
+      throw FirebaseException;
     }
   }
 
@@ -91,7 +92,7 @@ class AuthenticationProviderImpl implements AuthenticationProvider {
       },
       verificationFailed: (error) {
         log.severe(error);
-        throw Exception(error);
+        throw FirebaseAuthException;
       },
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
@@ -109,11 +110,16 @@ class AuthenticationProviderImpl implements AuthenticationProvider {
 
   @override
   Future<void> verifyOtp(String otp) async {
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-      verificationId: _verificationId,
-      smsCode: otp,
-    );
-    await auth.signInWithCredential(credential);
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: otp,
+      );
+      await auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      log.severe('FirebaseAuthException: ${e.message}');
+      rethrow;
+    }
   }
 
   @override
@@ -143,7 +149,7 @@ class AuthenticationProviderImpl implements AuthenticationProvider {
       },
       verificationFailed: (error) {
         log.severe(error);
-        throw Exception(error);
+        throw FirebaseAuthException;
       },
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
@@ -161,6 +167,10 @@ class AuthenticationProviderImpl implements AuthenticationProvider {
   Future<bool> isUserExist(String uid) async {
     final users = FirebaseFirestore.instance.collection('users');
     final docSnapshot = await users.doc(uid).get();
-    return docSnapshot.exists;
+    if (docSnapshot.exists) {
+      return true;
+    } else {
+      throw ServerException();
+    }
   }
 }

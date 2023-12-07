@@ -45,7 +45,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final result = await authProvider.saveDataToDatabase(name, photoUrl);
       authProvider.setUserLoggedIn(await authProvider.getCurrentId());
       return Right(result);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message!));
     }
   }
