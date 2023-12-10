@@ -30,9 +30,33 @@ class _QrCodePageState extends State<QrCodePage> {
       extendBodyBehindAppBar: true,
       backgroundColor: appSettings.isDarkMode() ? Colors.black : Colors.white,
       body: Center(
-        child: Container(
+        child: DefaultContainer(
+          appSettings: appSettings,
+          width: 200,
+          height: 200,
+          child: QrImageView(
+            data: widget.data,
+            gapless: true,
+            embeddedImage: NetworkImage(widget.profilePic),
+            eyeStyle: QrEyeStyle(
+              eyeShape: QrEyeShape.square,
+              color: appSettings.isDarkMode() ? Colors.white : Colors.black,
+            ),
+            dataModuleStyle: QrDataModuleStyle(
+              dataModuleShape: QrDataModuleShape.square,
+              color: appSettings.isDarkMode() ? Colors.white : Colors.black,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/* 
+Container(
           alignment: Alignment.center,
-          clipBehavior: Clip.antiAlias,
           width: 200,
           height: 200,
           decoration: BoxDecoration(
@@ -65,7 +89,5 @@ class _QrCodePageState extends State<QrCodePage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
+
+ */

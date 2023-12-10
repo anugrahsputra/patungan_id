@@ -196,31 +196,10 @@ class GroupCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = themeMode.isDarkMode()
-        ? const Color(0xFFFFFFFF).withOpacity(1)
-        : const Color(0xFF000000).withOpacity(1);
-    final containerColor = themeMode.isDarkMode()
-        ? const Color(0xFF000000).withOpacity(1)
-        : const Color(0xFFFFFFFF).withOpacity(1);
-    return Container(
+    return DefaultContainer(
+      appSettings: themeMode,
       width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          color: color,
-          width: 3,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: color,
-            offset: const Offset(2, 4),
-            blurRadius: 0,
-            spreadRadius: -1,
-          ),
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

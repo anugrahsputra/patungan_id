@@ -43,7 +43,6 @@ class _HomepageState extends State<Homepage> {
         BlocListener<UserCubit, UserState>(
           listener: (context, state) {
             state.whenOrNull(
-              loaded: (userEntity) => log.finest('user entity loaded'),
               redirect: () {
                 log.severe(
                     'User is not exist in the database but manage to authenticate');
@@ -74,6 +73,7 @@ class _HomepageState extends State<Homepage> {
             },
           ),
           actions: [
+            // TODO: change this with notification and search icon
             IconButton(
               color: theme.isDarkMode() ? Colors.white : Colors.black,
               onPressed: () {
@@ -94,6 +94,7 @@ class _HomepageState extends State<Homepage> {
               const QuickMenu(),
               const Gap(28),
               GroupCards(),
+              const Gap(28),
               SignOutBtn(),
             ],
           ),
