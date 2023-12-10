@@ -3,6 +3,7 @@ export 'avatar/avatar.dart';
 export 'bottom_sheets/bottom_sheets.dart';
 export 'builder/builder.dart';
 export 'button/button.dart';
+export 'container/container.dart';
 export 'not_found/not_found.dart';
 export 'switch/switch.dart';
 export 'textfield/textfield.dart';
